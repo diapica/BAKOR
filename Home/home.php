@@ -38,7 +38,7 @@
           <a class="nav-link active" href="#Pendaftaran">Pendaftaran</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link active" href="../Login/Login.html">Login</a>
+          <a class="nav-link active" href="../Login/Login.php">Login</a>
         </li>
       </ul>
     </div>
@@ -50,7 +50,7 @@
     <h1 class="display">Selamat Datang di</h1>
     <h3 class="display-3">Bakorpend Kalbar</h3>
     <a href="#Home"></a>
-    <a href="../Home/home.html#Pendaftaran"><button type="button" class="btn btn-danger btn-lg">Yok Daftar!</button></a>
+    <a href="../Home/home.php#Pendaftaran"><button type="button" class="btn btn-danger btn-lg">Yok Daftar!</button></a>
    </div> 
 </div>
 
@@ -160,7 +160,7 @@
       </div>
 
      </div>
-    <a href="../Login/Login.html#Login"><button type="button" class="btn btn-danger btn-lg">Registration</button></a>
+    <a href="../Login/Login.php#Login"><button type="button" class="btn btn-danger btn-lg">Registration</button></a>
   </div> 
   </div>
 </div>
@@ -177,7 +177,7 @@
 </div>
 
 <div class="footer">
-  <p>© 2021 Copyright:<a class="text-reset fw-bold" href="../Home/home.html"> BAKORPEND Pontianak.com</a></p>
+  <p>© 2021 Copyright:<a class="text-reset fw-bold" href="../Home/home.php"> BAKORPEND Pontianak.com</a></p>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

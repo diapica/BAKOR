@@ -26,16 +26,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../Home/home.html">Home</a>
+          <a class="nav-link active" aria-current="page" href="../Home/home.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../Home/home.html#About">About</a>
+          <a class="nav-link active" href="../Home/home.php#About">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../Home/home.html#Contact">Contact</a>
+          <a class="nav-link active" href="../Home/home.php#Contact">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../Home/home.html#Pendaftaran">Pendaftaran</a>
+          <a class="nav-link active" href="../Home/home.php#Pendaftaran">Pendaftaran</a>
         </li>
          <li class="nav-item">
           <a class="nav-link active" href="#">Login</a>
@@ -66,7 +66,7 @@
           </div>
               <p><input type="checkbox" id="show-password"> Show password</p>
               <button type="submit" class="btn btn-primary">Login</button>
-              <a class="btn btn-primary" href="../Login/Daftar.html?" role="button">Daftar</a>
+              <a class="btn btn-primary" href="../Login/Daftar.php?" role="button">Daftar</a>
         </form>
       </div>
 

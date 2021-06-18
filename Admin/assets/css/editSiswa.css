@@ -1,0 +1,156 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.nav-item{
+    margin-left: 30px;
+}
+
+.nav-link{
+    font-size: 20px;
+}
+
+.navbar-collapse{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar-collapse ul{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.content-1{
+    width: 100%;
+    display: flex;
+}
+
+.content-1 .sidebar{
+    width: 15%;
+    height: 755px;
+    background-color: rgb(27,96,196);
+}
+
+.sidebar ul{
+    width: 100%;
+    padding:0;
+}
+
+.sidebar ul a{
+    font-size:17px;
+    text-decoration: none;
+    color:white;
+}
+
+.sidebar ul a:hover{
+    color:black;
+}
+
+.sidebar ul a li{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding:20px 0px;
+    border-bottom: 4px solid white;
+}
+
+.content{
+    width: 85%;
+    display:flex;
+    flex-direction: column;
+    padding:20px;
+}
+
+.form{
+    width: 100%;
+    display: flex;
+}
+
+form{
+    width: 40%;
+}
+
+.form-2{
+    width: 60%;
+}
+
+.group-form{
+    display: flex;
+}
+
+.group-form-1{
+    display: flex;
+    align-items: center;
+}
+
+.group-form-2{
+    display: flex;
+    align-items: center;
+}
+
+.group-form-2 label{
+    width: 160px;
+}
+
+.group-form-2 input{
+    width: 20%;
+}
+
+.group-form-1 label{
+    width: 200px;
+}
+
+.ketentuan{
+    margin-top:20px;
+}
+
+.group-form label{
+    width: 200px;
+}
+
+input{
+    width: 30%;
+    font-size: 12px;
+}
+
+.a{
+    margin-top: 20px;;
+}
+
+.radio{
+    margin-left:20px;
+}
+
+.select{
+    margin-left: 20px;
+    width:37%;
+}
+
+.group-form .select{
+    margin:0;
+}
+
+.input{
+    margin-left: 20px;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    background-color: rgb(60, 58, 58);
+    color:white;
+}
+
+.footer p{
+    margin:0;
+}
+
+.bt input{
+    margin-left: 20px;
+}

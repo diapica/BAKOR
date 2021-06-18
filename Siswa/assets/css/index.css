@@ -1,0 +1,166 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.nav-item{
+    margin-left: 30px;
+}
+
+.nav-link{
+    font-size: 20px;
+}
+
+.navbar-collapse{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar-collapse ul{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.content-1{
+    width: 100%;
+    display: flex;
+}
+
+.content-1 .sidebar{
+    width: 15%;
+    height: 755px;
+    background-color: rgb(27,96,196);
+}
+
+.sidebar ul{
+    width: 100%;
+    padding:0;
+}
+
+.sidebar ul a{
+    font-size:17px;
+    text-decoration: none;
+    color:white;
+}
+
+.sidebar ul a:hover{
+    color:black;
+}
+
+.sidebar ul a li{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding:20px 0px;
+    border-bottom: 4px solid white;
+}
+
+.content{
+    width: 85%;
+    display:flex;
+    justify-content: center;
+}
+
+.content .belum{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.content .belum p{
+    text-align: center;
+    font-size: 50px;
+    margin:0;
+}
+
+.content .belum button{
+    padding:20px 30px;
+    margin-top: 20px;
+    background-color:rgb(255, 68, 58);
+    border:none;
+    font-size: 30px;
+    border-radius:50px;
+}
+
+.content .proses{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.content .proses p{
+    text-align: center;
+    font-size: 50px;
+    margin:0;
+}
+
+.content .diterima{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.content .diterima p{
+    text-align: center;
+    font-size: 50px;
+    margin:0;
+}
+
+.content .diterima img{
+    width: 40%;
+}
+
+.content .diterima .img{
+    display: flex;
+    justify-content: center;
+}
+
+.content .ditolak{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.content .ditolak p{
+    text-align: center;
+    font-size: 50px;
+    margin:0;
+}
+
+.content .ditolak img{
+    width: 40%;
+}
+
+.content .ditolak .img{
+    display: flex;
+    justify-content: center;
+}
+
+.content .ditolak button{
+    padding:10px 50px;
+    margin-top: 20px;
+    background-color:rgb(255, 68, 58);
+    border:none;
+    font-size: 30px;
+    border-radius:50px;
+}
+
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding:5px;
+    margin:0;
+    background-color: rgb(60, 58, 58);
+    color:white;
+}
