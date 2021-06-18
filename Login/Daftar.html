@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Daftar</title>
+
+    <link rel="stylesheet" href="styledaftar.css">
+
+  </head>
+  <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="img/logo.png" width="30" height="24"> BAKORPEND Pontianak
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="file:///C:/xampp/htdocs/bakorpendp/Home/home.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="file:///C:/xampp/htdocs/bakorpendp/Home/home.html#About">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="file:///C:/xampp/htdocs/bakorpendp/Home/home.html#Contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="file:///C:/xampp/htdocs/bakorpendp/Home/home.html#Pendaftaran">Pendaftaran</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link active" href="file:///C:/xampp/htdocs/bakorpendp/Login/Login.html">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="box">
+    <div class="row justify-content-center text-center">
+      <div class="col-1-7"></div>
+        <div class="card p-5 shadow-lg border-0">
+            <img src="img/logo.png" width="200" height="200" alt="daftar" class="mx-auto" >
+            <h3>Register</h3>
+            <form action="">
+              <div class="form-group mb-3">
+                <input type="text" placeholder="Username">
+              </div> 
+              <div class="form-group mb-3">
+                <input type="text" placeholder="Email-address">
+              </div> 
+              <div class="form-group mb-3">
+                <input type="password" name="password" id="password" placeholder="Password">
+              </div> 
+              <div class="form-group mb-3">
+                <input type="password" name="konfirmpassword" id="konfirmpassword" placeholder="Konfirm password">
+              </div>
+              <p><input type="checkbox" id="show-password"> Show password</p>
+              <input class="btn btn-primary" type="submit" value="Submit">
+              <a class="btn btn-primary" href="file:///C:/xampp/htdocs/bakorpendp/Login/Login.html" role="button">Login</a>
+            </form>
+        </div> 
+    </div>
+</div>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){  
+   $('#show-password').click(function(){
+    if($(this).is(':checked')){
+     $('#password').attr('type','text');
+    }else{
+     $('#password').attr('type','password');
+    }
+   });
+  });
+ </script>
+
+ <script>
+  $(document).ready(function(){  
+   $('#show-password').click(function(){
+    if($(this).is(':checked')){
+     $('#konfirmpassword').attr('type','text');
+    }else{
+     $('#konfirmpassword').attr('type','password');
+    }
+   });
+  });
+ </script>
+
+
+
+
+<div class="footer">
+  <p>© 2021 Copyright:<a class="text-reset fw-bold" href="file:///C:/xampp/htdocs/bakorpendp/Home/home.html"> BAKORPEND Pontianak.com</a></p>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+  </body>
+</html>
