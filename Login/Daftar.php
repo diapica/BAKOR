@@ -51,12 +51,29 @@
         <div class="card p-5 shadow-lg border-0">
             <img src="img/logo.png" width="200" height="200" alt="daftar" class="mx-auto" >
             <h3>Register</h3>
-            <form action="">
+            <form action="prosesDaftar.php" method="POST">
+            <p style="color:red;">
+            
+            <?php
+
+              if(isset($_GET['pesan'])){
+                if($_GET['pesan'] == 'gagal'){
+                  echo "Password tidak sesuai!";
+                }else if($_GET['pesan'] == 'username'){
+                  echo "Username sudah digunakan! Silahkan ganti!";
+                }else if($_GET['pesan'] == 'berhasil'){
+                  echo "Berhasil Daftar!";
+                }
+              }
+            
+            ?>
+            
+            </p>
               <div class="form-group mb-3">
-                <input type="text" placeholder="Username">
+                <input type="text" name="username" id="username" placeholder="Username">
               </div> 
               <div class="form-group mb-3">
-                <input type="text" placeholder="Email-address">
+                <input type="email" name="email" id="email"  placeholder="Email-address">
               </div> 
               <div class="form-group mb-3">
                 <input type="password" name="password" id="password" placeholder="Password">

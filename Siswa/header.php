@@ -12,7 +12,7 @@
                 <a class="nav-link active" href="index.php">Beranda</a>
               </li>
                <li class="nav-item">
-                <a class="nav-link active" href="../Login/Login.html">Logout</a>
+                <a class="nav-link active" href="../Login/Login.php">Logout</a>
               </li>
             </ul>
           </div>

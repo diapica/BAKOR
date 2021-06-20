@@ -31,11 +31,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td>1</td>
-                        <td>Andi</td>
-                        <td>Andi</td>
-                        <td>25 Mei 2020</td>
-                        <td>10000000</td>
+                        <?php 
+
+                        include "../connection.php"
+
+                        ?>
+                        <tr>
+                            <td>1</td>
+                            <td>Andi</td>
+                            <td>Andi</td>
+                            <td>25 Mei 2020</td>
+                            <td>10000000</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

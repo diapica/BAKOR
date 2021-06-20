@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="assets/css/index1.css">
 </head>
 <body>
+<?php session_start(); $username = $_SESSION['username'] ?>
     <?php include "header.php" ?>
       <div class="content-1">
           <?php include "sidebar.php" ?>
           <div class="content">
             <div class="belum">
                 <p><b>Welcome</b></p>
-                <p>Nama Username</p>
+                <p><?php echo $username ?></p>
                 <p>Selamat Bekerja :)</p>
             </div>
           </div>

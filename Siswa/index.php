@@ -10,30 +10,44 @@
     <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
+<?php session_start();
+$username = $_SESSION['username'];
+include "../connection.php";
+?>
     <?php include "header.php" ?>
       <div class="content-1">
           <?php include "sidebar.php" ?>
           <div class="content">
-            <!-- <div class="belum">
+
+          <?php
+            $sql = "select * from tbuser where username='$username'";
+            $query = mysqli_query($conn,$sql);
+            $re = mysqli_fetch_array($query);
+            if($re['status_register'] == "a"){
+          ?>
+            <div class="belum">
                 <p><b>Welcome</b></p>
-                <p>Nama Username</p>
+                <p><?php echo $username ?></p>
                 <p>Silahkan mengisi form pendaftaran!</p>
-                <button>Form Pendaftaran</button>
-            </div> -->
-            <!-- <div class="proses">
+                <a href="pendaftaran.php"><button class="btn btn-danger" style="color:white;">Form Pendaftaran</button></a>
+            </div>
+           <?php }else if($re['status_register'] == 'b'){?>
+            <div class="proses">
                 <p>Status Siswa</p>
                 <div class="img">
                     <img src="assets/img/load.gif" alt="load">
                 </div>
-                <p>Pendaftaran sedang di proses</p>
-            </div> -->
-            <!-- <div class="diterima">
+                <p>Pendaftaran telah selesai! Menunggu Konfirmasi!</p>
+            </div>
+            <?php }else if($re['status_register'] == 'f'){?>
+            <div class="diterima">
                 <p>Status Siswa</p>
                 <div class="img">
                     <img src="assets/img/check.png" alt="check">
                 </div>
                 <p>Pendaftaran Selesai</p>
-            </div> -->
+            </div>
+            <?php }else if($re['status_register'] == 'd'){ ?>
             <div class="ditolak">
                 <p>Status Siswa</p>
                 <div class="img">
@@ -41,8 +55,25 @@
                 </div>
                 <p>Data tidak Valid</p>
                 <p><u>Mohon Registrasi Kembali</u></p>
-                <button>Klik disini</button>
+                <button class="btn btn-danger" style="color:white" onclick="changeStatus(<?php echo "'$username'" ?>)">Klik disini</button>
             </div>
+            <?php }else if($re['status_register'] == 'c'){ ?>
+                <div class="proses">
+                <p>Status Siswa</p>
+                <div class="img">
+                    <img src="assets/img/load.gif" alt="load">
+                </div>
+                <p>Pendaftaran telah diterima! Menunggu Pembayaran!</p>
+            </div>
+            <?php }else if($re['status_register'] == 'e'){ ?>
+                <div class="proses">
+                <p>Status Siswa</p>
+                <div class="img">
+                    <img src="assets/img/load.gif" alt="load">
+                </div>
+                <p>Pembayaran diterima! Menunggu Konfirmasi!</p>
+            </div>
+            <?php } ?>
           </div>
       </div>
       <div class="footer fixed-bottom">
@@ -50,3 +81,9 @@
       </div>
 </body>
 </html>
+
+<script>
+    function changeStatus(username){
+        location.href = "changeStatus.php?username="+username;
+    }
+</script>
