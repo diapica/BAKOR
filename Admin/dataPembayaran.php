@@ -60,7 +60,7 @@
                         <td><?php echo $username ?></td>
                         <td><?php echo $nama ?></td>
                         <td><?php echo $email ?></td>
-                        <td style="width:200px"><img onclick="goImage(<?php echo "'$bukti'" ?>)" src="../siswa/<?php echo $bukti ?>" style="width:100%"></td>
+                        <td style="width:200px"><img onclick="goImage(<?php echo "'$bukti'" ?>)" src="../Siswa/<?php echo $bukti ?>" style="width:100%"></td>
                         <td><?php echo $biaya ?></td>
                         <td><?php echo $tanggal ?></td>
                         <td>
@@ -89,7 +89,7 @@
         location.href = "konfirmasi.php?id="+id+"&username="+username+"&submit=Hapus";
     }
     function goImage(bukti){
-        window.open('../siswa/'+bukti,'_blank');
+        window.open('../Siswa/'+bukti,'_blank');
     }
     $(document).ready(function(){
     $("#search").on("keyup", function() {

@@ -156,7 +156,7 @@
 
 <script>   
     function goImage(bukti){
-        window.open('../siswa/'+bukti,'_blank');
+        window.open('../Siswa/'+bukti,'_blank');
     }
     function test(){
         var target = document.getElementById("target").value;

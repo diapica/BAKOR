@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    $username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +14,6 @@
     <link rel="stylesheet" href="assets/css/index1.css">
 </head>
 <body>
-<?php session_start(); $username = $_SESSION['username'] ?>
     <?php include "header.php" ?>
       <div class="content-1">
           <?php include "sidebar.php" ?>
