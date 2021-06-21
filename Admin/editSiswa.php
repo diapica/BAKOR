@@ -11,11 +11,18 @@
 </head>
 <?php
     include "../connection.php";
+    include "header.php";
+
     $id = $_GET['id']; 
     $username = $_GET['username']; 
-    include "header.php";
-    $sql = "select * from tbregistrasi where idregistrasi='$id'";
-    $query = mysqli_query($conn,$sql);
+
+    $sql = "SELECT status_register from tbuser WHERE username='$username'";
+    $query = mysqli_query($conn, $sql);
+    $re = mysqli_fetch_array($query);
+    $status_register = $re['status_register'];
+    
+    $sql = "SELECT * FROM tbregistrasi WHERE idregistrasi='$id'";
+    $query = mysqli_query($conn, $sql);
     $re = mysqli_fetch_array($query);
     $indonesia = $re['namaIndonesia'];
     $mandarin = $re['namaMandarin'];
@@ -36,7 +43,7 @@
     $tahunMasuk = $re['tahunMasuk'];
     $gelombang = $re['gelombang'];
     $statusKelas = $re['statusKelas'];
-    ?>
+?>
 <body onload="getChecked(<?php echo "'$jenisKelamin','$pendidikanTerakhir','$tingkatan','$waktuBelajar','$alamat','$statusKelas'" ?>)">
     
       <div class="content-1">
@@ -50,33 +57,35 @@
                         <div class="group-form">
                             <label>Nama Mandarin</label>
                             <div class="box"></div>
-                            <input type="text" name="mandarin" id="mandarin" value="<?php echo $mandarin ?>">
+                            <input disabled type="text" name="mandarin" id="mandarin" value="<?php echo $mandarin ?>">
                         </div>
                         <div class="group-form a">
                             <label>Nama Indonesia</label>
                             <div class="box"></div>
-                            <input type="text" name="indonesia" id="indonesia" value="<?php echo $indonesia ?>">
+                            <input disabled type="text" name="indonesia" id="indonesia" value="<?php echo $indonesia ?>">
                         </div>
                         <div class="group-form a">
                             <label>Jenis Kelamin</label>
-                            <div class="radio">
-                                <input type="radio" id="laki" name="jenisKelamin" value="L">Laki-laki
-                                <input type="radio" id="perempuan" name="jenisKelamin" value="P">Perempuan
-                            </div>
+                            <select disabled required class="select" name="jenisKelamin" id="jenisKelamin">
+                                <option value="" disabled>-- Jenis Kelamin --</option>
+                                <option value="L">Laki-Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
                         </div>
                         <div class="group-form a">
                             <label>Tempat Lahir</label>
                             <div class="box"></div>
-                            <input type="text" name="tempatLahir" id="tempatLahir" value="<?php echo $tempatLahir ?>">
+                            <input disabled type="text" name="tempatLahir" id="tempatLahir" value="<?php echo $tempatLahir ?>">
                         </div>
                         <div class="group-form a">
                             <label>Tanggal Lahir</label>
                             <div class="box"></div>
-                            <input type="date" name="tanggalLahir" id="tanggalLahir" value="<?php echo $tanggalLahir ?>">
+                            <input disabled type="date" name="tanggalLahir" id="tanggalLahir" value="<?php echo $tanggalLahir ?>">
                         </div>
                         <div class="group-form a">
                             <label>Pendidikan Terakhir</label>
-                            <select class="select" name="pendidikanTerakhir" id="pendidikanTerakhir">
+                            <select disabled class="select" name="pendidikanTerakhir" id="pendidikanTerakhir">
+                                <option value="" disabled>-- Pendidikan Terakhir --</option>
                                 <option value="smp">SMP</option>
                                 <option value="sma">SMA</option>
                                 <option value="d3">D3</option>
@@ -88,28 +97,29 @@
                         <div class="group-form a">
                             <label>Alamat Lengkap</label>
                             <div class="box"></div>
-                            <textarea name="alamat" id="alamat" cols="18" rows="2"></textarea>
+                            <textarea disabled name="alamat" id="alamat" style="margin-top: 0px; margin-bottom: 0px; height: 90px; width: 200px;"><?php echo $alamat?></textarea>
                         </div>
                         <div class="group-form a">
                             <label>Alamat Email</label>
                             <div class="box"></div>
-                            <input type="text" name="email" id="email" value="<?php echo $email ?>">
+                            <input disabled type="email" name="email" id="email" value="<?php echo $email ?>">
                         </div>
                         <div class="group-form a">
                             <label>No WA</label>
                             <div class="box"></div>
-                            <input type="text" name="no" id="no" value="<?php echo $no ?>">
+                            <input disabled type="number" name="no" id="no" value="<?php echo $no ?>">
                         </div>
                         <div class="group-form a">
                             <label>Pekerjaan</label>
                             <div class="box"></div>
-                            <input type="text" name="pekerjaan" id="pekerjaan" value="<?php echo $pekerjaan ?>">
+                            <input disabled type="text" name="pekerjaan" id="pekerjaan" value="<?php echo $pekerjaan ?>">
                         </div>
                     </div>
                     <div class="form-3" >
                         <div class="group-form-1 a">
                             <label>Tingkatan</label>
-                            <select class="select" name="tingkatan" id="tingkatan">
+                            <select disabled class="select" name="tingkatan" id="tingkatan">
+                                <option value="" disabled>-- Tingkatan --</option>
                                 <option value="dasar">Dasar</option>
                                 <option value="menengah">Menengah</option>
                                 <option value="tingkat lanjut">Tingkat Lanjut</option>
@@ -117,26 +127,37 @@
                         </div>
                         <div class="group-form-1 a">
                             <label>Waktu Belajar</label>
-                            <select class="select" name="waktuBelajar" id="waktuBelajar">
+                            <select disabled class="select" name="waktuBelajar" id="waktuBelajar">
+                                <option value="" disabled>-- Waktu Belajar --</option>
                                 <option value="pagi">Pagi</option>
                                 <option value="sore">Sore</option>
                             </select>
                         </div>
                         <div class="group-form-1 a">
                             <label>Pas Foto 3 x 4 <br>(Harus pakai softfile asli)</label>
-                            <input class="input form-control"type="file" name="foto" id="foto" >
+                            <a href="../Siswa/<?php echo $pasFoto ?>" target="_blank"> 
+                                <img src="../Siswa/<?php echo $pasFoto ?>" style="margin-left: 20px; width:100px"> 
+                            </a>
                         </div>
                         <div class="group-form-1 a">
                             <label>KTP / Kartu Pelajar</label>
-                            <input class="input form-control" type="file" name="ktp" id="ktp">
+                            <a href="../Siswa/<?php echo $identitasDiri ?>" target="_blank"> 
+                                <img src="../Siswa/<?php echo $identitasDiri ?>" style="margin-left: 20px; width:100px"> 
+                            </a>
                         </div>
                         <div class="group-form-1 a">
                             <label>Ijazah Terakhir <br>(Lampirkan bagian nilainya)</label>
-                            <input class="input form-control" type="file" name="ijazah" id="ijazah">
+                            <a href="../Siswa/<?php echo $ijazah ?>" target="_blank"> 
+                                <img src="../Siswa/<?php echo $ijazah ?>" style="margin-left: 20px; width:100px"> 
+                            </a>
                         </div>
                         <div class="group-form-1 a">
                             <label>IjHSK Terakhir (jika ada) <br>(Lampirkan bagian nilainya)</label>
-                            <input class="input form-control" type="file" name="hsk" id="hsk">
+                            <?php if(strlen($hsk) > 0){ ?>
+                            <a href="../Siswa/<?php echo $hsk ?>" target="_blank"> 
+                                <img src="../Siswa/<?php echo $hsk ?>" style="margin-left: 20px; width:100px"> 
+                            </a>
+                            <?php } else {echo "<label style='margin-left: 20px;'><b> Tidak ada IJHSK </b></label>";} ?>
                         </div>
                         <div class="ketentuan">
                             <p>Dengan ini saya menyetujui bahwa:<br>1. Telah memahami syarat dan ketentuan pendaftaran;<br>2. Akan menaati tata tertib Diklat Bakorpend;<br>3. Memahami bahwa dana partisipasi Diklat tidak dapat dikembalikan apabila mengundurkan diri.</p>
@@ -159,9 +180,14 @@
                 <div class="bt" style="margin-top: 20px;width: 500px;display: flex;justify-content: flex-end;">
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <input type="hidden" name="username" value="<?php echo $username ?>">
-                    <input type="submit" name="submit" value="Approved" class="btn btn-info" style="color:white;">
+                    <?php if($status_register == 'b') { ?> 
+                        <input type="submit" name="submit" value="Approved" class="btn btn-info" style="color:white;"> 
+                    <?php } ?>
                     <input type="submit" name="submit" value="Update" class="btn btn-info" style="color:white;">
-                    <input type="submit" name="submit" value="Reject" class="btn btn-info" style="color:white;">
+                    <?php if($status_register == 'b') { ?> 
+                        <input type="submit" name="submit" value="Reject" class="btn btn-danger" style="color:white;">
+                    <?php } ?>
+                    
                 </div>
              </form>
         </div>
@@ -174,11 +200,7 @@
 
 <script>
     function getChecked(jenisKelamin,pendidikanTerakhir,tingkatan,waktuBelajar,alamat,statusKelas){
-        if(jenisKelamin == 'L'){
-            document.getElementById('laki').checked = true;
-        }else if(jenisKelamin == 'P'){
-            document.getElementById('perempuan').checked = true;
-        }
+        document.getElementById("jenisKelamin").value = jenisKelamin;
         document.getElementById("pendidikanTerakhir").value = pendidikanTerakhir;
         document.getElementById("tingkatan").value = tingkatan;
         document.getElementById("waktuBelajar").value = waktuBelajar;

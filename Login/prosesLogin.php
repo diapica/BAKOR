@@ -17,9 +17,9 @@ if($cek > 0){
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
     if($role == 'admin'){
-        header('location:../admin/index.php');
+        header('location:../Admin/index.php');
     }else if($role == 'user'){
-        header('location:../siswa/index.php');
+        header('location:../Siswa/index.php');
     }
 }else{
     header("location:login.php?pesan=gagal");

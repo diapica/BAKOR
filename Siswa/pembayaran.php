@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,6 @@
     <?php
     include "header.php";
     include "../connection.php";
-    session_start();
     $username = $_SESSION['username'];
     $sql = "select idregistrasi from tbregistrasi where username = '$username'";
     $query = mysqli_query($conn,$sql);

@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    $username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +14,6 @@
     <link rel="stylesheet" href="assets/css/pendaftaran.css">
 </head>
 <body>
-<?php session_start(); $username = $_SESSION['username'];?>
     <?php include "header.php" ?>
       <div class="content-1">
         <?php include "sidebar.php" ?>
@@ -28,28 +31,30 @@
                         <div class="group-form a">
                             <label>Nama Indonesia</label>
                             <div class="box"></div>
-                            <input type="text" name="indonesia" id="indonesia">
+                            <input required type="text" name="indonesia" id="indonesia">
                         </div>
                         <div class="group-form a">
                             <label>Jenis Kelamin</label>
-                            <div class="radio"  id="jenisKelamin">
-                                <input type="radio" name="jenisKelamin" value="L">Laki-laki
-                                <input type="radio" name="jenisKelamin" value="P">Perempuan
-                            </div>
+                            <select required class="select" name="jenisKelamin" id="jenisKelamin">
+                                <option value="" disabled selected>-- Jenis Kelamin --</option>
+                                <option value="L">Laki-Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
                         </div>
                         <div class="group-form a">
                             <label>Tempat Lahir</label>
                             <div class="box"></div>
-                            <input type="text" name="tempatLahir" id="tempatLahir">
+                            <input required type="text" name="tempatLahir" id="tempatLahir">
                         </div>
                         <div class="group-form a">
                             <label>Tanggal Lahir</label>
                             <div class="box"></div>
-                            <input type="date" name="tanggalLahir" id="tanggalLahir">
+                            <input required type="date" name="tanggalLahir" id="tanggalLahir">
                         </div>
                         <div class="group-form a">
                             <label>Pendidikan Terakhir</label>
-                            <select class="select" name="pendidikanTerakhir" id="pendidikanTerakhir">
+                            <select required class="select" name="pendidikanTerakhir" id="pendidikanTerakhir">
+                                <option value="" disabled selected>-- Pendidikan Terakhir --</option>
                                 <option value="smp">SMP</option>
                                 <option value="sma">SMA</option>
                                 <option value="d3">D3</option>
@@ -61,28 +66,29 @@
                         <div class="group-form a">
                             <label>Alamat Lengkap</label>
                             <div class="box"></div>
-                            <textarea name="alamat" id="alamat" cols="18" rows="2"></textarea>
+                            <textarea required name="alamat" id="alamat" style="margin-top: 0px; margin-bottom: 0px; height: 90px; width: 200px;"></textarea>
                         </div>
                         <div class="group-form a">
                             <label>Alamat Email</label>
                             <div class="box"></div>
-                            <input type="text" name="email" id="email">
+                            <input required type="email" name="email" id="email">
                         </div>
                         <div class="group-form a">
                             <label>No WA</label>
                             <div class="box"></div>
-                            <input type="text" name="no" id="no">
+                            <input required type="number" name="no" id="no">
                         </div>
                         <div class="group-form a">
                             <label>Pekerjaan</label>
                             <div class="box"></div>
-                            <input type="text" name="pekerjaan" id="pekerjaan">
+                            <input required type="text" name="pekerjaan" id="pekerjaan">
                         </div>
                     </div>
                     <div class="form-3" >
                         <div class="group-form-1 a">
                             <label>Tingkatan</label>
-                            <select class="select" name="tingkatan" id="tingkatan">
+                            <select required class="select" name="tingkatan" id="tingkatan">
+                                <option value="" disabled selected>-- Tingkatan --</option>
                                 <option value="dasar">Dasar</option>
                                 <option value="menengah">Menengah</option>
                                 <option value="tingkat lanjut">Tingkat Lanjut</option>
@@ -90,29 +96,34 @@
                         </div>
                         <div class="group-form-1 a">
                             <label>Waktu Belajar</label>
-                            <select class="select" name="waktuBelajar" id="waktuBelajar">
+                            <select required class="select" name="waktuBelajar" id="waktuBelajar">
+                                <option value="" disabled selected>-- Waktu Belajar --</option>
                                 <option value="pagi">Pagi</option>
                                 <option value="sore">Sore</option>
                             </select>
                         </div>
                         <div class="group-form-1 a">
                             <label>Pas Foto 3 x 4 <br>(Harus pakai softfile asli)</label>
-                            <input class="input form-control"type="file" name="foto" id="foto">
+                            <input required class="input form-control"type="file" name="foto" id="foto">
                         </div>
                         <div class="group-form-1 a">
                             <label>KTP / Kartu Pelajar</label>
-                            <input class="input form-control" type="file" name="ktp" id="ktp">
+                            <input required class="input form-control" type="file" name="ktp" id="ktp">
                         </div>
                         <div class="group-form-1 a">
                             <label>Ijazah Terakhir <br>(Lampirkan bagian nilainya)</label>
-                            <input class="input form-control" type="file" name="ijazah" id="ijazah">
+                            <input required class="input form-control" type="file" name="ijazah" id="ijazah">
                         </div>
                         <div class="group-form-1 a">
                             <label>IjHSK Terakhir (jika ada) <br>(Lampirkan bagian nilainya)</label>
                             <input class="input form-control" type="file" name="hsk" id="hsk">
                         </div>
                         <div class="ketentuan">
-                            <p>Dengan ini saya menyetujui bahwa:<br>1. Telah memahami syarat dan ketentuan pendaftaran;<br>2. Akan menaati tata tertib Diklat Bakorpend;<br>3. Memahami bahwa dana partisipasi Diklat tidak dapat dikembalikan apabila mengundurkan diri.</p>
+                            <p>
+                            Dengan ini saya menyetujui bahwa:<br>
+                            1. Telah memahami syarat dan ketentuan pendaftaran;<br>
+                            2. Akan menaati tata tertib Diklat Bakorpend;<br>
+                            3. Memahami bahwa dana partisipasi Diklat tidak dapat dikembalikan apabila mengundurkan diri.</p>
                         </div>
                     </div>
                 </div>
@@ -130,29 +141,3 @@
       </div>
 </body>
 </html>
-
-<!-- <script>
-function f_save(){
-    var username = document.getElementById("username").value;
-    var mandarin = document.getElementById('mandarin').value;
-    var indonesia = document.getElementById('indonesia').value;
-    var jenisKelamin = document.getElementById('jenisKelamin').value;
-    var tempatLahir = document.getElementById('tempatLahir').value;
-    var tanggalLahir = document.getElementById('tanggalLahir').value;
-    var pendidikanTerakhir = document.getElementById('pendidikanTerakhir').value;
-    var alamat = document.getElementById('alamat').value;
-    var email = document.getElementById('email').value;
-    var no = document.getElementById('no').value;
-    var pekerjaan = document.getElementById('pekerjaan').value;
-    var tingkatan = document.getElementById('tingkatan').value;
-    var waktuBelajar = document.getElementById('waktuBelajar').value;
-    var foto = document.getElementById('foto').value;
-    var ktp = document.getElementById('ktp').value;
-    var ijazah = document.getElementById('ijazah').value;
-    var hsk = document.getElementById('hsk').value;
-    var submit = document.getElementById('submit').value;
-
-    location.href = "pendaftaran_save.php?username="+username+"&mandarin="+mandarin+"&indonesia="+indonesia+"&jenisKelamin="+jenisKelamin+"&tempatLahir="+tempatLahir+"&tanggalLahir="+tanggalLahir+"&pendidikanTerakhir="+pendidikanTerakhir+"&alamat="+alamat+"&email="+email+"&no="+no+"&pekerjaan="+pekerjaan+"&tingkatan="+tingkatan+"&waktuBelajar="+waktuBelajar+"&foto="+foto+"&ktp="+ktp+"&ijazah="+ijazah+"&hsk="+hsk+"&submit="+submit;
-}
-
-</script> -->

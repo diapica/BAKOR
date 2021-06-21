@@ -18,7 +18,7 @@
           <div class="content">
             <div style="display:flex;justify-content:space-between;">
                 <h1>View Data Siswa</h1>
-                <input type="text" id="search" placeholder="search" style="width:250px;">
+                <input type="text" id="search" placeholder=" Search..." style="width:250px;">
             </div>
             <table class="table text-center" id="example">
                 <thead class="thead-dark">
@@ -32,10 +32,12 @@
                 </thead>
                 <tbody id="data-table">
                 <?php
-                
-                $sql = "select tbregistrasi.idregistrasi,tbregistrasi.username,tbregistrasi.email, tbuser.status_register from tbuser inner join tbregistrasi on tbuser.username = tbregistrasi.username where status='user' and (status_register = 'b' or status_register = 'c' or status_register = 'e' or status_register='f')";
+                $sql = "SELECT tbregistrasi.idregistrasi, tbregistrasi.username, tbregistrasi.email, tbuser.status_register 
+                        FROM tbuser INNER JOIN tbregistrasi ON tbuser.username = tbregistrasi.username 
+                        WHERE status = 'user' AND status_register IN ('b', 'c', 'd', 'e', 'f')";
                 $query = mysqli_query($conn,$sql);
                 $row = mysqli_num_rows($query);
+                if($row > 0) {
                 for($x = 1 ; $x <= $row; $x++){
                     $re = mysqli_fetch_array($query);
                     $id = $re['idregistrasi'];
@@ -43,17 +45,19 @@
                     $email = $re['email'];
                     $statusRegister = $re['status_register'];
                     if($statusRegister == 'a'){
-                        $status = "belum registrasi";
+                        $status = "Belum melakukan pendaftaran";
                     }else if($statusRegister == 'b'){
-                        $status = "Registrasi Telah Dikirim";
+                        $status = "Pendaftaran telah selesai! Meunggu konfirmasi!";
                     }else if($statusRegister == 'c'){
                         $status = "Menunggu Pembayaran";
                     }else if($statusRegister == 'd'){
-                        $status = "Registrasi Ditolak";
+                        $status = "Data tidak valid";
                     }else if($statusRegister == 'e'){
-                        $status = "Pembayaran Diterima";
+                        $status = "Pembayaran diterima! Menunggu konfirmasi!";
                     }else if($statusRegister == 'f'){
-                        $status = "Selesai";
+                        $status = "Pendaftaran selesai";
+                    }else if($statusRegister == 'g'){
+                        $status = "Pembayaran tidak sesuai, silahkan hubungi admin";
                     }
                 ?>
                     <tr>
@@ -63,14 +67,14 @@
                         <td><?php echo $status ?></td>
                         <td>
                             <?php
-                                if($statusRegister == 'b'){
+                                if($statusRegister == 'b' || $statusRegister == 'c' || $statusRegister == 'e' ){
                             ?>
-                            <button class="btn btn-info" style="color:white;" onclick="goTo(<?php echo "'$id','$username'" ?>)">Edit</button>
+                            <button class="btn btn-info" style="color:white;" onclick="goTo(<?php echo "'$id', '$username'" ?>)">Edit</button>
                             <?php } ?>
-                            <button name="submit" id="button" value="Hapus" class="btn btn-danger" onclick="deleteData(<?php echo "'$id'" ?>)">Hapus</button>
+                            <button name="submit" id="button" value="Hapus" class="btn btn-danger" onclick="deleteData(<?php echo "'$id', '$username'" ?>)">Hapus</button>
                         </td>
                     </tr>
-                    <?php } ?>
+                    <?php } }else { echo "<tr><td colspan=5>Tidak ada data</td></tr>"; }?>
                 </tbody>
             </table>
           </div>
@@ -82,12 +86,11 @@
 </html>
 
 <script>
-    function goTo(id,username){
+    function goTo(id, username){
         location.href = "editSiswa.php?id="+id+"&username="+username;
     }
-    function deleteData(username){
-        var submit = document.getElementById("button").value;
-        location.href = "pendaftaran_edit.php?id="+username+"&submit="+submit;
+    function deleteData(id, username){
+        location.href = "pendaftaran_edit.php?id="+id+"&username="+username+"&submit=Hapus";
     }
     $(document).ready(function(){
     $("#search").on("keyup", function() {
