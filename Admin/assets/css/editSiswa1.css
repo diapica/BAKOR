@@ -69,12 +69,36 @@
     display: flex;
 }
 
+
 form{
-    width: 40%;
+    width: 100%;
 }
 
 .form-2{
+    width: 40%;
+    padding:20px;
+}
+
+.form-3{
     width: 60%;
+}
+
+.form-control{
+    width: 40% !important;
+}
+
+
+.group-form-1 label{
+    width: 200px;
+}
+
+.group-form label{
+    width: 150px;
+}
+
+input{
+    width: 40%;
+    font-size: 12px;
 }
 
 .group-form{
@@ -99,16 +123,8 @@ form{
     width: 20%;
 }
 
-.group-form-1 label{
-    width: 200px;
-}
-
 .ketentuan{
     margin-top:20px;
-}
-
-.group-form label{
-    width: 200px;
 }
 
 input{
@@ -154,3 +170,5 @@ input{
 .bt input{
     margin-left: 20px;
 }
+
+

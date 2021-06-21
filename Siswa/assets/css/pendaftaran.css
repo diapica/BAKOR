@@ -33,7 +33,6 @@
     height: 755px;
     background-color: rgb(27,96,196);
 }
-
 .sidebar ul{
     width: 100%;
     padding:0;
@@ -66,19 +65,27 @@
 
 .form{
     width: 100%;
-    display: flex;
 }
 
 form{
-    width: 40%;
+    width: 100%;
 }
 
 .form-2{
+    width: 40%;
+    padding:20px;
+}
+
+.form-3{
     width: 60%;
 }
 
 .group-form{
     display: flex;
+}
+
+.form-control{
+    width: 40% !important;
 }
 
 .group-form-1{
@@ -95,11 +102,11 @@ form{
 }
 
 .group-form label{
-    width: 200px;
+    width: 150px;
 }
 
 input{
-    width: 30%;
+    width: 40%;
     font-size: 12px;
 }
 
@@ -107,9 +114,6 @@ input{
     margin-top: 20px;;
 }
 
-.radio{
-    margin-left:20px;
-}
 
 .select{
     margin-left: 20px;

@@ -54,19 +54,28 @@
 
       <div class="col-sm 12 col-md-6 col-lg-6">
         <h4 class="text-center">Welcome</h4>
-        <form>
+        <form action="prosesLogin.php" method="POST">
+        <p style="color:#ff0000">
+        <?php
+          if(isset($_GET['pesan'])){
+            if($_GET['pesan'] == 'gagal'){
+              echo 'username atau password salah! Silahkan masukan ulang!';
+            }
+          }
+        ?>
+        </p>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Username</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" name="username" id="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" require>
             <div id="emailHelp" class="form-text"></div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" id="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" name="password" id="password" class="form-control" id="exampleInputPassword1" require>
           </div>
               <p><input type="checkbox" id="show-password"> Show password</p>
               <button type="submit" class="btn btn-primary">Login</button>
-              <a class="btn btn-primary" href="../Login/Daftar.php?" role="button">Daftar</a>
+              <a href="../Login/Daftar.php?" class="btn btn-primary" role="button">Daftar</a>
         </form>
       </div>
 
