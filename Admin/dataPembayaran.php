@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siswa Login</title>
+    <title>BAKORPEND Pontianak</title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/dataPembayaran1.css">
@@ -75,8 +75,8 @@
                         <td><?php echo $nama ?></td>
                         <td><?php echo $email ?></td>
                         <td style="width:200px"><img onclick="goImage(<?php echo "'$bukti'" ?>)" src="../Siswa/<?php echo $bukti ?>" style="width:100%"></td>
-                        <td><p id="biaya<?php echo $x ?>"><?php echo $biaya ?></p> <input class="form-control" id="input_biaya<?php echo $x ?>" type="text" style="display:none;"></td>
-                        <td><p id="tanggal<?php echo $x ?>"><?php echo $tanggal ?></p><input class="form-control" id="input_tanggal<?php echo $x ?>" type="date" style="display:none;"></td>
+                        <td><p id="biaya<?php echo $x ?>">Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></p> <input class="form-control" id="input_biaya<?php echo $x ?>" type="text" style="display:none;"></td>
+                        <td><p id="tanggal<?php echo $x ?>"><?php echo date('d F Y', strtotime($tanggal)); ?></p><input class="form-control" id="input_tanggal<?php echo $x ?>" type="date" style="display:none;"></td>
                         <td>
                             <?php if($status == 'e' && $statusPembayaran == 'menunggu'){ ?>
                             <button style="color:white" id="button_edit<?php echo $x ?>" class="btn btn-info" onclick="edit_data(<?php echo $x ?>)">Edit</button>

@@ -127,7 +127,7 @@ if($jenis == 'siswa'){
         </head>
         <body>
             <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>
-            <table class="table text-center" id="tableData">
+            <table border="1px" class="table text-center" id="tableData">
                 <colgroup>
                     <col width="10%">
                     <col width="20%">
@@ -163,7 +163,7 @@ if($jenis == 'siswa'){
                         <td><?php echo $mandarin ?></td>
                         <td><?php echo $indonesia ?></td>
                         <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
-                        <td><?php echo $biaya ?></td>
+                        <td>Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></td>
                     </tr>
                         <?php } ?>
                     <?php }else{ ?>
