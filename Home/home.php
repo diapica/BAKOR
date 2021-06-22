@@ -158,8 +158,19 @@
           </span>
         </p>
       </div>
-
-     </div>
+    </div>
+    <div>
+      <br>
+      <h4>Langkah Pendaftaran</h4>
+      <br>
+      <ul class="step">
+        <li class="list-step"><span class="marker-number">1</span> <span class="marker-text">Informasi Pendaftaran</span></li>
+        <li class="list-step"><span class="marker-number">2</span> <span class="marker-text">Syarat Pendaftaran</span></li>
+        <li class="list-step"><span class="marker-number">3</span> <span class="marker-text">Melakukan Pendaftaran</span></li>
+        <li class="list-step"><span class="marker-number">4</span> <span class="marker-text">Pembayaran</span></li>
+        <li class="list-step"><span class="marker-number">5</span> <span class="marker-text">Selesai</span></li>
+      </ul> 
+    </div>
     <a href="../Login/Login.php#Login"><button type="button" class="btn btn-danger btn-lg">Registration</button></a>
   </div> 
   </div>
