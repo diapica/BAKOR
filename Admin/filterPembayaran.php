@@ -81,7 +81,7 @@ $row = mysqli_num_rows($query);
                     <td><?php echo $mandarin ?></td>
                     <td><?php echo $indonesia ?></td>
                     <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
-                    <td><?php echo $biaya ?></td>
+                    <td>Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></td>
                 </tr>
                     <?php } ?>
                 <?php }else{ ?>
