@@ -7,19 +7,29 @@
     <title>Siswa Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/dataPembayaran.css">
+    <link rel="stylesheet" href="assets/css/dataPembayaran1.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 <body>
     <?php include "header.php" ?>
       <div class="content-1">
           <?php include "sidebar.php" ?>
-          <div class="content">
+          <div class="content" style="height:755px;overflow-y:scroll;padding-bottom:40px;">
             <div style="display:flex;justify-content:space-between;">
                 <h1>View Data Pembayaran</h1>
                 <input type="text" id="search" placeholder="search" style="width:250px;">
             </div>
             <table class="table text-center">
+                <colgroup>
+                    <col width="5%">
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="30%">
+                </colgroup>
                 <thead class="thead-dark">
                     <tr>
                         <th>No</th>
@@ -36,10 +46,13 @@
                 <?php 
 
                     include "../connection.php";
-                    $sql = "select tbregistrasi.username,tbregistrasi.email,tbregistrasi.namaIndonesia,tbpembayaran.buktiPembayaran,tbpembayaran.biayaKursus,tbpembayaran.tanggalPembayaran,tbregistrasi.idregistrasi,tbpembayaran.idpembayaran from tbpembayaran inner join tbregistrasi on tbpembayaran.idregister = tbregistrasi.idregistrasi";
+                    $sql = "SELECT tbregistrasi.username,tbregistrasi.email,tbregistrasi.namaIndonesia,tbpembayaran.buktiPembayaran,
+                    tbpembayaran.biayaKursus,tbpembayaran.tanggalPembayaran,tbregistrasi.idregistrasi,tbpembayaran.idpembayaran,
+                    tbpembayaran.status FROM tbpembayaran INNER JOIN tbregistrasi ON tbpembayaran.idregister = tbregistrasi.idregistrasi";
                     $query = mysqli_query($conn,$sql);
                     $row = mysqli_num_rows($query);
 
+                    if($row > 0){
                     for($x = 1 ; $x <= $row; $x++){
                         $re = mysqli_fetch_array($query);
                         $username = $re[0];
@@ -50,6 +63,7 @@
                         $tanggal = $re[5];
                         $idregis = $re[6];
                         $id = $re[7];
+                        $statusPembayaran = $re[8];
                         $sql1 = "select status_register from tbuser where username = '$username'";
                         $query1 = mysqli_query($conn,$sql1);
                         $re = mysqli_fetch_array($query1);
@@ -61,14 +75,19 @@
                         <td><?php echo $nama ?></td>
                         <td><?php echo $email ?></td>
                         <td style="width:200px"><img onclick="goImage(<?php echo "'$bukti'" ?>)" src="../Siswa/<?php echo $bukti ?>" style="width:100%"></td>
-                        <td><?php echo $biaya ?></td>
-                        <td><?php echo $tanggal ?></td>
+                        <td><p id="biaya<?php echo $x ?>"><?php echo $biaya ?></p> <input class="form-control" id="input_biaya<?php echo $x ?>" type="text" style="display:none;"></td>
+                        <td><p id="tanggal<?php echo $x ?>"><?php echo $tanggal ?></p><input class="form-control" id="input_tanggal<?php echo $x ?>" type="date" style="display:none;"></td>
                         <td>
-                            <?php if($status == 'e'){ ?>
-                            <button style="color:white" class="btn btn-info" onclick="konfirmasi(<?php echo "'$username','$id'" ?>)">Konfirmasi</button>
+                            <?php if($status == 'e' && $statusPembayaran == 'menunggu'){ ?>
+                            <button style="color:white" id="button_edit<?php echo $x ?>" class="btn btn-info" onclick="edit_data(<?php echo $x ?>)">Edit</button>
+                            <button id="konfirmasi<?php echo $x ?>" style="color:white;display:none;" class="btn btn-info" onclick="konfirmasi(<?php echo "'$username','$id','$x'" ?>)">Konfirmasi</button>
                             <?php } ?>
                             <button class="btn btn-danger" onclick="deleteData(<?php echo "'$id','$username'" ?>)">Hapus</button>
                         </td>
+                    </tr>
+                    <?php } }else{ ?>
+                    <tr class="align-middle">
+                        <td colspan="13">Data tidak ada</td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -82,8 +101,37 @@
 </html>
 
 <script>   
-    function konfirmasi(username,id){
-        location.href = "konfirmasi.php?id="+id+"&username="+username+"&submit=konfirmasi";
+    function edit_data(x){
+        var biaya = document.getElementById("biaya"+x);
+        var tanggal = document.getElementById("tanggal"+x);
+        var input_biaya = document.getElementById("input_biaya"+x);
+        var input_tanggal = document.getElementById("input_tanggal"+x);
+        var button = document.getElementById("konfirmasi"+x);
+        var buttonEdit = document.getElementById("button_edit"+x);
+        biaya.style.display = "none";
+        tanggal.style.display = "none";
+        input_biaya.style.display = "block";
+        input_tanggal.style.display = "block";
+        button.style.display = "inline-block";
+        buttonEdit.style.display = "none";
+        
+    }
+    function konfirmasi(username,id,x){
+        var harga_input = document.getElementById("input_biaya"+x).value;
+        var tanggal_input = document.getElementById("input_tanggal"+x).value;
+        var biaya = document.getElementById("biaya"+x);
+        var tanggal = document.getElementById("tanggal"+x);
+        var input_biaya = document.getElementById("input_biaya"+x);
+        var input_tanggal = document.getElementById("input_tanggal"+x);
+        var button = document.getElementById("konfirmasi"+x);
+        var buttonEdit = document.getElementById("button_edit"+x);
+        biaya.style.display = "block";
+        tanggal.style.display = "block";
+        input_biaya.style.display = "none";
+        input_tanggal.style.display = "none";
+        button.style.display = "none";
+        buttonEdit.style.display = "inline-block";
+        location.href = "konfirmasi.php?id="+id+"&username="+username+"&submit=konfirmasi&harga="+harga_input+"&tanggal="+tanggal_input;
     }
     function deleteData(id,username){
         location.href = "konfirmasi.php?id="+id+"&username="+username+"&submit=Hapus";

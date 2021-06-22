@@ -7,11 +7,10 @@ $tahun = $_GET['tahun'];
 $bulan = $_GET['bulan'];
 $submit = $_GET['submit'];
 
-$sql = "
-    select tbregistrasi.*,tbuser.status_register from tbuser 
-    inner join tbregistrasi on tbuser.username = tbregistrasi.username 
-    where tbuser.status_register='f' 
-";
+$sql = "SELECT tbregistrasi.namaMandarin,tbregistrasi.namaIndonesia,tbregistrasi.tanggalDaftar,tbpembayaran.tanggalPembayaran,
+    tbpembayaran.biayaKursus,tbuser.status_register FROM tbregistrasi INNER JOIN tbpembayaran 
+    ON tbregistrasi.idregistrasi = tbpembayaran.idregister INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
+    WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
 if($submit == 'hari'){
     $sql .= " and tanggalDaftar='$hari'";
@@ -42,21 +41,24 @@ $row = mysqli_num_rows($query);
                     echo $tahun;
                 }
             ?>">
-            <input type="hidden" name="jenis" value="siswa">
+            <input type="hidden" name="jenis" value="pembayaran">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
-        <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tingkat Dasar Sore Online Tahun 2021 </p> 
-        <table border=1px class="table text-center">
+        <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>
+        <table class="table text-center" id="tableData">
+            <colgroup>
+                <col width="10%">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+            </colgroup>
             <thead class="thead">
                 <tr class="align-middle">
                     <th rowspan="2">No</th>
                     <th colspan="2">Nama</th>
-                    <th rowspan="2">Jenis Kelamin</th>
-                    <th rowspan="2">Tempat</th>
-                    <th rowspan="2">Tanggal lahir</th>
-                    <th rowspan="2">Alamat</th>
-                    <th rowspan="2">No HP</th>
-                    <th rowspan="2">Pendidikan Terakhir</th>
+                    <th rowspan="2">Tanggal Pembayaran</th>
+                    <th rowspan="2">Jumlah</th>
                 </tr>
                 <tr>
                     <th>Mandarin</th>
@@ -64,32 +66,24 @@ $row = mysqli_num_rows($query);
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                
+                <?php
                 if($row > 0){
-                for($x = 1 ; $x <= $row; $x++){ 
+                for($x = 1; $x <= $row;$x++){
                     $re = mysqli_fetch_array($query);
-                    $namaMandarin = $re['namaMandarin'];
-                    $namaIndonesia = $re['namaIndonesia'];
-                    $jenisKelamin = $re['jenisKelamin'];
-                    $tempatLahir = $re['tempatLahir'];
-                    $tanggalLahir = $re['tanggalLahir'];
-                    $alamat = $re['alamat'];
-                    $noWA = $re['noWA'];
-                    $pendidikanTerakhir = $re['pendidikanTerakhir'];
+                    $mandarin = $re['namaMandarin'];
+                    $indonesia = $re['namaIndonesia'];
+                    $tanggal = $re['tanggalPembayaran'];
+                    $biaya = $re['biayaKursus'];
+                    $status = $re['status_register'];
                 ?>
-                <tr class="align-middle">
+                <tr>
                     <td><?php echo $x ?></td>
-                    <td><?php echo $namaMandarin ?></td>
-                    <td><?php echo $namaIndonesia ?></td>
-                    <td><?php echo $jenisKelamin ?></td>
-                    <td><?php echo $tempatLahir ?></td>
-                    <td><?php echo date('d F Y',strtotime($tanggalLahir)) ?></td>
-                    <td><?php echo $alamat ?></td>
-                    <td><?php echo $noWA ?></td>
-                    <td><?php echo $pendidikanTerakhir ?></td>
-                </tr>    
-                <?php } ?>
+                    <td><?php echo $mandarin ?></td>
+                    <td><?php echo $indonesia ?></td>
+                    <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
+                    <td><?php echo $biaya ?></td>
+                </tr>
+                    <?php } ?>
                 <?php }else{ ?>
                     <tr class="align-middle">
                         <td colspan="13">Data tidak ada</td>

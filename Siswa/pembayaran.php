@@ -15,7 +15,7 @@
     include "header.php";
     include "../connection.php";
     $username = $_SESSION['username'];
-    $sql = "select idregistrasi from tbregistrasi where username = '$username'";
+    $sql = "SELECT idregistrasi FROM tbregistrasi WHERE username = '$username'";
     $query = mysqli_query($conn,$sql);
     $re = mysqli_fetch_array($query);
     $idregister = $re['idregistrasi'];
