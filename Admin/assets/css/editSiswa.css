@@ -30,7 +30,7 @@
 
 .content-1 .sidebar{
     width: 15%;
-    height: 755px;
+    height: auto;
     background-color: rgb(27,96,196);
 }
 
@@ -67,6 +67,7 @@
 .form{
     width: 100%;
     display: flex;
+    padding-bottom:60px;
 }
 
 

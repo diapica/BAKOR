@@ -17,4 +17,4 @@ $query = mysqli_query($conn,$sql);
 $sql1 = "update tbuser set status_register = 'e' where username = '$username'";
 $query1 = mysqli_query($conn,$sql1);
 
-header("location:pembayaran.php");
+header("location:index.php");

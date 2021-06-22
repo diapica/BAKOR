@@ -7,7 +7,7 @@
     <title>Siswa Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/dataSiswa.css">
+    <link rel="stylesheet" href="assets/css/dataSiswa1.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 </head>
@@ -15,7 +15,7 @@
     <?php include "../connection.php"; include "header.php" ?>
       <div class="content-1">
           <?php include "sidebar.php" ?>
-          <div class="content">
+          <div class="content" style="height:755px;overflow-y:scroll;padding-bottom:40px;">
             <div style="display:flex;justify-content:space-between;">
                 <h1>View Data Siswa</h1>
                 <input type="text" id="search" placeholder=" Search..." style="width:250px;">
@@ -34,7 +34,7 @@
                 <?php
                 $sql = "SELECT tbregistrasi.idregistrasi, tbregistrasi.username, tbregistrasi.email, tbuser.status_register 
                         FROM tbuser INNER JOIN tbregistrasi ON tbuser.username = tbregistrasi.username 
-                        WHERE status = 'user' AND status_register IN ('b', 'c', 'd', 'e', 'f')";
+                        WHERE status = 'user' AND status_register IN ('b', 'c', 'd', 'e', 'f','g')";
                 $query = mysqli_query($conn,$sql);
                 $row = mysqli_num_rows($query);
                 if($row > 0) {

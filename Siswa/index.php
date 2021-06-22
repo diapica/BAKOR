@@ -38,8 +38,8 @@ include "../connection.php";
                 <div class="img">
                     <img src="assets/img/load.gif" alt="load">
                 </div>
-                <p>Pendaftaran telah selesai! Menunggu konfirmasi!</p>
-                <button class="btn btn-info" style="color:white" onclick="editDataSiswa(<?php echo "'$username'" ?>)">Edit Data</button>
+                <p>Pendaftaran telah selesai! Menunggu Konfirmasi!</p>
+                <a href="pendaftaran.php"><button class="btn btn-info btn-lg" style="color:white;margin-top:20px;">Edit Data</button></a>
             </div>
             
             <?php }else if($re['status_register'] == 'c'){ ?>
@@ -59,7 +59,7 @@ include "../connection.php";
                 </div>
                 <p>Data tidak Valid</p>
                 <p><u>Mohon Registrasi Kembali</u></p>
-                <button class="btn btn-danger" style="color:white" onclick="changeStatus(<?php echo "'$username'" ?>)">Klik disini</button>
+                <button class="btn btn-danger" style="color:white" onclick="changeStatus(<?php echo "'$username','daftar'" ?>)">Klik disini</button>
             </div>
             <?php }else if($re['status_register'] == 'e'){ ?>
                 <div class="proses">
@@ -86,6 +86,16 @@ include "../connection.php";
                 <p>Pembayaran tidak sesuai!</p>
                 <p><u>Silahkan hubungi admin!</u></p>
             </div>
+            <?php }else if($re['status_register'] == 'g'){ ?>
+            <div class="ditolak">
+                <p>Status Siswa</p>
+                <div class="img">
+                    <img src="assets/img/multiply.png" alt="check">
+                </div>
+                <p>Pembayaran Ditolak</p>
+                <p><u>Hubungi Admin</u></p>
+                <button class="btn btn-danger" style="color:white" onclick="changeStatus(<?php echo "'$username','bayar'" ?>)">Klik disini</button>
+            </div>
             <?php } ?>
           </div>
       </div>
@@ -96,8 +106,8 @@ include "../connection.php";
 </html>
 
 <script>
-    function changeStatus(username){
-        location.href = "changeStatus.php?username="+username;
+    function changeStatus(username,status){
+        location.href = "changeStatus.php?username="+username+"&status="+status;
     }
 
     function editDataSiswa(username){

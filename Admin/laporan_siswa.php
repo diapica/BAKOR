@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/laporan_siswa.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="jspdf.debug.js"></script>
 </head>
 <style>
     #hari{
@@ -33,7 +32,7 @@
     ?>
       <div class="content-1">
           <?php include "sidebar.php" ?>
-          <div class="content">
+          <div class="content" style="height:755px;overflow-y:scroll;padding-bottom:40px;">
 
               <div class="top" style="display:flex;justify-content:space-between;width:100%">
                 <h1>Cetak Laporan</h1>
@@ -79,6 +78,7 @@
             <form action="../print.php" method="GET">
                 <input type="hidden" name="submit" id="submit_print" value="">
                 <input type="hidden" name="value" id="submit_value" value="">
+                <input type="hidden" name="jenis" value="siswa">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
             </form>
                 <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tingkat Dasar Sore Online Tahun 2021</p>
@@ -136,14 +136,6 @@
                         </tr>
                         <?php } ?>
                     </tbody>
-                    <script>
-                        function pdf(){
-                            var submit = document.getElementById("submit_print").value;
-                            var value = document.getElementById("submit_value").value;
-                            alert(submit,value);
-                            location.href="../print.php?submit="+submit+"&value="+value;
-                        }
-                    </script>
                 </table>
             </div>
           </div>
