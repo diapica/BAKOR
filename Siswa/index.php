@@ -38,15 +38,18 @@ include "../connection.php";
                 <div class="img">
                     <img src="assets/img/load.gif" alt="load">
                 </div>
-                <p>Pendaftaran telah selesai! Menunggu Konfirmasi!</p>
+                <p>Pendaftaran telah selesai! Menunggu konfirmasi!</p>
+                <button class="btn btn-info" style="color:white" onclick="editDataSiswa(<?php echo "'$username'" ?>)">Edit Data</button>
             </div>
-            <?php }else if($re['status_register'] == 'f'){?>
-            <div class="diterima">
+            
+            <?php }else if($re['status_register'] == 'c'){ ?>
+                <div class="proses">
                 <p>Status Siswa</p>
                 <div class="img">
-                    <img src="assets/img/check.png" alt="check">
+                    <img src="assets/img/load.gif" alt="load">
                 </div>
-                <p>Pendaftaran Selesai</p>
+                <p>Pendaftaran telah diterima! </p> 
+                <p>Silahkan lakukan <a href="../Siswa/pembayaran.php">Pembayaran!</a></p>
             </div>
             <?php }else if($re['status_register'] == 'd'){ ?>
             <div class="ditolak">
@@ -58,14 +61,6 @@ include "../connection.php";
                 <p><u>Mohon Registrasi Kembali</u></p>
                 <button class="btn btn-danger" style="color:white" onclick="changeStatus(<?php echo "'$username'" ?>)">Klik disini</button>
             </div>
-            <?php }else if($re['status_register'] == 'c'){ ?>
-                <div class="proses">
-                <p>Status Siswa</p>
-                <div class="img">
-                    <img src="assets/img/load.gif" alt="load">
-                </div>
-                <p>Pendaftaran telah diterima! Menunggu Pembayaran!</p>
-            </div>
             <?php }else if($re['status_register'] == 'e'){ ?>
                 <div class="proses">
                 <p>Status Siswa</p>
@@ -73,6 +68,23 @@ include "../connection.php";
                     <img src="assets/img/load.gif" alt="load">
                 </div>
                 <p>Pembayaran diterima! Menunggu Konfirmasi!</p>
+            </div>
+            <?php }else if($re['status_register'] == 'f'){?>
+            <div class="diterima">
+                <p>Status Siswa</p>
+                <div class="img">
+                    <img src="assets/img/check.png" alt="check">
+                </div>
+                <p>Pendaftaran Selesai</p>
+            </div>
+            <?php }else if($re['status_register'] == 'g'){?>
+            <div class="ditolak">
+                <p>Status Siswa</p>
+                <div class="img">
+                    <img src="assets/img/multiply.png" alt="check">
+                </div>
+                <p>Pembayaran tidak sesuai!</p>
+                <p><u>Silahkan hubungi admin!</u></p>
             </div>
             <?php } ?>
           </div>
@@ -86,5 +98,9 @@ include "../connection.php";
 <script>
     function changeStatus(username){
         location.href = "changeStatus.php?username="+username;
+    }
+
+    function editDataSiswa(username){
+        location.href = "pendaftaran.php?username="+username;
     }
 </script>
