@@ -164,16 +164,22 @@
                         </div>
                         <div class="group-form-2 a">
                             <label>Tahun Masuk</label>
-                            <input type="text" name="tahunMasuk" value="<?php echo $tahunMasuk ?>">
+                            <input type="number" name="tahunMasuk" value="<?php echo $tahunMasuk ?>">
                             <label style="margin-left:20px;">Online / Tatap Muka</label>
                             <select name="statusKelas" id="statusKelas">
+                                <option value="" disabled> -- Kelas --</option>
                                 <option value="tatap_muka">Tatap Muka</option>
                                 <option value="online">Online</option>
                             </select>
                         </div>
-                        <div class="group-form a">
+                        <div class="group-form-2 a">
                             <label style="width:160px;">Gelombang</label>
-                            <input type="text" style="width:20%" name="gelombang" value="<?php echo $gelombang ?>">
+                            <select name="gelombang" id="gelombang">
+                                <option value="" disabled> -- Gelombang --</option>
+                                <?php for($x=1; $x<=3; $x++){ ?>
+                                <option value=<?php echo $x; ?> <?php if($x==$gelombang) { echo 'selected'; }?> ><?php echo $x ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                 </div>
