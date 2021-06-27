@@ -7,7 +7,7 @@ $username = isset($_GET['username']) ? $_GET['username'] : $_POST['username'];
 $submit = isset($_GET['submit']) ? $_GET['submit'] : $_POST['submit'];
 $page = isset($_GET['page']) ? $_GET['page'] : $_POST['page'];
 
-if($submit == 'Update'){
+if($submit == 'Update' || $submit == 'Approved'){
 
     $addSQL = "username = '$username'";
 
@@ -73,13 +73,13 @@ if($submit == 'Update'){
         $addSQL .= ", hsk='$target_foto'";
     }
 
+    if($submit == 'Approved') {
+        $sql = "UPDATE tbuser SET status_register='c' WHERE username='$username'";
+        $query = mysqli_query($conn,$sql);
+    }
     
     $sql = "UPDATE tbregistrasi SET ". $addSQL .
             " WHERE idregistrasi = '$id'";
-    $query = mysqli_query($conn,$sql);
-    
-}else if($submit == 'Approved'){
-    $sql = "UPDATE tbuser SET status_register='c' WHERE username='$username'";
     $query = mysqli_query($conn,$sql);
 
 }else if($submit == 'Reject' || $submit == 'Hapus'){
