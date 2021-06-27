@@ -77,10 +77,10 @@
   <div class="container text-center">
     <h2 class="display-5" id="Pendaftaran" style="color: white; background-color: orange;" >Pendaftaran</h2>
    <div class="row">
-    <div class="col text-center col-sm-6">
+    <div class="col text-center col-sm-5">
      <img src="img/pendaftaran.png" style="height: 520px; width: 100%;">
     </div>
-    <div class="col text-center col-sm-6" style="font-size: 13px;">
+    <div class="col text-center col-sm-7" style="font-size: 13px;">
       <h6>PENDAFTARAN KELAS DIKLAT BAKORPEND MUSIM GUGUR 2021/2022</h6>
       <div class="col-sm-6" style="margin-top: 10px; text-align: left; float:left">
         <b>Jadwal Pendaftaran : </b>
@@ -112,23 +112,23 @@
         <b>Kelas yang Dibuka : </b>
         <table  style="width:100%">
           <tr>
-            <td style="width:40%"><b>*KELAS TATAP MUKA</b></td>
-            <td style="border-left: 3px solid black;"><b>*KELAS ONLINE</b></td>
+            <td colspan=2 style="width:50%"><b>*KELAS TATAP MUKA</b></td>
+            <td colspan=2 style="border-left: 3px solid black;"><b>*KELAS ONLINE</b></td>
           </tr>
           <tr>
-            <td>KELAS DASAR PAGI</td>
-            <td style="border-left: 3px solid black;">KELAS DASAR SORE (PAKET 1 SEMESTER)</td>
+            <td width=25%>KELAS DASAR PAGI </td> <td width=15%><b> RP 6.830.000 </b></td>
+            <td style="border-left: 3px solid black;">KELAS DASAR SORE (PAKET 1 SEMESTER) </td> <td><b> RP 4.730.000 </b></td>
           </tr>
           <tr>
-            <td>KELAS DASAR SORE</td>
-            <td style="border-left: 3px solid black;">KELAS DASAR SORE (PAKET 2 SEMESTER)</td>
+            <td>KELAS DASAR SORE </td> <td><b> RP 7.030.000 </b></td>
+            <td style="border-left: 3px solid black;">KELAS DASAR SORE (PAKET 2 SEMESTER) </td> <td><b> RP 4.670.000 </b></td>
           </tr>
           <tr>
-            <td>KELAS MENENGAH PAGI</td>
-            <td style="border-left: 3px solid black;">KELAS MENENGAH SORE (PAKET 2 SEMESTER)</td>
+            <td>KELAS MENENGAH PAGI </td> <td><b> RP 7.150.000 </b></td>
+            <td style="border-left: 3px solid black;">KELAS MENENGAH SORE (PAKET 2 SEMESTER) </td> <td><b> RP 7.350.000 </b></td>
           </tr>
           <tr>
-            <td>KELAS MENENGAH SORE</td>
+            <td>KELAS MENENGAH SORE </td> <td><b> RP 7.350.000 </b></td>
             <td></td>
           </tr>
         </table>
@@ -171,7 +171,7 @@
         <li class="list-step"><span class="marker-number">5</span> <span class="marker-text">Selesai</span></li>
       </ul> 
     </div>
-    <a href="../Login/Login.php#Login"><button type="button" class="btn btn-danger btn-lg">Registration</button></a>
+    <a href="../Login/Login.php#Login"><button type="button" class="btn btn-danger btn-lg">DAFTAR</button></a>
   </div> 
   </div>
 </div>

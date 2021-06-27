@@ -1,4 +1,48 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+    include "../connection.php";
+    $username = $_SESSION['username'];
+    $sql = "SELECT * FROM tbregistrasi WHERE username = '$username'";
+    $query = mysqli_query($conn,$sql);
+    $re = mysqli_fetch_array($query);
+    $idregister = $re['idregistrasi'];
+    $waktuBelajar = $re['waktuBelajar'];
+    $tingkatan = $re['tingkatan'];
+    $statusKelas = $re['statusKelas'];
+    $dateTime = Date('m/d/Y');
+    $keterangan = "Kelas belum dibuka, silahkan hubungi <a href='https://wa.me/081253253882' target='_blank'>admin</a>";
+    $total = "RP 0";
+
+    if($statusKelas == 'tatap_muka'){
+        if($waktuBelajar == 'pagi') {
+            if($tingkatan == 'dasar'){
+                $keterangan = "RP 6.500.000 + RP 330.000 UANG BUKU";
+                $total = "RP 6.830.000";
+            }else{
+                $keterangan = "RP 6.700.000 + RP 450.000 UANG BUKU";
+                $total = "RP. 7.150.000";
+            }
+        }else{
+            if($tingkatan == 'dasar'){
+                $keterangan = "RP 6.700.000 + RP 330.000 UANG BUKU";
+                $total = "RP 7.030.000";
+            }else{
+                $keterangan = "RP 6.900.000 + RP 450.000 UANG BUKU";
+                $total = "RP. 7.350.000";
+            }
+        }
+    }else if($statusKelas == 'online'){
+        if($waktuBelajar == 'sore') {
+            if($tingkatan == 'dasar'){
+                $keterangan = "RP 4.500.000 + RP 200.000 UANG BUKU";
+                $total = "RP 4.700.000";
+            }else{
+                $keterangan = "RP 6.900.000 + RP 450.000 UANG BUKU";
+                $total = "RP. 7.350.000";
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,21 +55,20 @@
     <link rel="stylesheet" href="assets/css/pembayaran1.css">
 </head>
 <body>
-    <?php
-    include "header.php";
-    include "../connection.php";
-    $username = $_SESSION['username'];
-    $sql = "SELECT idregistrasi FROM tbregistrasi WHERE username = '$username'";
-    $query = mysqli_query($conn,$sql);
-    $re = mysqli_fetch_array($query);
-    $idregister = $re['idregistrasi'];
-    $dateTime = Date('m/d/Y');
-    ?>
+    <?php include "header.php";?>
       <div class="content-1">
         <?php include "sidebar.php" ?>
         <div class="content">
             <p>Informasi Biaya Kursus</p>    
-            <a href="https://wa.me/081253253882" target="_blank"><button class="btn btn-lg btn-info button">Informasi</button></a>
+            <span>
+                <center>
+                    Pembayaran dilakukan melalui transfer ke Nomor Rekening <b>BCA</b> <br>
+                    a.n. YAY. PENDIDIKAN BAHASA TIONGHOA KALBAR <b>029 900 9971</b>  <br> 
+                    (Cantumkan nama dan kelas untuk mempermudah pengecekan) <br>
+                    Biaya: <?php echo $keterangan?>.  <br> 
+                    Total: <b> <?php echo $total ?> </b>
+                </center>   
+            </span>
             <form action="pembayaran_save.php" method="POST" enctype="multipart/form-data" style="width:100%;">
                 <p>Lampirkan Bukti Bayar</p>
                 <input type="hidden" name="username" value="<?php echo $username ?>">
