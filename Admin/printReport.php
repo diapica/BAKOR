@@ -8,6 +8,7 @@ $jenis = $_GET['jenis'];
 $gelombang = $_GET['gelombang'];
 $kelas = $_GET['kelas'];
 $statusKelas = $_GET['statusKelas'];
+$username = $_GET['username'];
 
 if($jenis == 'siswa'){
     $sql = "SELECT tbregistrasi.*,tbuser.status_register FROM tbuser 
@@ -191,4 +192,3 @@ if($jenis == 'siswa'){
         </body>
     </html>
 <?php } ?>
-    

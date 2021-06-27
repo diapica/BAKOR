@@ -31,6 +31,11 @@
       <div class="content-1">
         <?php include "sidebar.php" ?>
         <div class="content">
+            <form action="../print.php" method="GET" style="padding:0">
+                    <input type="hidden" name="status" value="bukti">
+                    <input type="hidden" name="username" value="<?php echo $username ?>">
+                    <button type="submit" class="btn btn-danger">PRINT PDF</button>
+            </form>
             <p>Bukti Pendaftaran</p>    
             <div class="informasi" style="width:70%;padding:10px;display:flex;">
                 <p style="font-size:20px;width:110px;">Tingkatan : </p>

@@ -75,7 +75,7 @@ if($submit == 'Update' || $submit == 'Approved'){
     }
 
     if($submit == 'Approved') {
-        $sql = "UPDATE tbuser SET status_register='c', komentar='$komentar' WHERE username='$username'";
+        $sql = "UPDATE tbuser SET status_register='c' WHERE username='$username'";
         $query = mysqli_query($conn,$sql);
     }
     
