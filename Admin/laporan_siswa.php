@@ -34,7 +34,7 @@
           <?php include "sidebar.php" ?>
           <div class="content" style="height:755px;overflow-y:scroll;padding-bottom:40px;">
 
-              <div class="top" style="display:flex;justify-content:space-between;width:100%">
+              <div class="top" style="display:flex;justify-content:space-between;width:100%;">
                 <h1>Cetak Laporan</h1>
                 <div id="hari">
                     <div style="display:flex;">
@@ -67,7 +67,23 @@
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
                 </select>
-                <select name="target" id="target" style="width:200px" onchange="test()">
+                <select id="gelombang" style="width:150px;" onchange="gelombang_()">
+                    <option value="">Gelombang</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <select id="kelas" style="width:150px;" onchange="gelombang_()">
+                    <option value="">Waktu Belajar</option>
+                    <option value="pagi">Pagi</option>
+                    <option value="sore">Sore</option>
+                </select>
+                <select id="statusKelas" style="width:150px;" onchange="gelombang_()">
+                    <option value="">status Kelas</option>
+                    <option value="online">Online</option>
+                    <option value="tatap_muka">Tatap Muka</option>
+                </select>
+                <select name="target" id="target" style="width:150px" onchange="test()">
                     <option>Pilih</option>
                     <option value="hari">Hari</option>
                     <option value="bulan">Bulan</option>
@@ -79,10 +95,13 @@
                 <input type="hidden" name="submit" id="submit_print" value="">
                 <input type="hidden" name="value" id="submit_value" value="">
                 <input type="hidden" name="jenis" value="siswa">
+                <input type="hidden" name="gelombang" value="">
+                <input type="hidden" name="kelas" value="">
+                <input type="hidden" name="statusKelas" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
             </form>
                 <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tingkat Dasar Sore Online Tahun 2021</p>
-                <table class="table text-center" id="tableData">
+                <table border=1px class="table text-center" id="tableData">
                 <colgroup>
                     <col width="5%">
                         <col width="15%">
@@ -152,6 +171,9 @@
     }
     function test(){
         var target = document.getElementById("target").value;
+        document.getElementById("hari1").value = "";
+        document.getElementById("bulan").value = "99";
+        document.getElementById("tahun").value = "99";
         var hari = document.getElementById("hari");
         var bulan = document.getElementById("bulan");
         var tahun = document.getElementById("tahun");
@@ -192,7 +214,10 @@
 
     function hari(){
         var hari = document.getElementById("hari1").value;
-        var url = "filter.php?hari="+hari+"&submit=hari";
+        var gelombang = document.getElementById("gelombang").value;
+        var kelas = document.getElementById("kelas").value;
+        var statusKelas = document.getElementById("statusKelas").value;
+        var url = "filter.php?hari="+hari+"&submit=hari&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
 
         url = url + "&sid=" + Math.random();
         ajaxku = buatajax();
@@ -203,7 +228,10 @@
 
     function bulan_(){
         var bulan = document.getElementById("bulan").value;
-        var url = "filter.php?bulan="+bulan+"&submit=bulan";
+        var gelombang = document.getElementById("gelombang").value;
+        var kelas = document.getElementById("kelas").value;
+        var statusKelas = document.getElementById("statusKelas").value;
+        var url = "filter.php?bulan="+bulan+"&submit=bulan&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
 
         url = url + "&sid=" + Math.random();
         ajaxku = buatajax();
@@ -214,8 +242,33 @@
 
     function tahun_(){
         var tahun = document.getElementById("tahun").value;
-        var url = "filter.php?tahun="+tahun+"&submit=tahun";
+        var gelombang = document.getElementById("gelombang").value;
+        var kelas = document.getElementById("kelas").value;
+        var statusKelas = document.getElementById("statusKelas").value;
+        var url = "filter.php?tahun="+tahun+"&submit=tahun&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
 
+        url = url + "&sid=" + Math.random();
+        ajaxku = buatajax();
+        ajaxku.onreadystatechange = tampil;
+        ajaxku.open("GET",url,true);
+        ajaxku.send(null);
+    }
+    function gelombang_(){
+        var hari = document.getElementById("hari1").value;
+        var bulan = document.getElementById("bulan").value;
+        var tahun = document.getElementById("tahun").value;
+        var gelombang = document.getElementById("gelombang").value;
+        var kelas = document.getElementById("kelas").value;
+        var statusKelas = document.getElementById("statusKelas").value;
+        if(hari != ""){
+            var url = "filter.php?hari="+hari+"&submit=hari&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+        }else if(bulan != "99"){
+            var url = "filter.php?bulan="+bulan+"&submit=bulan&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+        }else if(tahun != "99"){
+            var url = "filter.php?tahun="+tahun+"&submit=tahun&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+        }else{
+            var url = "filter.php?gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+        }
         url = url + "&sid=" + Math.random();
         ajaxku = buatajax();
         ajaxku.onreadystatechange = tampil;

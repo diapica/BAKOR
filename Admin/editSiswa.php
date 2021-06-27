@@ -16,10 +16,11 @@
     $id = $_GET['id']; 
     $username = $_GET['username']; 
 
-    $sql = "SELECT status_register from tbuser WHERE username='$username'";
+    $sql = "SELECT status_register,komentar from tbuser WHERE username='$username'";
     $query = mysqli_query($conn, $sql);
     $re = mysqli_fetch_array($query);
     $status_register = $re['status_register'];
+    $komentar = $re['komentar'];
     
     $sql = "SELECT * FROM tbregistrasi WHERE idregistrasi='$id'";
     $query = mysqli_query($conn, $sql);
@@ -174,12 +175,14 @@
                         </div>
                         <div class="group-form-2 a">
                             <label style="width:160px;">Gelombang</label>
-                            <select name="gelombang" id="gelombang">
+                            <select name="gelombang" id="gelombang" style="width:160px">
                                 <option value="" disabled> -- Gelombang --</option>
                                 <?php for($x=1; $x<=3; $x++){ ?>
                                 <option value=<?php echo $x; ?> <?php if($x==$gelombang) { echo 'selected'; }?> ><?php echo $x ?></option>
                                 <?php } ?>
                             </select>
+                            <label style="margin-left:20px;">Komentar</label>
+                            <textarea name="komentar" id="komentar" cols="30" rows="3"><?php echo $komentar ?></textarea>
                         </div>
                     </div>
                 </div>

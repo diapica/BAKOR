@@ -5,6 +5,9 @@ include "../connection.php";
 $value = $_GET['value'];
 $submit = $_GET['submit'];
 $jenis = $_GET['jenis'];
+$gelombang = $_GET['gelombang'];
+$kelas = $_GET['kelas'];
+$statusKelas = $_GET['statusKelas'];
 
 if($jenis == 'siswa'){
     $sql = "SELECT tbregistrasi.*,tbuser.status_register FROM tbuser 
@@ -22,6 +25,18 @@ if($jenis == 'siswa'){
             $sql .= " and year(tanggalDaftar) ='$value'";
         }
     }
+
+    if($gelombang != ""){
+        $sql .= " AND gelombang = '$gelombang'";
+    }
+    
+    if($kelas != ""){
+        $sql .= " AND waktuBelajar = '$kelas'";
+    }
+    
+    if($statusKelas != ""){
+        $sql .= " AND statusKelas = '$statusKelas'";
+    }    
 
     $query = mysqli_query($conn,$sql);
     $row = mysqli_num_rows($query);

@@ -57,9 +57,10 @@ include "../connection.php";
                 <div class="img">
                     <img src="assets/img/multiply.png" alt="check">
                 </div>
-                <p>Data tidak Valid</p>
+                <p>Data Invalid</p>
                 <p><u>Mohon Registrasi Kembali</u></p>
                 <button class="btn btn-danger" style="color:white" onclick="changeStatus(<?php echo "'$username','daftar'" ?>)">Klik disini</button>
+                <p style="margin-top:20px;font-size:15px;color:red;"><?php echo $re['komentar'] ?></p>
             </div>
             <?php }else if($re['status_register'] == 'e'){ ?>
                 <div class="proses">
@@ -76,6 +77,7 @@ include "../connection.php";
                     <img src="assets/img/check.png" alt="check">
                 </div>
                 <p>Pendaftaran Selesai</p>
+                <a href="buktiPendaftaran.php"><button class="btn btn-info" style="color:white;font-size:30px;margin-top:20px;">Bukti Pendaftaran</button></a>
             </div>
             <?php }else if($re['status_register'] == 'g'){?>
             <div class="ditolak">
@@ -94,7 +96,7 @@ include "../connection.php";
                 </div>
                 <p>Pembayaran Ditolak</p>
                 <p><u>Hubungi Admin</u></p>
-                <button class="btn btn-danger" style="color:white" onclick="changeStatus(<?php echo "'$username','bayar'" ?>)">Klik disini</button>
+                <button class="btn btn-danger" style="color:white;" onclick="changeStatus(<?php echo "'$username','bayar'" ?>)">Klik disini</button>
             </div>
             <?php } ?>
           </div>
