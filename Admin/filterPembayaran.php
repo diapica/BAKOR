@@ -9,7 +9,7 @@ $submit = $_GET['submit'];
 
 $sql = "SELECT tbregistrasi.namaMandarin,tbregistrasi.namaIndonesia,tbregistrasi.tanggalDaftar,tbpembayaran.tanggalPembayaran,
     tbpembayaran.biayaKursus,tbuser.status_register FROM tbregistrasi INNER JOIN tbpembayaran 
-    ON tbregistrasi.idregistrasi = tbpembayaran.idregister INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
+    ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
     WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
 if($submit == 'hari'){

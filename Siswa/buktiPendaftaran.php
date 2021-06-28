@@ -5,15 +5,15 @@
     $sql = "SELECT tbuser.waktuUpdate, tbregistrasi.* FROM tbregistrasi INNER JOIN tbuser ON tbregistrasi.username = tbuser.username WHERE tbregistrasi.username = '$username'";
     $query = mysqli_query($conn,$sql);
     $re = mysqli_fetch_array($query);
-    $tingkatan = $re['tingkatan'];
-    $waktuBelajar = $re['waktuBelajar'];
-    $statusKelas = $re['statusKelas'];
-    $tanggalDaftar = $re['tanggalDaftar'];
-    $mandarin = $re['namaMandarin'];
-    $indonesia = $re['namaIndonesia'];
+    $tingkatan = ucwords(strtolower($re['tingkatan']));
+    $waktuBelajar = ucwords(strtolower($re['waktuBelajar']));
+    $statusKelas = ($re['statusKelas'] =='tatap_muka') ? 'Tatap Muka' : 'Online';
+    $tanggalDaftar = date('d F Y', strtotime($re['tanggalDaftar']));
+    $mandarin = ucwords(strtolower($re['namaMandarin']));
+    $indonesia = ucwords(strtolower($re['namaIndonesia']));
     $email = $re['email'];
     $no = $re['noWA'];
-    $approved = $re['waktuUpdate'];
+    $approved = date('d F Y', strtotime($re['waktuUpdate']))
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,46 +31,44 @@
       <div class="content-1">
         <?php include "sidebar.php" ?>
         <div class="content">
-            <form action="../print.php" method="GET" style="padding:0">
+            <p>Bukti Pendaftaran</p>    
+            <table class="informasi" style="width:50%;font-size:20px">
+                <tr>
+                    <td width=50%>Username: </td> <td> <b> <?php echo $username ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Nama Indonesia: </td> <td> <b> <?php echo $indonesia ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Nama Mandarin: </td> <td> <b> <?php echo $mandarin ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Email: </td> <td> <b> <?php echo $email ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>No. WA: </td> <td> <b> <?php echo $no ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tingkatan: </td> <td> <b> <?php echo $tingkatan ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Waktu Belajar: </td> <td> <b> <?php echo $waktuBelajar ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Status Kelas: </td> <td> <b> <?php echo $statusKelas ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tanggal Daftar: </td> <td> <b> <?php echo $tanggalDaftar ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tanggal Pendaftaran Disetujui: </td> <td> <b> <?php echo $approved ?> </b> </td>
+                </tr>
+            </table>
+            <form action="../print.php" method="GET">
                     <input type="hidden" name="status" value="bukti">
                     <input type="hidden" name="username" value="<?php echo $username ?>">
-                    <button type="submit" class="btn btn-danger">PRINT PDF</button>
+                    <button type="submit" class="btn btn-danger">PRINT BUKTI PENDAFTARAN</button>
             </form>
-            <p>Bukti Pendaftaran</p>    
-            <div class="informasi" style="width:70%;padding:10px;display:flex;">
-                <p style="font-size:20px;width:110px;">Tingkatan : </p>
-                <p style="font-size:20px;margin:none;margin-right:10px;color:red;"><?php echo $tingkatan ?>,</p>
-                <p style="font-size:20px;width:140px;">Waktu Belajar : </p>
-                <p style="font-size:20px;margin:none;margin-right:10px;color:red;"><?php echo $waktuBelajar ?>,</p>
-                <p style="font-size:20px;width:130px;">Status Kelas : </p>
-                <p style="font-size:20px;margin:none;margin-right:10px;color:red"><?php echo $statusKelas ?>,</p>
-                <p style="font-size:20px;width:150px;">Tanggal Daftar : </p>
-                <p style="font-size:20px;margin:none;color:red;"><?php echo $tanggalDaftar ?></p>
-            </div>
-            <div class="informasi" style="width:70%;padding:10px;display:flex;">
-                <p style="font-size:20px;width:250px;">username : </p>
-                <p style="font-size:20px;margin:none"><?php echo $username ?></p>
-            </div>
-            <div class="informasi" style="width:70%;padding:10px;display:flex;">
-                <p style="font-size:20px;width:250px;">Nama Mandarin : </p>
-                <p style="font-size:20px;margin:none"><?php echo $mandarin ?></p>
-            </div>
-            <div class="informasi" style="width:70%;padding:10px;display:flex;">
-                <p style="font-size:20px;width:250px;">Nama Indonesia : </p>
-                <p style="font-size:20px;margin:none"><?php echo $indonesia ?></p>
-            </div>
-            <div class="informasi" style="width:70%;padding:10px;display:flex;">
-                <p style="font-size:20px;width:250px;">Alamat Email : </p>
-                <p style="font-size:20px;margin:none"><?php echo $email ?></p>
-            </div>
-            <div class="informasi" style="width:70%;padding:10px;display:flex;">
-                <p style="font-size:20px;width:250px;">No. WA : </p>
-                <p style="font-size:20px;margin:none"><?php echo $no ?></p>
-            </div>
-            <div class="informasi" style="width:70%;padding:10px;display:flex;">
-                <p style="font-size:20px;width:250px;">Pendaftaran disetujui : </p>
-                <p style="font-size:20px;margin:none;color:red;"><?php echo $approved ?></p>
-            </div>
         </div>
       </div>
       <div class="footer fixed-bottom">

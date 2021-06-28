@@ -26,7 +26,7 @@
     include "../connection.php";
     $sql = "SELECT tbregistrasi.namaMandarin, tbregistrasi.namaIndonesia, tbregistrasi.tanggalDaftar, 
             tbpembayaran.tanggalPembayaran, tbpembayaran.biayaKursus, tbuser.status_register 
-            FROM tbregistrasi INNER JOIN tbpembayaran ON tbregistrasi.idregistrasi = tbpembayaran.idregister 
+            FROM tbregistrasi INNER JOIN tbpembayaran ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi 
             INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
             WHERE tbuser.status_register = 'f' and tbpembayaran.status='diterima'";
     $query = mysqli_query($conn,$sql);

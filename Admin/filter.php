@@ -61,7 +61,7 @@ $row = mysqli_num_rows($query);
             <input type="hidden" name="statusKelas" value="<?php echo $statusKelas ?>">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
-        <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tingkat Dasar Sore Online Tahun 2021 </p> 
+        <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tahun 2021 </p> 
         <table border=1px class="table text-center">
             <thead class="thead">
                 <tr class="align-middle">
@@ -85,14 +85,14 @@ $row = mysqli_num_rows($query);
                 if($row > 0){
                 for($x = 1 ; $x <= $row; $x++){ 
                     $re = mysqli_fetch_array($query);
-                    $namaMandarin = $re['namaMandarin'];
-                    $namaIndonesia = $re['namaIndonesia'];
+                    $namaMandarin = ucwords(strtolower($re['namaMandarin']));
+                    $namaIndonesia = ucwords(strtolower($re['namaIndonesia']));
                     $jenisKelamin = $re['jenisKelamin'];
-                    $tempatLahir = $re['tempatLahir'];
+                    $tempatLahir = ucwords(strtolower($re['tempatLahir']));
                     $tanggalLahir = $re['tanggalLahir'];
                     $alamat = $re['alamat'];
                     $noWA = $re['noWA'];
-                    $pendidikanTerakhir = $re['pendidikanTerakhir'];
+                    $pendidikanTerakhir = strtoupper($re['pendidikanTerakhir']);
                 ?>
                 <tr class="align-middle">
                     <td><?php echo $x ?></td>
