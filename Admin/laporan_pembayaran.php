@@ -80,6 +80,9 @@
                 <input type="hidden" name="submit" id="submit_print" value="">
                 <input type="hidden" name="value" id="submit_value" value="">
                 <input type="hidden" name="jenis" value="pembayaran">
+                <input type="hidden" name="gelombang" value="">
+                <input type="hidden" name="kelas" value="">
+                <input type="hidden" name="statusKelas" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
               </form>
                 <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>

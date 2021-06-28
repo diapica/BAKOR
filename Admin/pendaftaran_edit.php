@@ -4,6 +4,7 @@ include "../connection.php";
 
 $id = isset($_GET['id']) ? $_GET['id'] : $_POST['id'];
 $username = isset($_GET['username']) ? $_GET['username'] : $_POST['username'];
+$komentar = isset($_GET['komentar']) ? $_GET['komentar'] : $_POST['komentar'];
 $submit = isset($_GET['submit']) ? $_GET['submit'] : $_POST['submit'];
 $page = isset($_GET['page']) ? $_GET['page'] : $_POST['page'];
 
@@ -81,9 +82,11 @@ if($submit == 'Update' || $submit == 'Approved'){
     $sql = "UPDATE tbregistrasi SET ". $addSQL .
             " WHERE idregistrasi = '$id'";
     $query = mysqli_query($conn,$sql);
+    $sql1 = "UPDATE tbuser SET komentar='$komentar' where username='$username'";
+    $query1 = mysqli_query($conn,$sql1);
 
 }else if($submit == 'Reject' || $submit == 'Hapus'){
-    $sql = "UPDATE tbuser SET status_register='d' WHERE username='$username'";
+    $sql = "UPDATE tbuser SET status_register='d', komentar='$komentar' WHERE username='$username'";
     $query = mysqli_query($conn,$sql);
     $sql1 = "DELETE FROM tbregistrasi WHERE idregistrasi = '$id'";
     $query1 = mysqli_query($conn,$sql1);

@@ -42,6 +42,9 @@ $row = mysqli_num_rows($query);
                 }
             ?>">
             <input type="hidden" name="jenis" value="pembayaran">
+            <input type="hidden" name="gelombang" value="">
+            <input type="hidden" name="kelas" value="">
+            <input type="hidden" name="statusKelas" value="">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
         <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>
