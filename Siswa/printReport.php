@@ -5,15 +5,15 @@
     $sql = "SELECT tbuser.waktuUpdate, tbregistrasi.* FROM tbregistrasi INNER JOIN tbuser ON tbregistrasi.username = tbuser.username WHERE tbregistrasi.username = '$username'";
     $query = mysqli_query($conn,$sql);
     $re = mysqli_fetch_array($query);
-    $tingkatan = $re['tingkatan'];
-    $waktuBelajar = $re['waktuBelajar'];
-    $statusKelas = $re['statusKelas'];
-    $tanggalDaftar = $re['tanggalDaftar'];
-    $mandarin = $re['namaMandarin'];
-    $indonesia = $re['namaIndonesia'];
+    $tingkatan = ucwords(strtolower($re['tingkatan']));
+    $waktuBelajar = ucwords(strtolower($re['waktuBelajar']));
+    $statusKelas = ($re['statusKelas'] =='tatap_muka') ? 'Tatap Muka' : 'Online';
+    $tanggalDaftar = date('d F Y', strtotime($re['tanggalDaftar']));
+    $mandarin = ucwords(strtolower($re['namaMandarin']));
+    $indonesia = ucwords(strtolower($re['namaIndonesia']));
     $email = $re['email'];
     $no = $re['noWA'];
-    $approved = $re['waktuUpdate'];
+    $approved = date('d F Y', strtotime($re['waktuUpdate']))
 ?>
 <html>
 <head>
@@ -28,40 +28,36 @@
 <body>
         <div class="box">
                 <p style="font-size:30px;" class="text-center">Bukti Pendaftaran</p>
-                <table style="width:100%;padding:20px;">
+                <table style="width:50%;margin:0 auto;font-size:20px">
                     <tr>
-                        <td style="font-size:17px;height:50px;width:100px;">Tingkatan : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $tingkatan ?>,</td>
-                        <td style="font-size:17px;height:50px;width:100px;">Waktu Belajar : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $waktuBelajar ?>,</td>
-                        <td style="font-size:17px;height:50px;">Status Kelas : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $statusKelas ?></td>
-                        <td style="font-size:17px;height:50px;">Tanggal Daftar : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $tanggalDaftar ?></td>
+                        <td width=50%>Username: </td> <td> <b> <?php echo $username ?> </b> </td>
                     </tr>
                     <tr>
-                        <td style="font-size:17px;height:50px;" colspan="2">Username : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $username ?></td>
+                        <td width=50%>Nama Indonesia: </td> <td> <b> <?php echo $indonesia ?> </b> </td>
                     </tr>
                     <tr>
-                        <td style="font-size:17px;height:50px;" colspan="2">Nama Mandarin : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $mandarin ?></td>
+                        <td width=50%>Nama Mandarin: </td> <td> <b> <?php echo $mandarin ?> </b> </td>
                     </tr>
                     <tr>
-                        <td style="font-size:17px;height:50px;" colspan="2">Nama Indonesia : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $indonesia ?></td>
+                        <td width=50%>Email: </td> <td> <b> <?php echo $email ?> </b> </td>
                     </tr>
                     <tr>
-                        <td style="font-size:17px;height:50px;" colspan="2">Alamat Email : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $email ?></td>
+                        <td width=50%>No. WA: </td> <td> <b> <?php echo $no ?> </b> </td>
                     </tr>
                     <tr>
-                        <td style="font-size:17px;height:50px;" colspan="2">No. WA : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $no ?></td>
+                        <td width=50%>Tingkatan: </td> <td> <b> <?php echo $tingkatan ?> </b> </td>
                     </tr>
                     <tr>
-                        <td style="font-size:17px;height:50px;" colspan="2">Pendaftaran disetujui : </td>
-                        <td style="font-size:17px;height:50px;"><?php echo $approved ?></td>
+                        <td width=50%>Waktu Belajar: </td> <td> <b> <?php echo $waktuBelajar ?> </b> </td>
+                    </tr>
+                    <tr>
+                        <td width=50%>Status Kelas: </td> <td> <b> <?php echo $statusKelas ?> </b> </td>
+                    </tr>
+                    <tr>
+                        <td width=50%>Tanggal Daftar: </td> <td> <b> <?php echo $tanggalDaftar ?> </b> </td>
+                    </tr>
+                    <tr>
+                        <td width=50%>Tanggal Pendaftaran Disetujui: </td> <td> <b> <?php echo $approved ?> </b> </td>
                     </tr>
                 </table>
             </div>

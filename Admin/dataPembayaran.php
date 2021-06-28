@@ -48,7 +48,7 @@
                     include "../connection.php";
                     $sql = "SELECT tbregistrasi.username,tbregistrasi.email,tbregistrasi.namaIndonesia,tbpembayaran.buktiPembayaran,
                     tbpembayaran.biayaKursus,tbpembayaran.tanggalPembayaran,tbregistrasi.idregistrasi,tbpembayaran.idpembayaran,
-                    tbpembayaran.status FROM tbpembayaran INNER JOIN tbregistrasi ON tbpembayaran.idregister = tbregistrasi.idregistrasi";
+                    tbpembayaran.status FROM tbpembayaran INNER JOIN tbregistrasi ON tbpembayaran.idregistrasi = tbregistrasi.idregistrasi";
                     $query = mysqli_query($conn,$sql);
                     $row = mysqli_num_rows($query);
 

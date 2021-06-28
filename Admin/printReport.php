@@ -49,7 +49,7 @@ if($jenis == 'siswa'){
         <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
         </head>
         <body>
-            <p class="text-center" style="font-size:25px;font-weight:bold;">Laporan daftar siswa BAKORPEND PONTIANAK Tingkat Dasar Sore Online Tahun 2021 </p>
+            <p class="text-center" style="font-size:25px;font-weight:bold;">Laporan daftar siswa BAKORPEND PONTIANAK Tahun 2021 </p>
             <table border="1px" class="table text-center" style="text-align:center;">
             <colgroup>
                 <col width="5%">
@@ -84,14 +84,14 @@ if($jenis == 'siswa'){
                     if($row > 0){
                     for($x = 1 ; $x <= $row; $x++){ 
                         $re = mysqli_fetch_array($query);
-                        $namaMandarin = $re['namaMandarin'];
-                        $namaIndonesia = $re['namaIndonesia'];
+                        $namaMandarin = ucwords(strtolower($re['namaMandarin']));
+                        $namaIndonesia = ucwords(strtolower($re['namaIndonesia']));
                         $jenisKelamin = $re['jenisKelamin'];
-                        $tempatLahir = $re['tempatLahir'];
+                        $tempatLahir = ucwords(strtolower($re['tempatLahir']));
                         $tanggalLahir = $re['tanggalLahir'];
                         $alamat = $re['alamat'];
                         $noWA = $re['noWA'];
-                        $pendidikanTerakhir = $re['pendidikanTerakhir'];
+                        $pendidikanTerakhir = strtoupper($re['pendidikanTerakhir']);
                     ?>
                     <tr class="align-middle">
                         <td><?php echo $x ?></td>
@@ -117,7 +117,7 @@ if($jenis == 'siswa'){
 <?php }else if($jenis == 'pembayaran'){
     $sql = "SELECT tbregistrasi.namaMandarin,tbregistrasi.namaIndonesia,tbregistrasi.tanggalDaftar, 
             tbpembayaran.tanggalPembayaran,tbpembayaran.biayaKursus,tbuser.status_register FROM tbregistrasi 
-            INNER JOIN tbpembayaran ON tbregistrasi.idregistrasi = tbpembayaran.idregister INNER JOIN 
+            INNER JOIN tbpembayaran ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi INNER JOIN 
             tbuser ON tbregistrasi.username = tbuser.username WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
     if($submit == 'hari'){
@@ -142,7 +142,7 @@ if($jenis == 'siswa'){
         <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
         </head>
         <body>
-            <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>
+            <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tahun 2021</p>
             <table border="1px" class="table text-center" id="tableData">
                 <colgroup>
                     <col width="10%">
@@ -168,8 +168,8 @@ if($jenis == 'siswa'){
                     if($row > 0){
                     for($x = 1; $x <= $row;$x++){
                         $re = mysqli_fetch_array($query);
-                        $mandarin = $re['namaMandarin'];
-                        $indonesia = $re['namaIndonesia'];
+                        $mandarin = ucwords(strtolower($re['namaMandarin']));
+                        $indonesia = ucwords(strtolower($re['namaIndonesia']));
                         $tanggal = $re['tanggalPembayaran'];
                         $biaya = $re['biayaKursus'];
                         $status = $re['status_register'];

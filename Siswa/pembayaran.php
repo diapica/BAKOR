@@ -5,7 +5,7 @@
     $sql = "SELECT * FROM tbregistrasi WHERE username = '$username'";
     $query = mysqli_query($conn,$sql);
     $re = mysqli_fetch_array($query);
-    $idregister = $re['idregistrasi'];
+    $idregistrasi = $re['idregistrasi'];
     $waktuBelajar = $re['waktuBelajar'];
     $tingkatan = $re['tingkatan'];
     $statusKelas = $re['statusKelas'];
@@ -72,7 +72,7 @@
             <form action="pembayaran_save.php" method="POST" enctype="multipart/form-data" style="width:100%;">
                 <p>Lampirkan Bukti Bayar</p>
                 <input type="hidden" name="username" value="<?php echo $username ?>">
-                <input type="hidden" name="idregister" value="<?php echo $idregister ?>">
+                <input type="hidden" name="idregistrasi" value="<?php echo $idregistrasi ?>">
                 <input type="hidden" name="tanggalPembayaran" value="<?php echo $dateTime ?>">
                 <input type="file" required name="image" class="form-control" style="width:40%">
                 <input type="submit" class="btn btn-lg btn-info button"></button>
