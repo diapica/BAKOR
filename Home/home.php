@@ -29,10 +29,19 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#About">About</a>
+          <a class="nav-link active" href="#About">Tentang kami</a>
         </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" role="button" id="navbarScrollingDropdown" data-bs-toggle="dropdown" aria-expanded="false">Berita</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" href="#Berita">HSK</a></li>
+            <li><a class="dropdown-item" href="#Berita">Kegiatan dan lomba-lomba</a></li>
+          </ul>
+        </li>
+
         <li class="nav-item">
-          <a class="nav-link active" href="#Contact">Contact</a>
+          <a class="nav-link active" href="#Contact">Kontak</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="#Pendaftaran">Pendaftaran</a>
@@ -56,7 +65,7 @@
 
 <div class="container-fluid About pt-2 pb-2">
   <div class="container text-center">
-    <h1 class="display-5" id="About" style="color: white; background-color: orange;">About</h1>
+    <h1 class="display-5" id="About" style="color: white; background-color: orange;">Tentang kami</h1>
      <div class="row">
         <img src="img/tentang.jpg">
         <div style="text-align: left; margin-top: 10px;">
@@ -70,6 +79,283 @@
       <div class="row">
         <img src="img/program.jpg">
       </div>
+
+      <div class="row">
+       <div class="col-md-6">
+          <img class="img-responsive" src="img/fasilitas.jpeg" height="150" width="300" alt="">
+          <h4>Fasilitas</h4>
+          <p>
+            Berikut fasilitas-fasilitas yang tersedia di Bakorpend Pontianak, yang membuat mu semakin betah untuk belajar disini.
+          </p>
+          <div class="modal fade" id="fasilitas" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen-sm-down">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">FASILITAS</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      Berikut fasilitas-fasilitas yang tersedia di Bakorpend Pontianak, yang membuat mu semakin betah untuk belajar disini.<br><br>
+                      <p>
+                        <h4>Fasilitas</h4>
+                      </p>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text">
+                              - Ruang kelas full AC, visual audio, dan perpustakaan.<br>- Mendapatkan sertifikat HSK (Hanyu Shuiping kaoshi) resmi dari Confucius Institute Head Quarters (hanban), RRT.<br>- Kelas Chinese Arts (wushu, kaligrafi, Chinese knots, Chinese paper cutting, dll)<br>- Program dana pinjaman pendidikan( Daixuejin) untuk yang memenuhi syarat.<br>- Kesempatan pendidikan dan pelatihan yang lebih luas untuk siswa yang berprestasi
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-primary" data-bs-toggle="modal" href="#fasilitas" role="button">Baca selengkapnya</a>
+       </div>
+
+       <div class="col-md-6">
+         <img class="img-responsive" src="img/standar.jpeg" height="150" width="300" alt="">
+         <h4>Standar Pembelajaran</h4>
+         <p>
+           Gambaran capaian pembelajaran minimal bahasa mandarin peserta saat masuk dan setelah menyelesaikan penddikan dengan acuan HSK.
+         </p>
+         <div class="modal fade" id="standar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">Standar Pembelajaran</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      Gambaran capaian pembelajaran minimal bahasa mandarin peserta saat masuk dan setelah menyelesaikan penddikan dengan acuan HSK.<br><br>
+                      <p>
+                        <h4>Standar Pembelajaran</h4>
+                      </p>
+                    </div>
+                    <div class="row">
+                      <table class="table table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                      <th scope="col">Kelas</th>
+                      <th scope="col">Kemampuan saat masuk</th>
+                      <th scope="col">Kemampuan setelah lulus</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Kelas dasar <br>Pre basic <br>Sedikit basic</td>
+                      <td><br>0<br>HSK Level 2</td>
+                      <td><br>HSK level 3 (dinilai di atas 180)<br>HSK level 3-4 (dinilai di atas 180)</td>
+                    </tr>
+                    <tr>
+                      <td>Kelas menengah</td>
+                      <td>HSL level 3</td>
+                      <td>HSK level 4-5 (dinilai di atas 180)</td>
+                    </tr>
+                    <tr>
+                      <td>Kelas tingkat lanjut</td>
+                      <td>HSK leve 4</td>
+                      <td>HSK level 5-6 (dinilai di atas 180)</td>
+                    </tr>
+                  </tbody>
+                </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         <a class="btn btn-primary" data-bs-toggle="modal" href="#standar" role="button">Baca selengkapnya</a>
+       </div>
+     </div>
+  </div> 
+</div>
+
+<div class="container-fluid Berita pt-2 pb-2">
+  <div class="container text-center">
+    <h1 class="display-5" id="Berita" style="color: white; background-color: orange;">Berita</h1>
+     <div class="row">
+
+       <div class="col-md-6">
+          <img class="img-responsive" src="img/hsklogo.jpg" height="150" width="300" alt="">
+          <h4>HSK</h4>
+          <p>
+            Hanyu Shuiping Kaoshi (HSK) adalah ujian standardisasi untuk kemahiran berbahasa mandarin bagi penutur asing, seperti mahasiswa internasional, pendatang dari luar, dan anggota kelompok etnis minoritas di Cina.
+          </p>
+          <div class="modal fade" id="hsk" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">HSK</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      Hanyu Shuiping Kaoshi (HSK) adalah ujian standardisasi untuk kemahiran berbahasa mandarin bagi penutur asing, seperti mahasiswa internasional, pendatang dari luar, dan anggota kelompok etnis minoritas di Cina. Sertifikat dari tes HSK memiliki fungsi sama dan SETARA dengan tes TOEFL dan IELTS untuk bahasa Inggris. Bentuk tesnya pun hampir sama, ada reading (membaca) dan listening (mendengar). Jika ingin mendaftar ke program kuliah berbahasa mandarin, perlu mencapai HSK level 3-8 tergantung jurusan. Untuk dapat diterima bekerja di Cina, setidaknya perlu mencapai HSK level 5.<br><br>
+                      <p>
+                        <h4>Level Dalam Test HSK</h4>
+                      </p>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h5 class="card-title">HSK Level 1 (Minimal 150 kata)</h5>
+                            <p class="card-text">
+                              Mengenal dan menggunakan kosakata dalam bahasa Mandarin yang sangat sederhana, yang akan digunakan untuk belajar Mandarin di level selanjutnya.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h5 class="card-title">HSK Level 2 (Minimal 300 kata)</h5>
+                            <p class="card-text">
+                              Dapat menggunakan bahasa Mandarin untuk topik-topik sederhana sehari-hari.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h5 class="card-title">HSK Level 3 (Minimal 600 kata)</h5>
+                            <p class="card-text">
+                              Dapat berkomunikasi secara dasar dalam bahasa Mandarin dalam kehidupan sehari-hari, contohnya untuk belajar dan bekerja.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h5 class="card-title">HSK Level 4 (Minimal 1200 kata) </h5>
+                            <p class="card-text">
+                              Dapat berkomunikasi dalam bahasa Mandarin untuk topik-topik yang lebih kompleks, mengekspresikan diri dalam standar yang lebih kompleks.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h5 class="card-title">HSK Level 5 (Minimal 2500 kata) </h5>
+                            <p class="card-text">
+                             Dapat mendiskusikan topik yang lebih abstrak dan profesional, mudah untuk merespon berbagai pembicaraan, seperti memberikan komentar.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <h5 class="card-title">HSK Level 6 (Minimal 5000 kata)</h5>
+                            <p class="card-text">
+                              Dapat berkomunikasi secara luas dalam bahasa Mandarin dengan penuturan dan kefasihan mendekati penutur asli.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="btn btn-primary" data-bs-toggle="modal" href="#hsk" role="button">Baca selengkapnya</a>
+       </div>
+
+       <div class="col-md-6">
+         <img class="img-responsive" src="img/lomba.jpeg" height="150" width="300" alt="">
+         <h4>Kegiatan dan Lomba</h4>
+         <p>
+           Bukan cuman belajar aja disini! tapi kita juga mengembangkan diri lewat kegiatan dan lomba-lomba yang ada agar keterampilan juga berkembang selaras dengan ilmu kita.
+         </p>
+         <div class="modal fade" id="kegiatanlomba" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">Kegiatan dan Lomba</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      Bukan cuman belajar aja disini! tapi kita juga mengembangkan diri lewat kegiatan dan lomba-lomba yang ada agar keterampilan juga berkembang selaras dengan ilmu kita<br><br>
+                      <p>
+                        <h4>Jadwal kegiatan dan lomba</h4>
+                      </p>
+                    </div>
+                    <div class="row">
+                      <div class="col-6 col-md-6">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <img class="img-responsive" src="img/lomba1.jpg" height="150" width="300" alt="">
+                            <h5 class="card-title">Lomba menulis dan mengarang</h5>
+                            <p class="card-text">
+                              Lomba menulis hanzi tanggal 17 – 19 mei 2021<br>Lomba mengarang tanggal 24 – 28 mei 2021
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-6">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <img class="img-responsive" src="img/lomba2.jpg" height="150" width="300" alt="">
+                            <h5 class="card-title">lomba keterampilan berbahasa mandarin</h5>
+                            <p class="card-text">
+                              Lomba pidato : kemampuan berbicara <br>Chinese art : pengetahuan budaya<br>Waktu lomba : maret 2021<br>CP : 0812 5325 3882<br>Batas akhir pendaftaran : 29 maret 2021
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-6">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <img class="img-responsive" src="img/lomba3.jpg" height="150" width="300" alt="">
+                            <h5 class="card-title">Sosialisasi lomba keterampilan berbahasa mandarin</h5>
+                            <p class="card-text">
+                              Kamis, 25 maret 2021<br>13.00 – 14.00 WIB<br>Via ZOOM<br>Meeting ID : 858 6774<br>Password : 888888
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-6">
+                        <div class="card h-100">
+                          <div class="card-body">
+                            <img class="img-responsive" src="img/lomba4.jpg" height="150" width="300" alt="">
+                            <h5 class="card-title">Lomba bernyanyi dan lomba bercerita Lomba bernyanyi </h5>
+                            <p class="card-text">
+                              Lomba Bernyanyi : CP : 0895-7017-00866 <br>Lomba bercerita : CP : 0896-9120-5799 <br>Waktu pendaftaran & Pengumpulan video <br>5 februari – 28 februari 2021 <br>Benefit : angpau dan plakat <br>Terbuka untuk umum<br>Pengumuman pemenang di pertengahan maret
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         <a class="btn btn-primary" data-bs-toggle="modal" href="#kegiatanlomba" role="button">Baca selengkapnya</a>
+       </div>
+     </div>
   </div> 
 </div>
 

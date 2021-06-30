@@ -19,13 +19,15 @@
         display:none;
     }
 </style>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 </head>
 <body>
     <?php 
     include "header.php";
     include "../connection.php";
-    $sql = "SELECT tbregistrasi.namaMandarin, tbregistrasi.namaIndonesia, tbregistrasi.tanggalDaftar, 
-            tbpembayaran.tanggalPembayaran, tbpembayaran.biayaKursus, tbuser.status_register 
+    $sql = "SELECT tbregistrasi.*, tbpembayaran.tanggalPembayaran, tbpembayaran.biayaKursus, tbuser.status_register 
             FROM tbregistrasi INNER JOIN tbpembayaran ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi 
             INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
             WHERE tbuser.status_register = 'f' and tbpembayaran.status='diterima'";
@@ -85,8 +87,8 @@
                 <input type="hidden" name="statusKelas" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
               </form>
-                <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>
-                <table class="table text-center" id="tableData">
+                <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tahun 2021</p>
+                <table class="table table-striped text-center" id="tableData">
                     <colgroup>
                         <col width="10%">
                         <col width="20%">
@@ -98,6 +100,9 @@
                         <tr class="align-middle">
                             <th rowspan="2">No</th>
                             <th colspan="2">Nama</th>
+                            <th rowspan="2">Tingkatan</th>
+                            <th rowspan="2">Waktu Belajar</th>
+                            <th rowspan="2">Kelas</th>
                             <th rowspan="2">Tanggal Pembayaran</th>
                             <th rowspan="2">Jumlah</th>
                         </tr>
@@ -110,8 +115,11 @@
                         <?php
                         for($x = 1; $x <= $row;$x++){
                             $re = mysqli_fetch_array($query);
-                            $mandarin = $re['namaMandarin'];
-                            $indonesia = $re['namaIndonesia'];
+                            $mandarin = ucwords(strtolower($re['namaMandarin']));
+                            $indonesia = ucwords(strtolower($re['namaIndonesia']));
+                            $tingkatan = ucwords(strtolower($re['tingkatan']));
+                            $waktuBelajar = ucwords(strtolower($re['waktuBelajar']));
+                            $statusKelas = ($re['statusKelas'] == 'tatap_muka') ? 'Tatap Muka' : 'Online';
                             $tanggal = $re['tanggalPembayaran'];
                             $biaya = $re['biayaKursus'];
                             $status = $re['status_register'];
@@ -120,6 +128,9 @@
                             <td><?php echo $x ?></td>
                             <td><?php echo $mandarin ?></td>
                             <td><?php echo $indonesia ?></td>
+                            <td><?php echo $tingkatan ?></td>
+                            <td><?php echo $waktuBelajar ?></td>
+                            <td><?php echo $statusKelas ?></td>
                             <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
                             <td>Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></td>
                         </tr>
@@ -136,6 +147,12 @@
 </html>
 
 <script>
+
+$(document).ready(function () {
+  $('#tableData').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+
 function test(){
     var target = document.getElementById("target").value;
     var hari = document.getElementById("hari");

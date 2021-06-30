@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/dataPembayaran1.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 </head>
 <body>
     <?php include "header.php" ?>
@@ -17,9 +19,8 @@
           <div class="content" style="height:755px;overflow-y:scroll;padding-bottom:40px;">
             <div style="display:flex;justify-content:space-between;">
                 <h1>View Data Pembayaran</h1>
-                <input type="text" id="search" placeholder="search" style="width:250px;">
             </div>
-            <table class="table text-center">
+            <table class="table table-striped text-center" id='example'> 
                 <colgroup>
                     <col width="5%">
                     <col width="10%">
@@ -78,9 +79,11 @@
                         <td><p id="biaya<?php echo $x ?>">Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></p> <input class="form-control" id="input_biaya<?php echo $x ?>" type="text" style="display:none;"></td>
                         <td><p id="tanggal<?php echo $x ?>"><?php echo date('d F Y', strtotime($tanggal)); ?></p><input class="form-control" id="input_tanggal<?php echo $x ?>" type="date" style="display:none;"></td>
                         <td>
+                            <button style="color:white" id="button_edit<?php echo $x ?>" class="btn btn-info" onclick="edit_data('<?php echo $x ?>', '<?php echo $biaya ?>', '<?php echo $tanggal ?>', )">Edit</button>
                             <?php if($status == 'e' && $statusPembayaran == 'menunggu'){ ?>
-                            <button style="color:white" id="button_edit<?php echo $x ?>" class="btn btn-info" onclick="edit_data(<?php echo $x ?>)">Edit</button>
-                            <button id="konfirmasi<?php echo $x ?>" style="color:white;display:none;" class="btn btn-info" onclick="konfirmasi(<?php echo "'$username','$id','$x'" ?>)">Konfirmasi</button>
+                                <button id="konfirmasi<?php echo $x ?>" style="color:white;display:none;" class="btn btn-info" onclick="konfirmasi(<?php echo "'$username','$id','$x', 'konfirmasi'" ?>)">Konfirmasi</button>
+                            <?php }else{ ?>
+                                <button id="konfirmasi<?php echo $x ?>" style="color:white;display:none;" class="btn btn-info" onclick="konfirmasi(<?php echo "'$username','$id','$x', 'update'" ?>)">Update</button>
                             <?php } ?>
                             <button class="btn btn-danger" onclick="deleteData(<?php echo "'$id','$username'" ?>)">Hapus</button>
                         </td>
@@ -101,13 +104,15 @@
 </html>
 
 <script>   
-    function edit_data(x){
+    function edit_data(x, biayaData, tanggalData){
         var biaya = document.getElementById("biaya"+x);
         var tanggal = document.getElementById("tanggal"+x);
         var input_biaya = document.getElementById("input_biaya"+x);
         var input_tanggal = document.getElementById("input_tanggal"+x);
         var button = document.getElementById("konfirmasi"+x);
         var buttonEdit = document.getElementById("button_edit"+x);
+        document.getElementById("input_tanggal"+x).value = tanggalData;
+        document.getElementById("input_biaya"+x).value = biayaData;
         biaya.style.display = "none";
         tanggal.style.display = "none";
         input_biaya.style.display = "block";
@@ -116,7 +121,7 @@
         buttonEdit.style.display = "none";
         
     }
-    function konfirmasi(username,id,x){
+    function konfirmasi(username,id,x, action){
         var harga_input = document.getElementById("input_biaya"+x).value;
         var tanggal_input = document.getElementById("input_tanggal"+x).value;
         var biaya = document.getElementById("biaya"+x);
@@ -131,7 +136,7 @@
         input_tanggal.style.display = "none";
         button.style.display = "none";
         buttonEdit.style.display = "inline-block";
-        location.href = "konfirmasi.php?id="+id+"&username="+username+"&submit=konfirmasi&harga="+harga_input+"&tanggal="+tanggal_input;
+        location.href = "konfirmasi.php?id="+id+"&username="+username+"&submit=konfirmasi&harga="+harga_input+"&tanggal="+tanggal_input+"&action="+action;
     }
     function deleteData(id,username){
         location.href = "konfirmasi.php?id="+id+"&username="+username+"&submit=Hapus";
@@ -140,11 +145,7 @@
         window.open('../Siswa/'+bukti,'_blank');
     }
     $(document).ready(function(){
-    $("#search").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-            $("#data-table tr").filter(function() {
-             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
+        $('#example').DataTable();
+        $('.dataTables_length').addClass('bs-select');
     });
 </script>

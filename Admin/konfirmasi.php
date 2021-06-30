@@ -10,10 +10,14 @@ $harga = $_GET['harga'];
 $tanggal = $_GET['tanggal'];
 
 if($submit == 'konfirmasi'){
-    $sql = "UPDATE tbuser SET status_register = 'f', waktuUpdate='$dateTime' WHERE username= '$username'";
-    $query = mysqli_query($conn,$sql);
-    $sql1 = "UPDATE tbregistrasi SET tanggalDaftar = '$dateTime' WHERE username='$username'";
-    $query1 = mysqli_query($conn,$sql1);
+    $action = $_GET['action'];
+    if($action=='konfirmasi') {
+        $sql = "UPDATE tbuser SET status_register = 'f', waktuUpdate='$dateTime' WHERE username= '$username'";
+        $query = mysqli_query($conn,$sql);
+        $sql1 = "UPDATE tbregistrasi SET tanggalDaftar = '$dateTime' WHERE username='$username'";
+        $query1 = mysqli_query($conn,$sql1);
+    }
+
     $sql2 = "UPDATE tbpembayaran SET status='diterima', biayaKursus='$harga', tanggalPembayaran='$tanggal' WHERE idpembayaran='$id'";
     $query2 = mysqli_query($conn,$sql2);
 }else if($submit == 'Hapus'){

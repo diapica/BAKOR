@@ -14,28 +14,39 @@ $sql = "SELECT tbregistrasi.*,tbuser.status_register FROM tbuser
     INNER JOIN tbregistrasi ON tbuser.username = tbregistrasi.username 
     WHERE tbuser.status_register='f'";
 
+$title = "Laporan daftar siswa BAKORPEND PONTIANAK";
+
 if($submit == 'hari'){
     $sql .= " AND tanggalDaftar='$hari'";
+    $title .= " Tanggal ". date('d F Y',strtotime($hari));
 }else if($submit == 'bulan') {
     if($bulan != 99){
         $sql .= " AND month(tanggalDaftar)='$bulan'";
+        $title .= " Bulan ".$bulan;
     }
 }else if($submit == 'tahun') {
     if($tahun != 99){
         $sql .= " AND year(tanggalDaftar) ='$tahun'";
+        $title .= " Tahun ".$tahun;
+    }else{
+        $title .= " Tahun ".date('Y');
     }
 }
 
 if($gelombang != ""){
     $sql .= " AND gelombang = '$gelombang'";
+    $title .= " Gelombang ".$gelombang;
 }
 
 if($kelas != ""){
     $sql .= " AND waktuBelajar = '$kelas'";
+    $title .= " Waktu Belajar ".ucwords(strtolower($kelas));
 }
 
 if($statusKelas != ""){
     $sql .= " AND statusKelas = '$statusKelas'";
+    $_statusKelas = ($statusKelas=='tatap_muka') ? 'tatap muka' : 'online';
+    $title .= " Kelas ".ucwords(strtolower($_statusKelas));
 }
 
 $query = mysqli_query($conn,$sql);
@@ -61,8 +72,8 @@ $row = mysqli_num_rows($query);
             <input type="hidden" name="statusKelas" value="<?php echo $statusKelas ?>">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
-        <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tahun 2021 </p> 
-        <table border=1px class="table text-center">
+        <p class="text-center"><?php echo $title ?></p> 
+        <table border=1px class="table table-striped text-center">
             <thead class="thead">
                 <tr class="align-middle">
                     <th rowspan="2">No</th>
