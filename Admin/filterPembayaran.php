@@ -12,23 +12,21 @@ $sql = "SELECT tbregistrasi.*, tbpembayaran.tanggalPembayaran,
     ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
     WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
-$title = "Laporan daftar Pembayaran BAKORPEND PONTIANAK";
-
+$title = "Laporan Daftar Pembayaran BAKORPEND PONTIANAK";
+$listBulan = ['','Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 if($submit == 'hari'){
     $sql .= " AND tanggalPembayaran='$hari'";
-    $title .= " Tanggal ". date('d F Y',strtotime($hari));
+    $title .= " Tanggal ". date('d-m-Y',strtotime($hari));
 }else if($submit == 'bulan') {
     if($bulan != 99){
         $sql .= " AND month(tanggalPembayaran)='$bulan'";
-        $title .= " Bulan ".$bulan;
+        $title .= " Bulan ".$listBulan[(int)$bulan];
     }
 }else if($submit == 'tahun') {
     if($tahun != 99){
         $sql .= " AND year(tanggalPembayaran) ='$tahun'";
         $title .= " Tahun ".$tahun;
     }
-}else{
-    $title .= " Tahun ".date('Y');
 }
 
 $query = mysqli_query($conn,$sql);
@@ -57,11 +55,14 @@ $row = mysqli_num_rows($query);
         <p class="text-center"><?php echo $title ?></p>
         <table class="table table-striped text-center" id="tableData">
             <colgroup>
+                <col width="5%">
+                <col width="15%">
+                <col width="15%">
+                <col width="15%">
                 <col width="10%">
-                <col width="20%">
-                <col width="20%">
-                <col width="20%">
-                <col width="20%">
+                <col width="10%">
+                <col width="15%">
+                <col width="15%">
             </colgroup>
             <thead class="thead">
                 <tr class="align-middle">
@@ -99,8 +100,8 @@ $row = mysqli_num_rows($query);
                     <td><?php echo $tingkatan ?></td>
                     <td><?php echo $waktuBelajar ?></td>
                     <td><?php echo $statusKelas ?></td>
-                    <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
-                    <td>Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></td>
+                    <td><?php echo date('d-m-Y', strtotime($tanggal)) ?></td>
+                    <td>Rp. <?php echo number_format((float)$biaya, 0, ',', '.'); ?></td>
                 </tr>
                     <?php } ?>
                 <?php }else{ ?>

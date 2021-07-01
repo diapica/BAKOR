@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAKORPEND Pontianak</title></title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/laporanPembayaran1.css">
@@ -46,7 +47,7 @@
                     </div>
                 </div>
                 <select name="bulan" id="bulan" style="width:150px" onchange="bulan_()">
-                    <option value="99">semua Bulan</option>
+                    <option value="99">Semua Bulan</option>
                     <option value="01">Januari</option>
                     <option value="02">Febuari</option>
                     <option value="03">Maret</option>
@@ -87,14 +88,17 @@
                 <input type="hidden" name="statusKelas" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
               </form>
-                <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tahun 2021</p>
+                <p class="text-center">Laporan Daftar Pembayaran BAKORPEND PONTIANAK</p>
                 <table class="table table-striped text-center" id="tableData">
                     <colgroup>
+                        <col width="5%">
+                        <col width="15%">
+                        <col width="15%">
+                        <col width="15%">
                         <col width="10%">
-                        <col width="20%">
-                        <col width="20%">
-                        <col width="20%">
-                        <col width="20%">
+                        <col width="10%">
+                        <col width="15%">
+                        <col width="15%">
                     </colgroup>
                     <thead class="thead">
                         <tr class="align-middle">
@@ -131,8 +135,8 @@
                             <td><?php echo $tingkatan ?></td>
                             <td><?php echo $waktuBelajar ?></td>
                             <td><?php echo $statusKelas ?></td>
-                            <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
-                            <td>Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></td>
+                            <td><?php echo date('d-m-Y', strtotime($tanggal)) ?></td>
+                            <td>Rp. <?php echo number_format((float)$biaya, 0, ',', '.'); ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>
@@ -189,6 +193,8 @@ function tampil(){
     if(ajaxku.readyState == 4){
         data = ajaxku.responseText;	
         document.getElementById("data").innerHTML = data;
+        $('#tableData').DataTable();
+        $('.dataTables_length').addClass('bs-select');
     }	
 }
 

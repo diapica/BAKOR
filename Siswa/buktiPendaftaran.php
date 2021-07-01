@@ -8,12 +8,12 @@
     $tingkatan = ucwords(strtolower($re['tingkatan']));
     $waktuBelajar = ucwords(strtolower($re['waktuBelajar']));
     $statusKelas = ($re['statusKelas'] =='tatap_muka') ? 'Tatap Muka' : 'Online';
-    $tanggalDaftar = date('d F Y', strtotime($re['tanggalDaftar']));
+    $tanggalDaftar = date('d-m-Y', strtotime($re['tanggalDaftar']));
     $mandarin = ucwords(strtolower($re['namaMandarin']));
     $indonesia = ucwords(strtolower($re['namaIndonesia']));
     $email = $re['email'];
     $no = $re['noWA'];
-    $approved = date('d F Y', strtotime($re['waktuUpdate']))
+    $approved = date('d-m-Y', strtotime($re['waktuUpdate']))
 ?>
 <!DOCTYPE html>
 <html lang="en">

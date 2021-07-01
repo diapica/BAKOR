@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAKORPEND Pontianak</title></title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,7 +46,7 @@
                     </div>
                 </div>
                 <select name="bulan" id="bulan" style="width:150px" onchange="filter()">
-                    <option value="99">semua Bulan</option>
+                    <option value="99">Semua Bulan</option>
                     <option value="01">Januari</option>
                     <option value="02">Febuari</option>
                     <option value="03">Maret</option>
@@ -102,7 +103,7 @@
                 <input type="hidden" name="statusKelas" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
             </form>
-                <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tahun 2021</p>
+                <p class="text-center">Laporan Daftar Siswa BAKORPEND PONTIANAK</p>
                 <table border=1px class="table table-striped text-center" id="tableData">
                     <thead class="thead">
                         <tr class="align-middle">
@@ -139,7 +140,7 @@
                             <td><?php echo $namaIndonesia ?></td>
                             <td><?php echo $jenisKelamin ?></td>
                             <td><?php echo $tempatLahir ?></td>
-                            <td><?php echo date('d F Y',strtotime($tanggalLahir)) ?></td>
+                            <td><?php echo date('d-m-Y',strtotime($tanggalLahir)) ?></td>
                             <td><?php echo $alamat ?></td>
                             <td><?php echo $noWA ?></td>
                             <td><?php echo $pendidikanTerakhir ?></td>
@@ -205,6 +206,8 @@
 		if(ajaxku.readyState == 4){
 			data = ajaxku.responseText;	
 			document.getElementById("data").innerHTML = data;
+            $('#tableData').DataTable();
+            $('.dataTables_length').addClass('bs-select');
 		}	
 	}
     function filter(){
