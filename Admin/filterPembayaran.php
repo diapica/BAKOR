@@ -9,7 +9,7 @@ $submit = $_GET['submit'];
 
 $sql = "SELECT tbregistrasi.namaMandarin,tbregistrasi.namaIndonesia,tbregistrasi.tanggalDaftar,tbpembayaran.tanggalPembayaran,
     tbpembayaran.biayaKursus,tbuser.status_register FROM tbregistrasi INNER JOIN tbpembayaran 
-    ON tbregistrasi.idregistrasi = tbpembayaran.idregister INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
+    ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
     WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
 if($submit == 'hari'){
@@ -42,6 +42,9 @@ $row = mysqli_num_rows($query);
                 }
             ?>">
             <input type="hidden" name="jenis" value="pembayaran">
+            <input type="hidden" name="gelombang" value="">
+            <input type="hidden" name="kelas" value="">
+            <input type="hidden" name="statusKelas" value="">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
         <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>

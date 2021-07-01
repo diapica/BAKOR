@@ -45,6 +45,12 @@ if($submit == 'Update' || $submit == 'Approved'){
         $addSQL .= ", gelombang='$gelombang'";
     }
 
+    if(isset($_GET['komentar'])) {
+        $komentar = $_GET{'komentar'};
+        $sql1 = "UPDATE tbuser SET komentar='$komentar' where username='$username'";
+        $query1 = mysqli_query($conn,$sql1);
+    }
+
     if(strlen($_FILES['foto']['name']) > 0) {
         $target_foto = "images/foto/" . basename($_FILES['foto']['name']);
         $move_foto_to = "../Siswa/".$target_foto;
@@ -83,7 +89,7 @@ if($submit == 'Update' || $submit == 'Approved'){
     $query = mysqli_query($conn,$sql);
 
 }else if($submit == 'Reject' || $submit == 'Hapus'){
-    $sql = "UPDATE tbuser SET status_register='d' WHERE username='$username'";
+    $sql = "UPDATE tbuser SET status_register='d', komentar='$komentar' WHERE username='$username'";
     $query = mysqli_query($conn,$sql);
     $sql1 = "DELETE FROM tbregistrasi WHERE idregistrasi = '$id'";
     $query1 = mysqli_query($conn,$sql1);

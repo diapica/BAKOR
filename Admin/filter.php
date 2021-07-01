@@ -5,24 +5,37 @@ include "../connection.php";
 $hari = $_GET['hari'];
 $tahun = $_GET['tahun'];
 $bulan = $_GET['bulan'];
+$gelombang = $_GET['gelombang'];
+$kelas = $_GET['kelas'];
+$statusKelas = $_GET['statusKelas'];
 $submit = $_GET['submit'];
 
-$sql = "
-    select tbregistrasi.*,tbuser.status_register from tbuser 
-    inner join tbregistrasi on tbuser.username = tbregistrasi.username 
-    where tbuser.status_register='f' 
-";
+$sql = "SELECT tbregistrasi.*,tbuser.status_register FROM tbuser 
+    INNER JOIN tbregistrasi ON tbuser.username = tbregistrasi.username 
+    WHERE tbuser.status_register='f'";
 
 if($submit == 'hari'){
-    $sql .= " and tanggalDaftar='$hari'";
+    $sql .= " AND tanggalDaftar='$hari'";
 }else if($submit == 'bulan') {
     if($bulan != 99){
-        $sql .= " and month(tanggalDaftar)='$bulan'";
+        $sql .= " AND month(tanggalDaftar)='$bulan'";
     }
 }else if($submit == 'tahun') {
     if($tahun != 99){
-        $sql .= " and year(tanggalDaftar) ='$tahun'";
+        $sql .= " AND year(tanggalDaftar) ='$tahun'";
     }
+}
+
+if($gelombang != ""){
+    $sql .= " AND gelombang = '$gelombang'";
+}
+
+if($kelas != ""){
+    $sql .= " AND waktuBelajar = '$kelas'";
+}
+
+if($statusKelas != ""){
+    $sql .= " AND statusKelas = '$statusKelas'";
 }
 
 $query = mysqli_query($conn,$sql);
@@ -43,9 +56,12 @@ $row = mysqli_num_rows($query);
                 }
             ?>">
             <input type="hidden" name="jenis" value="siswa">
+            <input type="hidden" name="gelombang" value="<?php echo $gelombang ?>">
+            <input type="hidden" name="kelas" value="<?php echo $kelas ?>">
+            <input type="hidden" name="statusKelas" value="<?php echo $statusKelas ?>">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
-        <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tingkat Dasar Sore Online Tahun 2021 </p> 
+        <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tahun 2021 </p> 
         <table border=1px class="table text-center">
             <thead class="thead">
                 <tr class="align-middle">
@@ -69,14 +85,14 @@ $row = mysqli_num_rows($query);
                 if($row > 0){
                 for($x = 1 ; $x <= $row; $x++){ 
                     $re = mysqli_fetch_array($query);
-                    $namaMandarin = $re['namaMandarin'];
-                    $namaIndonesia = $re['namaIndonesia'];
+                    $namaMandarin = ucwords(strtolower($re['namaMandarin']));
+                    $namaIndonesia = ucwords(strtolower($re['namaIndonesia']));
                     $jenisKelamin = $re['jenisKelamin'];
-                    $tempatLahir = $re['tempatLahir'];
+                    $tempatLahir = ucwords(strtolower($re['tempatLahir']));
                     $tanggalLahir = $re['tanggalLahir'];
                     $alamat = $re['alamat'];
                     $noWA = $re['noWA'];
-                    $pendidikanTerakhir = $re['pendidikanTerakhir'];
+                    $pendidikanTerakhir = strtoupper($re['pendidikanTerakhir']);
                 ?>
                 <tr class="align-middle">
                     <td><?php echo $x ?></td>
