@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/dataSiswa1.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 
 </head>
 <body>
@@ -18,9 +20,8 @@
           <div class="content" style="height:755px;overflow-y:scroll;padding-bottom:40px;">
             <div style="display:flex;justify-content:space-between;">
                 <h1>View Data Siswa</h1>
-                <input type="text" id="search" placeholder=" Search..." style="width:250px;">
             </div>
-            <table class="table text-center" id="example">
+            <table class="table table-striped text-center" id="example">
                 <thead class="thead-dark">
                     <tr>
                         <th>No</th>
@@ -93,11 +94,7 @@
         location.href = "pendaftaran_edit.php?id="+id+"&username="+username+"&submit=Hapus";
     }
     $(document).ready(function(){
-    $("#search").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-            $("#data-table tr").filter(function() {
-             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
+        $('#example').DataTable();
+        $('.dataTables_length').addClass('bs-select');
     });
 </script>

@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 include "../connection.php";
 
 $value = $_GET['value'];
@@ -8,49 +8,57 @@ $jenis = $_GET['jenis'];
 $gelombang = $_GET['gelombang'];
 $kelas = $_GET['kelas'];
 $statusKelas = $_GET['statusKelas'];
-$username = $_GET['username'];
+
+$title = "Laporan daftar siswa BAKORPEND PONTIANAK";
 
 if($jenis == 'siswa'){
-    $sql = "SELECT tbregistrasi.*,tbuser.status_register FROM tbuser 
+    $sql = "SELECT tbregistrasi.*, tbuser.status_register FROM tbuser 
         INNER JOIN tbregistrasi ON tbuser.username = tbregistrasi.username 
         WHERE tbuser.status_register='f'";
 
     if($submit == 'hari'){
         $sql .= " and tanggalDaftar='$value'";
+        $title .= " Tanggal ". date('d F Y',strtotime($value));
     }else if($submit == 'bulan') {
-        if($bulan != 99){
+        if($value != 99){
             $sql .= " and month(tanggalDaftar)='$value'";
+            $title .= " Bulan ".$value;
         }
     }else if($submit == 'tahun') {
-        if($tahun != 99){
+        if($value != 99){
             $sql .= " and year(tanggalDaftar) ='$value'";
+            $title .= " Tahun ".$value;
         }
     }
 
     if($gelombang != ""){
         $sql .= " AND gelombang = '$gelombang'";
+        $title .= " Gelombang ".$gelombang;
     }
-    
+
     if($kelas != ""){
         $sql .= " AND waktuBelajar = '$kelas'";
+        $title .= " Waktu Belajar ".ucwords(strtolower($kelas));
     }
     
     if($statusKelas != ""){
         $sql .= " AND statusKelas = '$statusKelas'";
-    }    
+        $statusKelas = ($statusKelas=='tatap_muka') ? 'tatap muka' : 'online';
+        $title .= " Kelas ".ucwords(strtolower($statusKelas));
+    }   
 
     $query = mysqli_query($conn,$sql);
     $row = mysqli_num_rows($query);
         
-    ?>
+?>
     <html>
         <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
         </head>
         <body>
-            <p class="text-center" style="font-size:25px;font-weight:bold;">Laporan daftar siswa BAKORPEND PONTIANAK Tahun 2021 </p>
-            <table border="1px" class="table text-center" style="text-align:center;">
+            <p class="text-center" style="font-size:25px;font-weight:bold;"><?php echo $title ?> </p>
+            <table border="1px" class="table table-striped text-center" style="text-align:center;">
             <colgroup>
                 <col width="5%">
                 <col width="15%">
@@ -115,20 +123,27 @@ if($jenis == 'siswa'){
         </body>
     </html>
 <?php }else if($jenis == 'pembayaran'){
-    $sql = "SELECT tbregistrasi.namaMandarin,tbregistrasi.namaIndonesia,tbregistrasi.tanggalDaftar, 
-            tbpembayaran.tanggalPembayaran,tbpembayaran.biayaKursus,tbuser.status_register FROM tbregistrasi 
-            INNER JOIN tbpembayaran ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi INNER JOIN 
-            tbuser ON tbregistrasi.username = tbuser.username WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
+    $sql = "SELECT tbregistrasi.*,  tbpembayaran.tanggalPembayaran,tbpembayaran.biayaKursus,tbuser.status_register 
+            FROM tbregistrasi INNER JOIN tbpembayaran ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi 
+            INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
+            WHERE tbuser.status_register = 'f' AND tbpembayaran.status = 'diterima'";
+
+    $title = "Laporan daftar Pembayaran BAKORPEND PONTIANAK";
 
     if($submit == 'hari'){
         $sql .= " AND tanggalPembayaran='$value'";
+        $title .= " Tanggal ". date('d F Y',strtotime($value));
     }else if($submit == 'bulan') {
-        if($bulan != 99){
+        if($value != 99){
             $sql .= " AND month(tanggalPembayaran)='$value'";
+            $title .= " Bulan ".$value;
         }
     }else if($submit == 'tahun') {
-        if($tahun != 99){
+        if($value != 99){
             $sql .= " AND year(tanggalPembayaran) ='$value'";
+            $title .= " Tahun ".$value;
+        }else{
+            $title .= " Tahun ".date('Y');
         }
     }
 
@@ -142,8 +157,8 @@ if($jenis == 'siswa'){
         <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
         </head>
         <body>
-            <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tahun 2021</p>
-            <table border="1px" class="table text-center" id="tableData">
+            <p class="text-center"><?php echo $title ?></p>
+            <table border="1px" class="table table-striped text-center" id="tableData">
                 <colgroup>
                     <col width="10%">
                     <col width="20%">
@@ -155,6 +170,9 @@ if($jenis == 'siswa'){
                     <tr class="align-middle">
                         <th rowspan="2">No</th>
                         <th colspan="2">Nama</th>
+                        <th rowspan="2">Tingkatan</th>
+                        <th rowspan="2">Waktu Belajar</th>
+                        <th rowspan="2">Kelas</th>
                         <th rowspan="2">Tanggal Pembayaran</th>
                         <th rowspan="2">Jumlah</th>
                     </tr>
@@ -170,6 +188,9 @@ if($jenis == 'siswa'){
                         $re = mysqli_fetch_array($query);
                         $mandarin = ucwords(strtolower($re['namaMandarin']));
                         $indonesia = ucwords(strtolower($re['namaIndonesia']));
+                        $tingkatan = ucwords(strtolower($re['tingkatan']));
+                        $waktuBelajar = ucwords(strtolower($re['waktuBelajar']));
+                        $statusKelas = ($re['statusKelas'] == 'tatap_muka') ? 'Tatap Muka' : 'Online';
                         $tanggal = $re['tanggalPembayaran'];
                         $biaya = $re['biayaKursus'];
                         $status = $re['status_register'];
@@ -178,6 +199,9 @@ if($jenis == 'siswa'){
                         <td><?php echo $x ?></td>
                         <td><?php echo $mandarin ?></td>
                         <td><?php echo $indonesia ?></td>
+                        <td><?php echo $tingkatan ?></td>
+                        <td><?php echo $waktuBelajar ?></td>
+                        <td><?php echo $statusKelas ?></td>
                         <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
                         <td>Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></td>
                     </tr>

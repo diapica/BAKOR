@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/laporan_siswa.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
 </head>
 <style>
     #hari{
@@ -101,18 +103,7 @@
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
             </form>
                 <p class="text-center">Laporan daftar siswa BAKORPEND PONTIANAK Tahun 2021</p>
-                <table border=1px class="table text-center" id="tableData">
-                <colgroup>
-                    <col width="5%">
-                        <col width="15%">
-                            <col width="15%">
-                                <col width="10%">
-                                    <col width="10%">
-                                <col width="10%">
-                                <col width="15%">
-                                <col width="10%">
-                                <col width="10%">
-                </colgroup>
+                <table border=1px class="table table-striped text-center" id="tableData">
                     <thead class="thead">
                         <tr class="align-middle">
                             <th rowspan="2">No</th>
@@ -166,6 +157,11 @@
 </html>
 
 <script>   
+    $(document).ready(function () {
+        $('#tableData').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+
     function goImage(bukti){
         window.open('../Siswa/'+bukti,'_blank');
     }
