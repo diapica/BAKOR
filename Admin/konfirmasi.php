@@ -6,10 +6,10 @@ $dateTime = date('Y-m-d');
 $username = $_GET['username'];
 $id = $_GET['id'];
 $submit = $_GET['submit'];
-$harga = $_GET['harga'];
-$tanggal = $_GET['tanggal'];
 
 if($submit == 'konfirmasi'){
+    $harga = $_GET['harga'];
+    $tanggal = $_GET['tanggal'];
     $sql = "UPDATE tbuser SET status_register = 'f', waktuUpdate='$dateTime' WHERE username= '$username'";
     $query = mysqli_query($conn,$sql);
     $sql1 = "UPDATE tbregistrasi SET tanggalDaftar = '$dateTime' WHERE username='$username'";
