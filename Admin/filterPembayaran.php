@@ -25,7 +25,7 @@ if($submit == 'hari'){
 }else if($submit == 'tahun') {
     if($tahun != 99){
         $sql .= " AND year(tanggalPembayaran) ='$tahun'";
-        $title .= " Bulan ".$tahun;
+        $title .= " Tahun ".$tahun;
     }
 }else{
     $title .= " Tahun ".date('Y');

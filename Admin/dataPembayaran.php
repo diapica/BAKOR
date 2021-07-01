@@ -49,9 +49,13 @@
                     include "../connection.php";
                     $sql = "SELECT tbregistrasi.username,tbregistrasi.email,tbregistrasi.namaIndonesia,tbpembayaran.buktiPembayaran,
                     tbpembayaran.biayaKursus,tbpembayaran.tanggalPembayaran,tbregistrasi.idregistrasi,tbpembayaran.idpembayaran,
-                    tbpembayaran.status FROM tbpembayaran INNER JOIN tbregistrasi ON tbpembayaran.idregistrasi = tbregistrasi.idregistrasi";
-                    $query = mysqli_query($conn,$sql);
-                    $row = mysqli_num_rows($query);
+                    tbpembayaran.status FROM tbpembayaran INNER JOIN tbregistrasi ON tbpembayaran.idregistrasi = tbregistrasi.idregistrasi
+                    WHERE tbpembayaran.status!='ditolak'";
+                    $query = mysqli_query($conn, $sql);
+                    $row = 0;
+                    if(!is_array($query)) {
+                        $row = mysqli_num_rows($query);    
+                    }
 
                     if($row > 0){
                     for($x = 1 ; $x <= $row; $x++){

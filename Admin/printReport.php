@@ -131,16 +131,6 @@ if($jenis == 'siswa'){
     $title = "Laporan daftar Pembayaran BAKORPEND PONTIANAK";
 
     if($submit == 'hari'){
-<<<<<<< Updated upstream
-        $sql .= " AND tanggalDaftar='$value'";
-    }else if($submit == 'bulan') {
-        if($bulan != 99){
-            $sql .= " AND month(tanggalDaftar)='$value'";
-        }
-    }else if($submit == 'tahun') {
-        if($tahun != 99){
-            $sql .= " AND year(tanggalDaftar) ='$value'";
-=======
         $sql .= " AND tanggalPembayaran='$value'";
         $title .= " Tanggal ". date('d F Y',strtotime($value));
     }else if($submit == 'bulan') {
@@ -154,7 +144,6 @@ if($jenis == 'siswa'){
             $title .= " Tahun ".$value;
         }else{
             $title .= " Tahun ".date('Y');
->>>>>>> Stashed changes
         }
     }
 

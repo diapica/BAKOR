@@ -6,8 +6,6 @@ $dateTime = date('Y-m-d');
 $username = $_GET['username'];
 $id = $_GET['id'];
 $submit = $_GET['submit'];
-$harga = $_GET['harga'];
-$tanggal = $_GET['tanggal'];
 
 if($submit == 'konfirmasi'){
     $action = $_GET['action'];
@@ -18,6 +16,9 @@ if($submit == 'konfirmasi'){
         $query1 = mysqli_query($conn,$sql1);
     }
 
+    $harga = $_GET['harga'];
+    $tanggal = $_GET['tanggal'];
+  
     $sql2 = "UPDATE tbpembayaran SET status='diterima', biayaKursus='$harga', tanggalPembayaran='$tanggal' WHERE idpembayaran='$id'";
     $query2 = mysqli_query($conn,$sql2);
 }else if($submit == 'Hapus'){
