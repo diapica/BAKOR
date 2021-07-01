@@ -121,14 +121,14 @@ if($jenis == 'siswa'){
             tbuser ON tbregistrasi.username = tbuser.username WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
     if($submit == 'hari'){
-        $sql .= " AND tanggalDaftar='$value'";
+        $sql .= " AND tanggalPembayaran='$value'";
     }else if($submit == 'bulan') {
         if($bulan != 99){
-            $sql .= " AND month(tanggalDaftar)='$value'";
+            $sql .= " AND month(tanggalPembayaran)='$value'";
         }
     }else if($submit == 'tahun') {
         if($tahun != 99){
-            $sql .= " AND year(tanggalDaftar) ='$value'";
+            $sql .= " AND year(tanggalPembayaran) ='$value'";
         }
     }
 

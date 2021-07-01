@@ -13,14 +13,14 @@ $sql = "SELECT tbregistrasi.namaMandarin,tbregistrasi.namaIndonesia,tbregistrasi
     WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
 if($submit == 'hari'){
-    $sql .= " and tanggalDaftar='$hari'";
+    $sql .= " AND tanggalPembayaran='$hari'";
 }else if($submit == 'bulan') {
     if($bulan != 99){
-        $sql .= " and month(tanggalDaftar)='$bulan'";
+        $sql .= " AND month(tanggalPembayaran)='$bulan'";
     }
 }else if($submit == 'tahun') {
     if($tahun != 99){
-        $sql .= " and year(tanggalDaftar) ='$tahun'";
+        $sql .= " AND year(tanggalPembayaran) ='$tahun'";
     }
 }
 
@@ -47,7 +47,7 @@ $row = mysqli_num_rows($query);
             <input type="hidden" name="statusKelas" value="">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
-        <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>
+        <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tahun 2021</p>
         <table class="table text-center" id="tableData">
             <colgroup>
                 <col width="10%">
@@ -73,8 +73,8 @@ $row = mysqli_num_rows($query);
                 if($row > 0){
                 for($x = 1; $x <= $row;$x++){
                     $re = mysqli_fetch_array($query);
-                    $mandarin = $re['namaMandarin'];
-                    $indonesia = $re['namaIndonesia'];
+                    $mandarin = ucwords(strtolower($re['namaMandarin']));
+                    $indonesia = ucwords(strtolower($re['namaIndonesia']));
                     $tanggal = $re['tanggalPembayaran'];
                     $biaya = $re['biayaKursus'];
                     $status = $re['status_register'];

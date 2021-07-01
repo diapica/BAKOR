@@ -85,7 +85,7 @@
                 <input type="hidden" name="statusKelas" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
               </form>
-                <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tingkat Sore Online Tahun 2021</p>
+                <p class="text-center">Laporan daftar Pembayaran BAKORPEND PONTIANAK Tahun 2021</p>
                 <table class="table text-center" id="tableData">
                     <colgroup>
                         <col width="10%">
@@ -110,8 +110,8 @@
                         <?php
                         for($x = 1; $x <= $row;$x++){
                             $re = mysqli_fetch_array($query);
-                            $mandarin = $re['namaMandarin'];
-                            $indonesia = $re['namaIndonesia'];
+                            $mandarin = ucwords(strtolower($re['namaMandarin']));
+                            $indonesia = ucwords(strtolower($re['namaIndonesia']));
                             $tanggal = $re['tanggalPembayaran'];
                             $biaya = $re['biayaKursus'];
                             $status = $re['status_register'];
