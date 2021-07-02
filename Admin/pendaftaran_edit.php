@@ -59,24 +59,24 @@ if($submit == 'Update' || $submit == 'Approved'){
     }
 
     if(strlen($_FILES['ktp']['name']) > 0) {
-        $target_foto = "images/foto/" . basename($_FILES['ktp']['name']);
-        $move_foto_to = "../Siswa/".$target_foto;
-        move_uploaded_file($_FILES['ktp']['tmp_name'], $move_foto_to);
-        $addSQL .= ", identitasDiri='$target_foto'";
+        $target_ktp = "images/ktp/" . basename($_FILES['ktp']['name']);
+        $move_ktp_to = "../Siswa/".$target_ktp;
+        move_uploaded_file($_FILES['ktp']['tmp_name'], $move_ktp_to);
+        $addSQL .= ", identitasDiri='$target_ktp'";
     }
 
     if(strlen($_FILES['ijazah']['name']) > 0) {
-        $target_foto = "images/foto/" . basename($_FILES['ijazah']['name']);
-        $move_foto_to = "../Siswa/".$target_foto;
-        move_uploaded_file($_FILES['ijazah']['tmp_name'], $move_foto_to);
-        $addSQL .= ", ijazah='$target_foto'";
+        $target_ijazah = "images/ijazah/" . basename($_FILES['ijazah']['name']);
+        $move_ijazah_to = "../Siswa/".$target_ijazah;
+        move_uploaded_file($_FILES['ijazah']['tmp_name'], $move_ijazah_to);
+        $addSQL .= ", ijazah='$target_ijazah'";
     }
 
     if(strlen($_FILES['hsk']['name']) > 0) {
-        $target_foto = "images/foto/" . basename($_FILES['hsk']['name']);
-        $move_foto_to = "../Siswa/".$target_foto;
-        move_uploaded_file($_FILES['hsk']['tmp_name'], $move_foto_to);
-        $addSQL .= ", hsk='$target_foto'";
+        $target_hsk = "images/hsk/" . basename($_FILES['hsk']['name']);
+        $move_hsk_to = "../Siswa/".$target_hsk;
+        move_uploaded_file($_FILES['hsk']['tmp_name'], $move_hsk_to);
+        $addSQL .= ", hsk='$target_hsk'";
     }
 
     if($submit == 'Approved') {
@@ -89,6 +89,10 @@ if($submit == 'Update' || $submit == 'Approved'){
     $query = mysqli_query($conn,$sql);
 
 }else if($submit == 'Reject' || $submit == 'Hapus'){
+    if(isset($_GET['komentar'])) {
+        $komentar = $_GET{'komentar'};
+    }
+
     $sql = "UPDATE tbuser SET status_register='d', komentar='$komentar' WHERE username='$username'";
     $query = mysqli_query($conn,$sql);
     $sql1 = "DELETE FROM tbregistrasi WHERE idregistrasi = '$id'";

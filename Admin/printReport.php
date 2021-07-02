@@ -9,7 +9,8 @@ $gelombang = $_GET['gelombang'];
 $kelas = $_GET['kelas'];
 $statusKelas = $_GET['statusKelas'];
 
-$title = "Laporan daftar siswa BAKORPEND PONTIANAK";
+$title = "Laporan Daftar Siswa BAKORPEND PONTIANAK";
+$listBulan = ['','Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
 if($jenis == 'siswa'){
     $sql = "SELECT tbregistrasi.*, tbuser.status_register FROM tbuser 
@@ -18,11 +19,11 @@ if($jenis == 'siswa'){
 
     if($submit == 'hari'){
         $sql .= " and tanggalDaftar='$value'";
-        $title .= " Tanggal ". date('d F Y',strtotime($value));
+        $title .= " Tanggal ". date('d-m-Y',strtotime($value));
     }else if($submit == 'bulan') {
         if($value != 99){
             $sql .= " and month(tanggalDaftar)='$value'";
-            $title .= " Bulan ".$value;
+            $title .= " Bulan ".$listBulan[(int)$value];
         }
     }else if($submit == 'tahun') {
         if($value != 99){
@@ -107,7 +108,7 @@ if($jenis == 'siswa'){
                         <td><?php echo $namaIndonesia ?></td>
                         <td><?php echo $jenisKelamin ?></td>
                         <td><?php echo $tempatLahir ?></td>
-                        <td><?php echo date('d F Y',strtotime($tanggalLahir)) ?></td>
+                        <td><?php echo date('d-m-Y',strtotime($tanggalLahir)) ?></td>
                         <td><?php echo $alamat ?></td>
                         <td><?php echo $noWA ?></td>
                         <td><?php echo $pendidikanTerakhir ?></td>
@@ -128,22 +129,20 @@ if($jenis == 'siswa'){
             INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
             WHERE tbuser.status_register = 'f' AND tbpembayaran.status = 'diterima'";
 
-    $title = "Laporan daftar Pembayaran BAKORPEND PONTIANAK";
+    $title = "Laporan Daftar Pembayaran BAKORPEND PONTIANAK";
 
     if($submit == 'hari'){
         $sql .= " AND tanggalPembayaran='$value'";
-        $title .= " Tanggal ". date('d F Y',strtotime($value));
+        $title .= " Tanggal ". date('d-m-Y',strtotime($value));
     }else if($submit == 'bulan') {
         if($value != 99){
             $sql .= " AND month(tanggalPembayaran)='$value'";
-            $title .= " Bulan ".$value;
+            $title .= " Bulan ".$listBulan[(int)$value];
         }
     }else if($submit == 'tahun') {
         if($value != 99){
             $sql .= " AND year(tanggalPembayaran) ='$value'";
             $title .= " Tahun ".$value;
-        }else{
-            $title .= " Tahun ".date('Y');
         }
     }
 
@@ -160,11 +159,14 @@ if($jenis == 'siswa'){
             <p class="text-center"><?php echo $title ?></p>
             <table border="1px" class="table table-striped text-center" id="tableData">
                 <colgroup>
+                    <col width="5%">
+                    <col width="15%">
+                    <col width="15%">
+                    <col width="15%">
                     <col width="10%">
-                    <col width="20%">
-                    <col width="20%">
-                    <col width="20%">
-                    <col width="20%">
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="15%">
                 </colgroup>
                 <thead class="thead">
                     <tr class="align-middle">
@@ -202,8 +204,8 @@ if($jenis == 'siswa'){
                         <td><?php echo $tingkatan ?></td>
                         <td><?php echo $waktuBelajar ?></td>
                         <td><?php echo $statusKelas ?></td>
-                        <td><?php echo date('d F Y', strtotime($tanggal)) ?></td>
-                        <td>Rp. <?php echo number_format((float)$biaya, 2, ',', '.'); ?></td>
+                        <td><?php echo date('d-m-Y', strtotime($tanggal)) ?></td>
+                        <td>Rp. <?php echo number_format((float)$biaya, 0, ',', '.'); ?></td>
                     </tr>
                         <?php } ?>
                     <?php }else{ ?>

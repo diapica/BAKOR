@@ -14,22 +14,21 @@ $sql = "SELECT tbregistrasi.*,tbuser.status_register FROM tbuser
     INNER JOIN tbregistrasi ON tbuser.username = tbregistrasi.username 
     WHERE tbuser.status_register='f'";
 
-$title = "Laporan daftar siswa BAKORPEND PONTIANAK";
+$title = "Laporan Daftar Siswa BAKORPEND PONTIANAK";
+$listBulan = ['','Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
 if($submit == 'hari'){
     $sql .= " AND tanggalDaftar='$hari'";
-    $title .= " Tanggal ". date('d F Y',strtotime($hari));
+    $title .= " Tanggal ". date('d-m-Y',strtotime($hari));
 }else if($submit == 'bulan') {
     if($bulan != 99){
         $sql .= " AND month(tanggalDaftar)='$bulan'";
-        $title .= " Bulan ".$bulan;
+        $title .= " Bulan ".$listBulan[(int)$bulan];
     }
 }else if($submit == 'tahun') {
     if($tahun != 99){
         $sql .= " AND year(tanggalDaftar) ='$tahun'";
         $title .= " Tahun ".$tahun;
-    }else{
-        $title .= " Tahun ".date('Y');
     }
 }
 
@@ -73,7 +72,7 @@ $row = mysqli_num_rows($query);
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
         <p class="text-center"><?php echo $title ?></p> 
-        <table border=1px class="table table-striped text-center">
+        <table border=1px class="table table-striped text-center" id="tableData">
             <thead class="thead">
                 <tr class="align-middle">
                     <th rowspan="2">No</th>
@@ -111,7 +110,7 @@ $row = mysqli_num_rows($query);
                     <td><?php echo $namaIndonesia ?></td>
                     <td><?php echo $jenisKelamin ?></td>
                     <td><?php echo $tempatLahir ?></td>
-                    <td><?php echo date('d F Y',strtotime($tanggalLahir)) ?></td>
+                    <td><?php echo date('d-m-Y',strtotime($tanggalLahir)) ?></td>
                     <td><?php echo $alamat ?></td>
                     <td><?php echo $noWA ?></td>
                     <td><?php echo $pendidikanTerakhir ?></td>
