@@ -158,7 +158,7 @@
                             <a href="../Siswa/<?php echo $hsk ?>" target="_blank"> 
                                 <img src="../Siswa/<?php echo $hsk ?>" style="margin-left: 20px; width:100px"> 
                             </a>
-                            <?php } else {echo "<label style='margin-left: 20px;'><b> Tidak ada IJHSK </b></label>";} ?>
+                            <?php } else {echo "<label style='margin-left: 20px;'><b> Tidak ada HSK </b></label>";} ?>
                         </div>
                         <div class="ketentuan">
                             <p>Dengan ini saya menyetujui bahwa:<br>1. Telah memahami syarat dan ketentuan pendaftaran;<br>2. Akan menaati tata tertib Diklat Bakorpend;<br>3. Memahami bahwa dana partisipasi Diklat tidak dapat dikembalikan apabila mengundurkan diri.</p>

@@ -5,6 +5,10 @@ include "../connection.php";
 $hari = $_GET['hari'];
 $tahun = $_GET['tahun'];
 $bulan = $_GET['bulan'];
+$gelombang = $_GET['gelombang'];
+$kelas = $_GET['kelas'];
+$statusKelas = $_GET['statusKelas'];
+$tingkatan = $_GET['tingkatan'];
 $submit = $_GET['submit'];
 
 $sql = "SELECT tbregistrasi.*, tbpembayaran.tanggalPembayaran,
@@ -12,7 +16,7 @@ $sql = "SELECT tbregistrasi.*, tbpembayaran.tanggalPembayaran,
     ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
     WHERE tbuser.status_register = 'f' and tbpembayaran.status = 'diterima'";
 
-$title = "Laporan Daftar Pembayaran BAKORPEND PONTIANAK";
+$title = "Laporan Daftar Pembayaran Siswa BAKORPEND PONTIANAK";
 $listBulan = ['','Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 if($submit == 'hari'){
     $sql .= " AND tanggalPembayaran='$hari'";
@@ -27,6 +31,33 @@ if($submit == 'hari'){
         $sql .= " AND year(tanggalPembayaran) ='$tahun'";
         $title .= " Tahun ".$tahun;
     }
+}else if($submit == 'campuran') {
+    if($tahun != 99 && $bulan != 99){
+        $sql .= " AND month(tanggalPembayaran)= '$bulan' AND year(tanggalPembayaran) = '$tahun'";
+        $title .= " Bulan ".$listBulan[(int)$bulan] . " Tahun " . $tahun;
+    }
+    $campuran = $bulan."|".$tahun;
+}
+
+if($gelombang != ""){
+    $sql .= " AND gelombang = '$gelombang'";
+    $title .= " Gelombang ".$gelombang;
+}
+
+if($kelas != ""){
+    $sql .= " AND waktuBelajar = '$kelas'";
+    $title .= " Waktu Belajar ".ucwords(strtolower($kelas));
+}
+
+if($tingkatan != ""){
+    $sql .= " AND tingkatan = '$tingkatan'";
+    $title .= " Tingkatan ".ucwords(strtolower($tingkatan));
+}
+
+if($statusKelas != ""){
+    $sql .= " AND statusKelas = '$statusKelas'";
+    $_statusKelas = ($statusKelas=='tatap_muka') ? 'tatap muka' : 'online';
+    $title .= " Kelas ".ucwords(strtolower($_statusKelas));
 }
 
 $query = mysqli_query($conn,$sql);
@@ -44,12 +75,15 @@ $row = mysqli_num_rows($query);
                     echo $bulan;
                 }else if($submit == 'tahun') {
                     echo $tahun;
+                }else if($submit == 'campuran') {
+                    echo $campuran;
                 }
             ?>">
             <input type="hidden" name="jenis" value="pembayaran">
-            <input type="hidden" name="gelombang" value="">
-            <input type="hidden" name="kelas" value="">
-            <input type="hidden" name="statusKelas" value="">
+            <input type="hidden" name="gelombang" value="<?php echo $gelombang ?>">
+            <input type="hidden" name="kelas" value="<?php echo $kelas ?>">
+            <input type="hidden" name="statusKelas" value="<?php echo $statusKelas ?>">
+            <input type="hidden" name="tingkatan" value="<?php echo $tingkatan ?>">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
         <p class="text-center"><?php echo $title ?></p>

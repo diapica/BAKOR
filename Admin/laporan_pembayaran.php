@@ -19,6 +19,9 @@
     #tahun{
         display:none;
     }
+    select{
+        height:60px;
+    }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
@@ -43,10 +46,10 @@
                 <div id="hari">
                     <div style="display:flex;">
                         <input type="date" id="hari1" name="hari" class="form-control" style="width:200px;">
-                        <button class="btn btn-info" style="color:white" onclick="hari()">Filter</button>
+                        <button class="btn btn-info" style="color:white" onclick="filter()">Filter</button>
                     </div>
                 </div>
-                <select name="bulan" id="bulan" style="width:150px" onchange="bulan_()">
+                <select name="bulan" id="bulan" style="width:150px" onchange="filter()">
                     <option value="99">Semua Bulan</option>
                     <option value="01">Januari</option>
                     <option value="02">Febuari</option>
@@ -61,7 +64,7 @@
                     <option value="11">November</option>
                     <option value="12">Desember</option>
                 </select>
-                <select name="tahun" id="tahun" style="width:150px" onchange="tahun_()">
+                <select name="tahun" id="tahun" style="width:150px" onchange="filter()">
                     <option value="99">Semua Tahun</option>
                     <option value="2015">2015</option>
                     <option value="2016">2016</option>
@@ -70,6 +73,28 @@
                     <option value="2019">2019</option>
                     <option value="2020">2020</option>
                     <option value="2021">2021</option>
+                </select>
+                <select id="gelombang" style="width:150px;" onchange="filter()">
+                    <option value="">Gelombang</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <select id="kelas" style="width:150px;" onchange="filter()">
+                    <option value="">Waktu Belajar</option>
+                    <option value="pagi">Pagi</option>
+                    <option value="sore">Sore</option>
+                </select>
+                <select id="statusKelas" style="width:150px;" onchange="filter()">
+                    <option value="">Status Kelas</option>
+                    <option value="online">Online</option>
+                    <option value="tatap_muka">Tatap Muka</option>
+                </select>
+                <select id="tingkatan" style="width:150px;" onchange="filter()">
+                    <option value="">Tingkatan</option>
+                    <option value="dasar">Dasar</option>
+                    <option value="menengah">Menengah</option>
+                    <option value="tingkat lanjut">Tingkat Lanjut</option>
                 </select>
                 <select name="target" id="target" style="width:200px" onchange="test()">
                     <option>Pilih</option>
@@ -88,7 +113,7 @@
                 <input type="hidden" name="statusKelas" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
               </form>
-                <p class="text-center">Laporan Daftar Pembayaran BAKORPEND PONTIANAK</p>
+                <p class="text-center">Laporan Daftar Pembayaran Siswa BAKORPEND PONTIANAK</p>
                 <table class="table table-striped text-center" id="tableData">
                     <colgroup>
                         <col width="5%">
@@ -169,7 +194,7 @@ function test(){
     }else if(target == 'bulan'){
         hari.style.display = "none";
         bulan.style.display = " block";
-        tahun.style.display = "none";
+        tahun.style.display = "block";
     }else if(target == 'tahun'){
         hari.style.display = "none";
         bulan.style.display = "none";
@@ -198,32 +223,25 @@ function tampil(){
     }	
 }
 
-function hari(){
+function filter(){
     var hari = document.getElementById("hari1").value;
-    var url = "filterPembayaran.php?hari="+hari+"&submit=hari";
-
-    url = url + "&sid=" + Math.random();
-    ajaxku = buatajax();
-    ajaxku.onreadystatechange = tampil;
-    ajaxku.open("GET",url,true);
-    ajaxku.send(null);
-}
-
-function bulan_(){
     var bulan = document.getElementById("bulan").value;
-    var url = "filterPembayaran.php?bulan="+bulan+"&submit=bulan";
-
-    url = url + "&sid=" + Math.random();
-    ajaxku = buatajax();
-    ajaxku.onreadystatechange = tampil;
-    ajaxku.open("GET",url,true);
-    ajaxku.send(null);
-}
-
-function tahun_(){
     var tahun = document.getElementById("tahun").value;
-    var url = "filterPembayaran.php?tahun="+tahun+"&submit=tahun";
-
+    var gelombang = document.getElementById("gelombang").value;
+    var kelas = document.getElementById("kelas").value;
+    var statusKelas = document.getElementById("statusKelas").value;
+    var tingkatan = document.getElementById("tingkatan").value;
+    if(hari != ""){
+        var url = "filterPembayaran.php?hari="+hari+"&submit=hari&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
+    }else if(bulan != "99" && tahun != "99"){
+        var url = "filterPembayaran.php?tahun="+tahun+"&bulan="+bulan+"&submit=campuran&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
+    }else if(bulan != "99"){
+        var url = "filterPembayaran.php?bulan="+bulan+"&submit=bulan&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
+    }else if(tahun != "99"){
+        var url = "filterPembayaran.php?tahun="+tahun+"&submit=tahun&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
+    }else{
+        var url = "filterPembayaran.php?gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
+    }
     url = url + "&sid=" + Math.random();
     ajaxku = buatajax();
     ajaxku.onreadystatechange = tampil;

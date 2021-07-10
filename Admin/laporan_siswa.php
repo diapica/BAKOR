@@ -24,6 +24,9 @@
     #tahun{
         display:none;
     }
+    select{
+        height:60px;
+    }
 </style>
 <body>
     <?php 
@@ -86,6 +89,12 @@
                     <option value="online">Online</option>
                     <option value="tatap_muka">Tatap Muka</option>
                 </select>
+                <select id="tingkatan" style="width:150px;" onchange="filter()">
+                    <option value="">Tingkatan</option>
+                    <option value="dasar">Dasar</option>
+                    <option value="menengah">Menengah</option>
+                    <option value="tingkat lanjut">Tingkat Lanjut</option>
+                </select>
                 <select name="target" id="target" style="width:150px" onchange="test()">
                     <option>Pilih</option>
                     <option value="hari">Hari</option>
@@ -101,6 +110,7 @@
                 <input type="hidden" name="gelombang" value="">
                 <input type="hidden" name="kelas" value="">
                 <input type="hidden" name="statusKelas" value="">
+                <input type="hidden" name="tingkatan" value="">
                 <button type="submit" class="btn btn-danger">PRINT PDF</button>
             </form>
                 <p class="text-center">Laporan Daftar Siswa BAKORPEND PONTIANAK</p>
@@ -181,7 +191,7 @@
         }else if(target == 'bulan'){
             hari.style.display = "none";
             bulan.style.display = " block";
-            tahun.style.display = "none";
+            tahun.style.display = "block";
         }else if(target == 'tahun'){
             hari.style.display = "none";
             bulan.style.display = "none";
@@ -217,14 +227,17 @@
         var gelombang = document.getElementById("gelombang").value;
         var kelas = document.getElementById("kelas").value;
         var statusKelas = document.getElementById("statusKelas").value;
+        var tingkatan = document.getElementById("tingkatan").value;
         if(hari != ""){
-            var url = "filter.php?hari="+hari+"&submit=hari&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+            var url = "filter.php?hari="+hari+"&submit=hari&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
+        }else if(bulan != "99" && tahun != "99"){
+            var url = "filter.php?tahun="+tahun+"&bulan="+bulan+"&submit=campuran&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
         }else if(bulan != "99"){
-            var url = "filter.php?bulan="+bulan+"&submit=bulan&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+            var url = "filter.php?bulan="+bulan+"&submit=bulan&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
         }else if(tahun != "99"){
-            var url = "filter.php?tahun="+tahun+"&submit=tahun&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+            var url = "filter.php?tahun="+tahun+"&submit=tahun&gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
         }else{
-            var url = "filter.php?gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas;
+            var url = "filter.php?gelombang="+gelombang+"&kelas="+kelas+"&statusKelas="+statusKelas+"&tingkatan="+tingkatan;
         }
         url = url + "&sid=" + Math.random();
         ajaxku = buatajax();

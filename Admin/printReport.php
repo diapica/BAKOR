@@ -1,12 +1,18 @@
 <?php
-//error_reporting(0);
+// error_reporting(0);
 include "../connection.php";
 
 $value = $_GET['value'];
 $submit = $_GET['submit'];
+if($submit == 'campuran'){
+    $split = explode("|",$value);
+    $bulan = $split[0];
+    $tahun = $split[1];
+}
 $jenis = $_GET['jenis'];
 $gelombang = $_GET['gelombang'];
 $kelas = $_GET['kelas'];
+$tingkatan = $_GET['tingkatan'];
 $statusKelas = $_GET['statusKelas'];
 
 $title = "Laporan Daftar Siswa BAKORPEND PONTIANAK";
@@ -30,8 +36,13 @@ if($jenis == 'siswa'){
             $sql .= " and year(tanggalDaftar) ='$value'";
             $title .= " Tahun ".$value;
         }
+    }else if($submit == 'campuran') {
+        if($tahun != 99 && $bulan != 99){
+            $sql .= " AND month(tanggalDaftar)= '$bulan' AND year(tanggalDaftar) = '$tahun'";
+            $title .= " Bulan ".$listBulan[(int)$bulan] . " Tahun " . $tahun;
+        }
     }
-
+    
     if($gelombang != ""){
         $sql .= " AND gelombang = '$gelombang'";
         $title .= " Gelombang ".$gelombang;
@@ -46,7 +57,12 @@ if($jenis == 'siswa'){
         $sql .= " AND statusKelas = '$statusKelas'";
         $statusKelas = ($statusKelas=='tatap_muka') ? 'tatap muka' : 'online';
         $title .= " Kelas ".ucwords(strtolower($statusKelas));
-    }   
+    }
+    
+    if($tingkatan != ""){
+        $sql .= " AND tingkatan = '$tingkatan'";
+        $title .= " Tingkatan ".ucwords(strtolower($tingkatan));
+    }
 
     $query = mysqli_query($conn,$sql);
     $row = mysqli_num_rows($query);
@@ -144,6 +160,34 @@ if($jenis == 'siswa'){
             $sql .= " AND year(tanggalPembayaran) ='$value'";
             $title .= " Tahun ".$value;
         }
+    }else if($submit == 'campuran') {
+        if($tahun != 99 && $bulan != 99){
+            $sql .= " AND month(tanggalPembayaran)= '$bulan' AND year(tanggalPembayaran) = '$tahun'";
+            $title .= " Bulan ".$listBulan[(int)$bulan] . " Tahun " . $tahun;
+        }
+    }
+
+    
+    
+    if($gelombang != ""){
+        $sql .= " AND gelombang = '$gelombang'";
+        $title .= " Gelombang ".$gelombang;
+    }
+
+    if($kelas != ""){
+        $sql .= " AND waktuBelajar = '$kelas'";
+        $title .= " Waktu Belajar ".ucwords(strtolower($kelas));
+    }
+    
+    if($statusKelas != ""){
+        $sql .= " AND statusKelas = '$statusKelas'";
+        $statusKelas = ($statusKelas=='tatap_muka') ? 'tatap muka' : 'online';
+        $title .= " Kelas ".ucwords(strtolower($statusKelas));
+    }
+    
+    if($tingkatan != ""){
+        $sql .= " AND tingkatan = '$tingkatan'";
+        $title .= " Tingkatan ".ucwords(strtolower($tingkatan));
     }
 
     $query = mysqli_query($conn,$sql);

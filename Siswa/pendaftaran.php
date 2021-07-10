@@ -138,18 +138,18 @@
                         </div>
                         <div class="group-form-1 a">
                             <label>Pas Foto 3 x 4 <br>(Harus pakai softfile asli)</label>
-                            <input class="input form-control"type="file" name="foto" id="foto" value="<?php if(!$updateData) { echo 'required'; }?>">
+                            <input required class="input form-control"type="file" name="foto" id="foto" value="<?php if(!$updateData) { echo 'required'; }?>">
                         </div>
                         <div class="group-form-1 a">
                             <label>KTP / Kartu Pelajar</label>
-                            <input class="input form-control" type="file" name="ktp" id="ktp" value="<?php if(!$updateData) { echo 'required'; }?>">
+                            <input required class="input form-control" type="file" name="ktp" id="ktp" value="<?php if(!$updateData) { echo 'required'; }?>">
                         </div>
                         <div class="group-form-1 a">
                             <label>Ijazah Terakhir <br>(Lampirkan bagian nilainya)</label>
-                            <input class="input form-control" type="file" name="ijazah" id="ijazah" value="<?php if(!$updateData) { echo 'required'; }?>">
+                            <input required class="input form-control" type="file" name="ijazah" id="ijazah" value="<?php if(!$updateData) { echo 'required'; }?>">
                         </div>
                         <div class="group-form-1 a">
-                            <label>IjHSK Terakhir (jika ada) <br>(Lampirkan bagian nilainya)</label>
+                            <label>HSK Terakhir (jika ada) <br>(Lampirkan bagian nilainya)</label>
                             <input class="input form-control" type="file" name="hsk" id="hsk" value="<?php if($updateData) { echo $hsk; }?>">
                         </div>
                         <div class="ketentuan">

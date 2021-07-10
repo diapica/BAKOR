@@ -2,7 +2,10 @@
     error_reporting(0);
     include "../connection.php";
     $username = $_GET['username'];
-    $sql = "SELECT tbuser.waktuUpdate, tbregistrasi.* FROM tbregistrasi INNER JOIN tbuser ON tbregistrasi.username = tbuser.username WHERE tbregistrasi.username = '$username'";
+    $sql = "SELECT tbuser.waktuUpdate, tbregistrasi.*, tbpembayaran.tanggalPembayaran, tbpembayaran.biayaKursus FROM tbregistrasi 
+    INNER JOIN tbuser ON tbregistrasi.username = tbuser.username INNER JOIN tbpembayaran 
+    ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi 
+    WHERE tbregistrasi.username = '$username' AND tbpembayaran.status = 'diterima'";
     $query = mysqli_query($conn,$sql);
     $re = mysqli_fetch_array($query);
     $tingkatan = ucwords(strtolower($re['tingkatan']));
@@ -12,7 +15,10 @@
     $mandarin = ucwords(strtolower($re['namaMandarin']));
     $indonesia = ucwords(strtolower($re['namaIndonesia']));
     $email = $re['email'];
+    $biaya = $re['biayaKursus'];
+    $tanggalBayar = date('d-m-Y', strtotime($re['tanggalPembayaran']));
     $no = $re['noWA'];
+    $gelombang = $re['gelombang'];
     $approved = date('d-m-Y', strtotime($re['waktuUpdate']))
 ?>
 <html>
@@ -27,39 +33,61 @@
 </head>
 <body>
         <div class="box">
-                <p style="font-size:30px;" class="text-center">Bukti Pendaftaran</p>
-                <table style="width:50%;margin:0 auto;font-size:20px">
-                    <tr>
-                        <td width=50%>Username: </td> <td> <b> <?php echo $username ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Nama Indonesia: </td> <td> <b> <?php echo $indonesia ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Nama Mandarin: </td> <td> <b> <?php echo $mandarin ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Email: </td> <td> <b> <?php echo $email ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>No. WA: </td> <td> <b> <?php echo $no ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Tingkatan: </td> <td> <b> <?php echo $tingkatan ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Waktu Belajar: </td> <td> <b> <?php echo $waktuBelajar ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Status Kelas: </td> <td> <b> <?php echo $statusKelas ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Tanggal Daftar: </td> <td> <b> <?php echo $tanggalDaftar ?> </b> </td>
-                    </tr>
-                    <tr>
-                        <td width=50%>Tanggal Pendaftaran Disetujui: </td> <td> <b> <?php echo $approved ?> </b> </td>
-                    </tr>
-                </table>
+        <div style="display:flex;align-items:center;">
+                <div style="width:20%;padding:5px;">
+                    <img src="assets/img/logo.png" alt="logoo" width="100%">
+                </div>
+                <div style="width:80%;padding:20px;">
+                    <h1>BAKORPEND PONTIANAK</h1>
+                    <h3>BUKTI PENDAFTARAN</h3>
+                    <h3>TAHUN AJARAN <?php echo date('Y',strtotime($approved)) ?> Gelombang <?php echo $gelombang ?></h3>
+                </div>
+            </div>
+            <table class="informasi" style="width:50%;font-size:20px">
+                <tr>
+                    <td width=50%>Username: </td> <td> <b> <?php echo $username ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Nama Indonesia: </td> <td> <b> <?php echo $indonesia ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Nama Mandarin: </td> <td> <b> <?php echo $mandarin ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Email: </td> <td> <b> <?php echo $email ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>No. WA: </td> <td> <b> <?php echo $no ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tingkatan: </td> <td> <b> <?php echo $tingkatan ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Waktu Belajar: </td> <td> <b> <?php echo $waktuBelajar ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Status Kelas: </td> <td> <b> <?php echo $statusKelas ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Biaya Kursus: </td> <td> <b> Rp. <?php echo number_format((float)$biaya, 0, ',', '.'); ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tanggal Bayar: </td> <td> <b> <?php echo $tanggalBayar ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tanggal Pembayaran Disetujui: </td> <td> <b> <?php echo $approved ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tanggal Daftar: </td> <td> <b> <?php echo $tanggalDaftar ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>Tanggal Pendaftaran Disetujui: </td> <td> <b> <?php echo $approved ?> </b> </td>
+                </tr>
+                <tr><td width="70%" colspan="2" style="font-size:12px;">Nama tersebut diatas telah diterima sebagai siswa di BAKORPEND Pontianak</td></tr>
+                <tr><td width="70%" colspan="2" style="font-size:12px;">dan telah menyetujui syarat dan ketentuan pendaftaran yang berlaku</td></tr>
+                <tr><td>  Mengetahui</td></tr>
+                <tr><td>  ADMIN BAKORPEND Pontianak</td></tr>
+            </table>
             </div>
         </div>
       </div>

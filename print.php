@@ -10,12 +10,13 @@
     $kelas = $_GET['kelas'];
     $statusKelas = $_GET['statusKelas'];
     $status = $_GET['status'];
+    $tingkatan = $_GET['tingkatan'];
     $username = $_GET['username'];
 
     if($status == "bukti"){
         $html = file_get_contents('http://localhost/github/bakor/Siswa/printReport.php?username='.$username);
     }else{
-        $html = file_get_contents('http://localhost/github/bakor/Admin/printReport.php?submit='.$submit."&value=".$value."&jenis=".$jenis."&gelombang=".$gelombang."&kelas=".$kelas."&statusKelas=".$statusKelas);
+        $html = file_get_contents('http://localhost/github/bakor/Admin/printReport.php?submit='.$submit."&value=".$value."&jenis=".$jenis."&gelombang=".$gelombang."&kelas=".$kelas."&statusKelas=".$statusKelas."&tingkatan=".$tingkatan);
     }
     $dompdf->loadHtml($html);
     // (Opsional) Mengatur ukuran kertas dan orientasi kertas

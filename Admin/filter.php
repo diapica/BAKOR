@@ -8,6 +8,7 @@ $bulan = $_GET['bulan'];
 $gelombang = $_GET['gelombang'];
 $kelas = $_GET['kelas'];
 $statusKelas = $_GET['statusKelas'];
+$tingkatan = $_GET['tingkatan'];
 $submit = $_GET['submit'];
 
 $sql = "SELECT tbregistrasi.*,tbuser.status_register FROM tbuser 
@@ -30,6 +31,12 @@ if($submit == 'hari'){
         $sql .= " AND year(tanggalDaftar) ='$tahun'";
         $title .= " Tahun ".$tahun;
     }
+}else if($submit == 'campuran') {
+    if($tahun != 99 && $bulan != 99){
+        $sql .= " AND month(tanggalDaftar)= '$bulan' AND year(tanggalDaftar) = '$tahun'";
+        $title .= " Bulan ".$listBulan[(int)$bulan] . " Tahun " . $tahun;
+        $campuran = $bulan."|".$tahun;
+    }
 }
 
 if($gelombang != ""){
@@ -40,6 +47,11 @@ if($gelombang != ""){
 if($kelas != ""){
     $sql .= " AND waktuBelajar = '$kelas'";
     $title .= " Waktu Belajar ".ucwords(strtolower($kelas));
+}
+
+if($tingkatan != ""){
+    $sql .= " AND tingkatan = '$tingkatan'";
+    $title .= " Tingkatan ".ucwords(strtolower($tingkatan));
 }
 
 if($statusKelas != ""){
@@ -63,12 +75,15 @@ $row = mysqli_num_rows($query);
                     echo $bulan;
                 }else if($submit == 'tahun') {
                     echo $tahun;
+                }else if($submit == 'campuran'){
+                    echo $campuran;
                 }
             ?>">
             <input type="hidden" name="jenis" value="siswa">
             <input type="hidden" name="gelombang" value="<?php echo $gelombang ?>">
             <input type="hidden" name="kelas" value="<?php echo $kelas ?>">
             <input type="hidden" name="statusKelas" value="<?php echo $statusKelas ?>">
+            <input type="hidden" name="tingkatan" value="<?php echo $tingkatan ?>">
             <button type="submit" class="btn btn-danger">PRINT PDF</button>
         </form>
         <p class="text-center"><?php echo $title ?></p> 
