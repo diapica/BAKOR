@@ -26,25 +26,25 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../home/home.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="../Home/home.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../home/home.php#About">Tentang kami</a>
+          <a class="nav-link active" href="../Home/home.php#About">Tentang kami</a>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link active dropdown-toggle" href="#" role="button" id="navbarScrollingDropdown" data-bs-toggle="dropdown" aria-expanded="false">Berita</a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="../home/home.php#Berita">HSK</a></li>
-            <li><a class="dropdown-item" href="../home/home.php#Berita">Kegiatan dan lomba-lomba</a></li>
+            <li><a class="dropdown-item" href="../Home/home.php#Berita">HSK</a></li>
+            <li><a class="dropdown-item" href="../Home/home.php#Berita">Kegiatan dan lomba-lomba</a></li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" href="../home/home.php#Contact">Kontak</a>
+          <a class="nav-link active" href="../Home/home.php#Contact">Kontak</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../home/home.php#Pendaftaran">Pendaftaran</a>
+          <a class="nav-link active" href="../Home/home.php#Pendaftaran">Pendaftaran</a>
         </li>
          <li class="nav-item">
           <a class="nav-link active" href="../Login/Login.php">Login</a>
@@ -79,16 +79,16 @@
             
             </p>
               <div class="form-group mb-3">
-                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="text" required name="username" id="username" placeholder="Username">
               </div> 
               <div class="form-group mb-3">
-                <input type="email" name="email" id="email"  placeholder="Email-address">
+                <input type="email" required name="email" id="email"  placeholder="Email-address">
               </div> 
               <div class="form-group mb-3">
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" required name="password" id="password" placeholder="Password">
               </div> 
               <div class="form-group mb-3">
-                <input type="password" name="konfirmpassword" id="konfirmpassword" placeholder="Konfirm password">
+                <input type="password" required name="konfirmpassword" id="konfirmpassword" placeholder="Konfirm password">
               </div>
               <p><input type="checkbox" id="show-password"> Show password</p>
               <input class="btn btn-primary" type="submit" value="Submit">

@@ -145,7 +145,7 @@ if($jenis == 'siswa'){
             INNER JOIN tbuser ON tbregistrasi.username = tbuser.username 
             WHERE tbuser.status_register = 'f' AND tbpembayaran.status = 'diterima'";
 
-    $title = "Laporan Daftar Pembayaran BAKORPEND PONTIANAK";
+    $title = "Laporan Daftar Pembayaran Siswa BAKORPEND PONTIANAK";
 
     if($submit == 'hari'){
         $sql .= " AND tanggalPembayaran='$value'";
@@ -200,7 +200,7 @@ if($jenis == 'siswa'){
         <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
         </head>
         <body>
-            <p class="text-center"><?php echo $title ?></p>
+            <p class="text-center" style="font-size:25px;font-weight:bold;"><?php echo $title ?> </p>
             <table border="1px" class="table table-striped text-center" id="tableData">
                 <colgroup>
                     <col width="5%">

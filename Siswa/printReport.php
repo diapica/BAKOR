@@ -31,19 +31,49 @@
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/pembayaran1.css">
 </head>
+
+<style>
+    .box{
+        margin-top: -60px;
+    }
+    img{
+        width:96px;
+        height:75px;
+        margin-left: 120px;
+        margin-top: 90px;
+    }
+    .title{
+        width:50%;
+        font-size:21px;
+        margin-left: 240px;
+        margin-right: auto;
+        margin-top: -30px;
+    }
+    table{
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 <body>
         <div class="box">
-        <div style="display:flex;align-items:center;">
-                <div style="width:20%;padding:5px;">
-                    <img src="assets/img/logo.png" alt="logoo" width="100%">
+            <div style="align-items:center;">
+                <?php 
+                    $image = file_get_contents('assets/img/logo.png');
+                    // Read image path, convert to base64 encoding
+                    $imageData = base64_encode($image);
+                ?>
+                <div style="width:20%;padding:5px;height:100px;">
+                    <img src="data:image;base64, <?php echo $imageData ?>" width="100%" />
                 </div>
-                <div style="width:80%;padding:20px;">
-                    <h1>BAKORPEND PONTIANAK</h1>
-                    <h3>BUKTI PENDAFTARAN</h3>
-                    <h3>TAHUN AJARAN <?php echo date('Y',strtotime($approved)) ?> Gelombang <?php echo $gelombang ?></h3>
+                <div class="title">
+                    <b> BAKORPEND PONTIANAK <br>
+                    BUKTI PENDAFTARAN  <br>
+                    TAHUN AJARAN <?php echo date('Y',strtotime($approved)) ?> Gelombang <?php echo $gelombang ?>  </b>
                 </div>
             </div>
-            <table class="informasi" style="width:50%;font-size:20px">
+            <center>
+            <table class="informasi" style="font-size:20px">
                 <tr>
                     <td width=50%>Username: </td> <td> <b> <?php echo $username ?> </b> </td>
                 </tr>
@@ -83,13 +113,13 @@
                 <tr>
                     <td width=50%>Tanggal Pendaftaran Disetujui: </td> <td> <b> <?php echo $approved ?> </b> </td>
                 </tr>
-                <tr><td width="70%" colspan="2" style="font-size:12px;">Nama tersebut diatas telah diterima sebagai siswa di BAKORPEND Pontianak</td></tr>
+                <tr><td width="70%" colspan="2" style="font-size:12px;"><br><br>Nama tersebut diatas telah diterima sebagai siswa di BAKORPEND Pontianak</td></tr>
                 <tr><td width="70%" colspan="2" style="font-size:12px;">dan telah menyetujui syarat dan ketentuan pendaftaran yang berlaku</td></tr>
-                <tr><td>  Mengetahui</td></tr>
+                <tr><td> <br> Mengetahui</td></tr>
                 <tr><td>  ADMIN BAKORPEND Pontianak</td></tr>
             </table>
+            </center>
             </div>
         </div>
-      </div>
 </body>
 </html>

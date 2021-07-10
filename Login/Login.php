@@ -26,25 +26,25 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../home/home.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="../Home/home.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../home/home.php#About">Tentang kami</a>
+          <a class="nav-link active" href="../Home/home.php#About">Tentang kami</a>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link active dropdown-toggle" href="#" role="button" id="navbarScrollingDropdown" data-bs-toggle="dropdown" aria-expanded="false">Berita</a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="../home/home.php#Berita">HSK</a></li>
-            <li><a class="dropdown-item" href="../home/home.php#Berita">Kegiatan dan lomba-lomba</a></li>
+            <li><a class="dropdown-item" href="../Home/home.php#Berita">HSK</a></li>
+            <li><a class="dropdown-item" href="../Home/home.php#Berita">Kegiatan dan lomba-lomba</a></li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" href="../home/home.php#Contact">Kontak</a>
+          <a class="nav-link active" href="../Home/home.php#Contact">Kontak</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="../home/home.php#Pendaftaran">Pendaftaran</a>
+          <a class="nav-link active" href="../Home/home.php#Pendaftaran">Pendaftaran</a>
         </li>
          <li class="nav-item">
           <a class="nav-link active" href="../Login/Login.php">Login</a>

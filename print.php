@@ -15,8 +15,10 @@
 
     if($status == "bukti"){
         $html = file_get_contents('http://localhost/github/bakor/Siswa/printReport.php?username='.$username);
+        $dompdf->setPaper('A4', 'potrait');
     }else{
         $html = file_get_contents('http://localhost/github/bakor/Admin/printReport.php?submit='.$submit."&value=".$value."&jenis=".$jenis."&gelombang=".$gelombang."&kelas=".$kelas."&statusKelas=".$statusKelas."&tingkatan=".$tingkatan);
+        $dompdf->setPaper('A4', 'landscape');
     }
     $dompdf->loadHtml($html);
     // (Opsional) Mengatur ukuran kertas dan orientasi kertas

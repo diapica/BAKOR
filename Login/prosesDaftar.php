@@ -7,7 +7,12 @@ $password = $_POST['password'];
 $email = $_POST['email'];
 $konfirm = $_POST['konfirmpassword'];
 
-$sql1 = "select * from tbuser";
+if($password != $konfirm){
+    header('location:Daftar.php?pesan=gagal');
+    exit();
+}
+
+$sql1 = "SELECT * FROM tbuser";
 $query1 = mysqli_query($conn,$sql1);
 $cek = 0;
 $row = mysqli_num_rows($query1);
@@ -20,13 +25,11 @@ for($x = 0; $x < $row; $x++){
 }
 
 if($cek == 0){
-    $sql = "insert into tbuser (username,email,password,status) values ('$username','$email','$password','user')";
+    $sql = "INSERT INTO tbuser (username,email,password,status) VALUES ('$username','$email','$password','user')";
     $query = mysqli_query($conn,$sql);
     header('location:Daftar.php?pesan=berhasil');
 }else if($cek > 0){
     header('location:Daftar.php?pesan=username');
-}else if($password != $konfirm){
-    header('location:Daftar.php?pesan=gagal');
 }
 
 ?>

@@ -138,15 +138,15 @@
                         </div>
                         <div class="group-form-1 a">
                             <label>Pas Foto 3 x 4 <br>(Harus pakai softfile asli)</label>
-                            <input required class="input form-control"type="file" name="foto" id="foto" value="<?php if(!$updateData) { echo 'required'; }?>">
+                            <input <?php if(!$updateData) { echo 'required'; }?> class="input form-control"type="file" name="foto" id="foto">
                         </div>
                         <div class="group-form-1 a">
                             <label>KTP / Kartu Pelajar</label>
-                            <input required class="input form-control" type="file" name="ktp" id="ktp" value="<?php if(!$updateData) { echo 'required'; }?>">
+                            <input <?php if(!$updateData) { echo 'required'; }?> class="input form-control" type="file" name="ktp" id="ktp">
                         </div>
                         <div class="group-form-1 a">
                             <label>Ijazah Terakhir <br>(Lampirkan bagian nilainya)</label>
-                            <input required class="input form-control" type="file" name="ijazah" id="ijazah" value="<?php if(!$updateData) { echo 'required'; }?>">
+                            <input <?php if(!$updateData) { echo 'required'; }?> class="input form-control" type="file" name="ijazah" id="ijazah">
                         </div>
                         <div class="group-form-1 a">
                             <label>HSK Terakhir (jika ada) <br>(Lampirkan bagian nilainya)</label>

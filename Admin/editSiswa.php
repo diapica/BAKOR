@@ -153,7 +153,7 @@
                             </a>
                         </div>
                         <div class="group-form-1 a">
-                            <label>IjHSK Terakhir (jika ada) <br>(Lampirkan bagian nilainya)</label>
+                            <label>HSK Terakhir (jika ada) <br>(Lampirkan bagian nilainya)</label>
                             <?php if(strlen($hsk) > 0){ ?>
                             <a href="../Siswa/<?php echo $hsk ?>" target="_blank"> 
                                 <img src="../Siswa/<?php echo $hsk ?>" style="margin-left: 20px; width:100px"> 

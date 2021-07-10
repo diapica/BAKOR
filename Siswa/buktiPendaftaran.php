@@ -37,17 +37,18 @@
       <div class="content-1">
         <?php include "sidebar.php" ?>
         <div class="content">
-            <div style="display:flex;align-items:center;">
-                <div style="width:20%;padding:5px;">
-                    <img src="assets/img/logo.png" alt="logoo" width="100%">
+            <div style="display:flex;align-items:center;width:50%;">
+                <div style="width:20%;padding:5px 10px 5px 5px;">
+                     <img src="assets/img/logo.png" alt="logoo" width="106px" height="84px">
                 </div>
-                <div style="width:80%;padding:20px;">
-                    <h1>BAKORPEND PONTIANAK</h1>
-                    <h3>BUKTI PENDAFTARAN</h3>
-                    <h3>TAHUN AJARAN <?php echo date('Y',strtotime($approved)) ?> Gelombang <?php echo $gelombang ?></h3>
+                <div style="width:80%;padding:20px 20px 20px 5px;font-size:21px">
+                    <b>
+                    BAKORPEND PONTIANAK </br>
+                    BUKTI PENDAFTARAN </br>
+                    TAHUN AJARAN <?php echo date('Y',strtotime($approved)) ?> Gelombang <?php echo $gelombang ?> </b>
                 </div>
             </div>
-            <table class="informasi" style="width:50%;font-size:20px">
+            <table class="informasi" style="width:50%;font-size:18px">
                 <tr>
                     <td width=50%>Username: </td> <td> <b> <?php echo $username ?> </b> </td>
                 </tr>
