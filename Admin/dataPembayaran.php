@@ -17,7 +17,7 @@
     <?php include "header.php" ?>
       <div class="content-1">
           <?php include "sidebar.php" ?>
-          <div class="content" style="height:755px;overflow-y:scroll;padding-bottom:40px;">
+          <div class="content" style="height:755px;overflow-y:scroll;overflow-x:scroll;padding-bottom:40px;">
             <div style="display:flex;justify-content:space-between;">
                 <h1>View Data Pembayaran</h1>
             </div>
@@ -39,6 +39,8 @@
             <div id="data">
                 <table class="table table-striped text-center" id='example'> 
                     <colgroup>
+                            <col width="2%">
+                            <col width="5%">
                             <col width="5%">
                             <col width="10%">
                             <col width="10%">
@@ -53,6 +55,8 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>No</th>
+                            <th style="font-size:12px;">No Pendaftaran</th>
+                            <th style="font-size:12px;">No Bukti Pembayaran</th>
                             <th>Username</th>
                             <th>Nama</th>
                             <th>Email</th>
@@ -101,6 +105,8 @@
                     ?>
                         <tr class="align-middle">
                             <td><?php echo $x ?></td>
+                            <td>NP-<?php echo $idregis ?></td>
+                            <td>BP-<?php echo $id ?></td>
                             <td><?php echo strtoupper($username) ?></td>
                             <td><?php echo $nama ?></td>
                             <td><?php echo $email ?></td>
@@ -130,7 +136,7 @@
             </div>
           </div>
       </div>
-      <div class="footer fixed-bottom">
+      <div class="footer">
           <p>&#169;2021 Copyright: <u>BAKORPEND_Pontianak.com</u></p>
       </div>
 </body>

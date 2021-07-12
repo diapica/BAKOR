@@ -2,12 +2,16 @@
     error_reporting(0);
     include "../connection.php";
     $username = $_GET['username'];
-    $sql = "SELECT tbuser.waktuUpdate, tbregistrasi.*, tbpembayaran.tanggalPembayaran, tbpembayaran.biayaKursus FROM tbregistrasi 
+    $sql = "SELECT tbuser.waktuUpdate, tbregistrasi.*, tbpembayaran.tanggalPembayaran, tbpembayaran.biayaKursus, 
+    tbpembayaran.idpembayaran FROM tbregistrasi 
     INNER JOIN tbuser ON tbregistrasi.username = tbuser.username INNER JOIN tbpembayaran 
     ON tbregistrasi.idregistrasi = tbpembayaran.idregistrasi 
     WHERE tbregistrasi.username = '$username' AND tbpembayaran.status = 'diterima'";
     $query = mysqli_query($conn,$sql);
     $re = mysqli_fetch_array($query);
+    
+    $idRegistrasi = $re['idregistrasi'];
+    $idPembayaran = $re['idpembayaran'];
     $tingkatan = ucwords(strtolower($re['tingkatan']));
     $waktuBelajar = ucwords(strtolower($re['waktuBelajar']));
     $statusKelas = ($re['statusKelas'] =='tatap_muka') ? 'Tatap Muka' : 'Online';
@@ -99,6 +103,9 @@
                     <td width=50%>Status Kelas: </td> <td> <b> <?php echo $statusKelas ?> </b> </td>
                 </tr>
                 <tr>
+                    <td width=50%>No Bukti Pembayaran: </td> <td> <b> BP-<?php echo $idPembayaran ?> </b> </td>
+                </tr>
+                <tr>
                     <td width=50%>Biaya Kursus: </td> <td> <b> Rp. <?php echo number_format((float)$biaya, 0, ',', '.'); ?> </b> </td>
                 </tr>
                 <tr>
@@ -106,6 +113,9 @@
                 </tr>
                 <tr>
                     <td width=50%>Tanggal Pembayaran Disetujui: </td> <td> <b> <?php echo $approved ?> </b> </td>
+                </tr>
+                <tr>
+                    <td width=50%>No Pendaftaran: </td> <td> <b> NP-<?php echo $idRegistrasi ?> </b> </td>
                 </tr>
                 <tr>
                     <td width=50%>Tanggal Daftar: </td> <td> <b> <?php echo $tanggalDaftar ?> </b> </td>

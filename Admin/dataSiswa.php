@@ -42,6 +42,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>No</th>
+                            <th>No Pendaftaran</th>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -68,7 +69,7 @@
                         if($statusRegister == 'a'){
                             $status = "Belum melakukan pendaftaran";
                         }else if($statusRegister == 'b'){
-                            $status = "Pendaftaran telah selesai! Meunggu konfirmasi!";
+                            $status = "Pendaftaran telah selesai! Menunggu konfirmasi!";
                         }else if($statusRegister == 'c'){
                             $status = "Menunggu Pembayaran";
                         }else if($statusRegister == 'd'){
@@ -83,7 +84,8 @@
                     ?>
                         <tr>
                             <td><?php echo $x ?></td>
-                            <td><?php echo $username ?></td>
+                            <td>NP-<?php echo $id ?></td>
+                            <td><?php echo strtoupper($username) ?></td>
                             <td><?php echo $email ?></td>
                             <td><?php echo $status ?></td>
                             <td>
@@ -95,7 +97,7 @@
                                 <button name="submit" id="button" value="Hapus" class="btn btn-danger" onclick="deleteData(<?php echo "'$id', '$username'" ?>)">Hapus</button>
                             </td>
                         </tr>
-                        <?php } }else { echo "<tr><td colspan=5>Tidak ada data</td></tr>"; }?>
+                        <?php } }else { echo "<tr><td colspan=6>Tidak ada data</td></tr>"; }?>
                     </tbody>
                 </table>
             </div>

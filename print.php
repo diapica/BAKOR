@@ -22,7 +22,7 @@
     }
     $dompdf->loadHtml($html);
     // (Opsional) Mengatur ukuran kertas dan orientasi kertas
-    $dompdf->setPaper('A4', 'landscape');
+    // $dompdf->setPaper('A4', 'landscape');
     // Menjadikan HTML sebagai PDF
     $dompdf->render();
     // Output akan menghasilkan PDF ke Browser

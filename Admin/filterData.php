@@ -28,6 +28,8 @@
 <?php if($submit == "pembayaran"){ ?> 
     <table class="table table-striped text-center" id='example'> 
         <colgroup>
+                <col width="2%">
+                <col width="5%">
                 <col width="5%">
                 <col width="10%">
                 <col width="10%">
@@ -42,6 +44,8 @@
         <thead class="thead-dark">
             <tr>
                 <th>No</th>
+                <th style="font-size:12px;">No Pendaftaran</th>
+                <th style="font-size:12px;">No Pembayaran</th>
                 <th>Username</th>
                 <th>Nama</th>
                 <th>Email</th>
@@ -78,6 +82,8 @@
         ?>
             <tr class="align-middle">
                 <td><?php echo $x ?></td>
+                <td>NP-<?php echo $idregis ?></td>
+                <td>BP-<?php echo $id ?></td>
                 <td><?php echo strtoupper($username) ?></td>
                 <td><?php echo $nama ?></td>
                 <td><?php echo $email ?></td>
@@ -111,6 +117,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>No</th>
+                <th>No Pendaftaran</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Status</th>
@@ -144,7 +151,8 @@
             ?>
             <tr>
                 <td><?php echo $x ?></td>
-                <td><?php echo $username ?></td>
+                <td>NP-<?php echo $id ?></td>
+                <td><?php echo strtoupper($username) ?></td>
                 <td><?php echo $email ?></td>
                 <td><?php echo $status ?></td>
                 <td>
